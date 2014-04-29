@@ -1,3 +1,3 @@
-#include <unittest++/UnitTest++.h>
+#include <UnitTest++.h>
 
 int main() { return UnitTest::RunAllTests(); }
