@@ -40,7 +40,16 @@ public:
                 Color const& color
                 ) const;
 
+  void drawLine(float startX, float startY,
+                float endX, float endY,
+                float r, float g, float b
+                ) const;
+
+
+
   void drawPoint(glm::vec2 const& p, Color const& col) const;
+
+  void drawPoint(float x, float y, float r, float g, float b) const;
 
   glm::vec2 mousePosition() const;
 
