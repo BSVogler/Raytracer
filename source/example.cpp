@@ -1,8 +1,8 @@
-#include "window.hpp"
+#include "fensterchen.hpp"
 
 int main(int argc, char* argv[])
 {
-  Window win{{800,800}};
+  Window win(glm::ivec2(800,800));
 
   while (!win.shouldClose()) {
     if (win.isKeyPressed(GLFW_KEY_ESCAPE)) {
