@@ -85,16 +85,6 @@ endif(MSVC)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/framework)
 add_subdirectory(framework)
 
-# Copy binary
-
-if(MSVC)
-  set(COPY_BINARY copy-binary)
-  add_custom_target(${COPY_BINARY}
-          COMMAND ${CMAKE_COMMAND} -E copy ${FREEIMAGE_BIN_PATH} ${CMAKE_CURRENT_BINARY_DIR}/source/${FREEIMAGE_BINARY_FILE}
-          COMMAND ${CMAKE_COMMAND} -E copy ${FREEIMAGE_BIN_PATH} ${CMAKE_CURRENT_BINARY_DIR}/build/Debug/${FREEIMAGE_BINARY_FILE}
-          COMMAND ${CMAKE_COMMAND} -E copy ${FREEIMAGE_BIN_PATH} ${CMAKE_CURRENT_BINARY_DIR}/build/Release/${FREEIMAGE_BINARY_FILE})
-endif()
-
 add_subdirectory(source)
 
 set (FENSTERCHEN_TESTS "true" CACHE BOOL "Set to enable testing.")
