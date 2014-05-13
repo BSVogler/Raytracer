@@ -9,6 +9,6 @@ target_link_libraries(runTests
                       ${BINARY_FILES}
                       )
 
-#add_dependencies(test UnitTest++ ${FRAMEWORK_NAME} ${COPY_BINARY})
+add_dependencies(example UnitTest++ glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
 
 install(TARGETS runTests DESTINATION .)
