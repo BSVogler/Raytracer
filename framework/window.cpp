@@ -157,12 +157,27 @@ void Window::drawLine(glm::vec2 const& start
   glEnd();
 }
 
+void Window::drawLine(float startX, float startY,
+                float endX, float endY,
+                float r, float g, float b
+                ) const
+{
+
+  drawLine(glm::vec2(startX, startY), glm::vec2(endX, endY), Color(r,g,b));
+}
+
 void Window::drawPoint(glm::vec2 const& p, Color const& col) const
 {
   glColor3f(GLfloat(col.r_)/255.0f, GLfloat(col.g_)/255.0f, GLfloat(col.b_)/255.0f);
   glBegin(GL_POINTS);
     glVertex2f(GLfloat(p.x), GLfloat(p.y));
   glEnd();
+}
+
+
+void Window::drawPoint(float x, float y, float r, float g, float b) const
+{
+  drawPoint(glm::vec2(x,y), Color(r,g,b));
 }
 
 float Window::getTime() const
