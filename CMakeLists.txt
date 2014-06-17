@@ -87,7 +87,7 @@ add_subdirectory(framework)
 
 add_subdirectory(source)
 
-set (FENSTERCHEN_TESTS "true" CACHE BOOL "Set to enable testing.")
+set (FENSTERCHEN_TESTS "false" CACHE BOOL "Set to enable testing.")
 if (FENSTERCHEN_TESTS)
   set(UNITTEST_PP_DIRECTORY unittest-cpp)
   include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY}/UnitTest++)
