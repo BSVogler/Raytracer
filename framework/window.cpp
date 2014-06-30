@@ -127,7 +127,10 @@ void Window::update()
   glfwPollEvents();
 
   // prepare next frame
-  glViewport(0, 0, m_size.x, m_size.y);
+  //glViewport(0, 0, m_size.x, m_size.y);
+  int width, height;
+  glfwGetFramebufferSize(window, &width, &height);
+  glViewport(0, 0, width, height);
   glClear(GL_COLOR_BUFFER_BIT);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
