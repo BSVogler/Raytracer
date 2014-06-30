@@ -1,4 +1,4 @@
 fensterchen
 ===========
 
-Framework for exercise 02.
+Framework for exercise 08.
