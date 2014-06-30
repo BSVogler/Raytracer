@@ -5,30 +5,30 @@
 
 struct Color
 {
-  Color(float red, float green, float blue) : r_(red), g_(green), b_(blue) {}
-  float r_;
-  float g_;
-  float b_;
+  Color(float red, float green, float blue) : r(red), g(green), b(blue) {}
+  float r;
+  float g;
+  float b;
 
   friend std::ostream& operator<<(std::ostream& os, Color const& c)
   {
-    os << "(" << c.r_ << "," << c.g_ << "," << c.b_ << ")\n";
+    os << "(" << c.r << "," << c.g << "," << c.b << ")\n";
     return os;
   }
 
   Color& operator+=(Color const& other)
   {
-    r_ += other.r_;
-    g_ += other.g_;
-    b_ += other.b_;
+    r += other.r;
+    g += other.g;
+    b += other.b;
     return *this;
   }
 
   Color& operator-=(Color const& other)
   {
-    r_ -= other.r_;
-    g_ -= other.g_;
-    b_ -= other.b_;
+    r -= other.r;
+    g -= other.g;
+    b -= other.b;
     return *this;
   }
 
