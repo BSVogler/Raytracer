@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[])
 {
-  unsigned const width = 800;
+  unsigned const width = 600;
   unsigned const height = 600;
   std::string const filename = "./checkerboard.ppm";
 
