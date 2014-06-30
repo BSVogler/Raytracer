@@ -148,7 +148,7 @@ void Window::drawLine(glm::vec2 const& start
                     , glm::vec2 const& end
                     , Color const& col) const
 {
-  glColor3f(GLfloat(col.r_)/255.0f, GLfloat(col.g_)/255.0f, GLfloat(col.b_)/255.0f);
+  glColor3f(GLfloat(col.r)/255.0f, GLfloat(col.g)/255.0f, GLfloat(col.b)/255.0f);
   glBegin(GL_LINES);
   {
     glVertex2f(GLfloat(start.x), GLfloat(start.y));
@@ -162,13 +162,12 @@ void Window::drawLine(float startX, float startY,
                 float r, float g, float b
                 ) const
 {
-
   drawLine(glm::vec2(startX, startY), glm::vec2(endX, endY), Color(r,g,b));
 }
 
 void Window::drawPoint(glm::vec2 const& p, Color const& col) const
 {
-  glColor3f(GLfloat(col.r_)/255.0f, GLfloat(col.g_)/255.0f, GLfloat(col.b_)/255.0f);
+  glColor3f(GLfloat(col.r)/255.0f, GLfloat(col.g)/255.0f, GLfloat(col.b)/255.0f);
   glBegin(GL_POINTS);
     glVertex2f(GLfloat(p.x), GLfloat(p.y));
   glEnd();
