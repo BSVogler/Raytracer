@@ -1,14 +1,14 @@
-#ifndef BUW_PIXEL_HPP
-#define BUW_PIXEL_HPP
-
 // -----------------------------------------------------------------------------
-// Copyright  : (C) 2014 Andreas-C. Bernstein
+// Copyright  : (C) 2014 Andre Schollmeyer and Andreas-C. Bernstein
 // License    : MIT (see the file LICENSE)
 // Maintainer : Andreas-C. Bernstein <andreas.bernstein@uni-weimar.de>
 // Stability  : experimental
 //
 // Pixel
 // -----------------------------------------------------------------------------
+
+#ifndef BUW_PIXEL_HPP
+#define BUW_PIXEL_HPP
 
 // header, system
 #include <iosfwd>

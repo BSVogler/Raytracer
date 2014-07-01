@@ -1,6 +1,3 @@
-#ifndef BUW_RENDERER_HPP
-#define BUW_RENDERER_HPP
-
 // -----------------------------------------------------------------------------
 // Copyright  : (C) 2014 Andreas-C. Bernstein
 // License    : MIT (see the file LICENSE)
@@ -9,6 +6,9 @@
 //
 // Renderer
 // -----------------------------------------------------------------------------
+
+#ifndef BUW_RENDERER_HPP
+#define BUW_RENDERER_HPP
 
 #include "color.hpp"
 #include "pixel.hpp"

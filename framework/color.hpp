@@ -1,6 +1,3 @@
-#ifndef BUW_COLOR_HPP
-#define BUW_COLOR_HPP
-
 // -----------------------------------------------------------------------------
 // Copyright  : (C) 2014 Andreas-C. Bernstein
 // License    : MIT (see the file LICENSE)
@@ -9,6 +6,9 @@
 //
 // Color
 // -----------------------------------------------------------------------------
+
+#ifndef BUW_COLOR_HPP
+#define BUW_COLOR_HPP
 
 #include <iostream>
 

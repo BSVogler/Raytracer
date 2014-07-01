@@ -1,6 +1,3 @@
-#ifndef BUW_FENSTERCHEN_HPP
-#define BUW_FENSTERCHEN_HPP
-
 // -----------------------------------------------------------------------------
 // Copyright  : (C) 2014 Andreas-C. Bernstein
 // License    : MIT (see the file LICENSE)
@@ -9,6 +6,9 @@
 //
 // Fensterchen
 // -----------------------------------------------------------------------------
+
+#ifndef BUW_FENSTERCHEN_HPP
+#define BUW_FENSTERCHEN_HPP
 
 #include "color.hpp"
 #include "window.hpp"

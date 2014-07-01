@@ -1,6 +1,3 @@
-#ifndef BUW_WINDOW_HPP
-#define BUW_WINDOW_HPP
-
 // -----------------------------------------------------------------------------
 // Copyright  : (C) 2014 Andreas-C. Bernstein
 // License    : MIT (see the file LICENSE)
@@ -9,6 +6,9 @@
 //
 // Window
 // -----------------------------------------------------------------------------
+
+#ifndef BUW_WINDOW_HPP
+#define BUW_WINDOW_HPP
 
 #include "color.hpp"
 
