@@ -1,6 +1,15 @@
 #ifndef BUW_PPMWRITER_HPP
 #define BUW_PPMWRITER_HPP
 
+// -----------------------------------------------------------------------------
+// Copyright  : (C) 2014 Andreas-C. Bernstein
+// License    : MIT (see the file LICENSE)
+// Maintainer : Andreas-C. Bernstein <andreas.bernstein@uni-weimar.de>
+// Stability  : experimental
+//
+// PpmWriter
+// -----------------------------------------------------------------------------
+
 // header, system
 #include <string>
 #include <vector>

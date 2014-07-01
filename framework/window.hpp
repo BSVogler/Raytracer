@@ -1,6 +1,15 @@
 #ifndef BUW_WINDOW_HPP
 #define BUW_WINDOW_HPP
 
+// -----------------------------------------------------------------------------
+// Copyright  : (C) 2014 Andreas-C. Bernstein
+// License    : MIT (see the file LICENSE)
+// Maintainer : Andreas-C. Bernstein <andreas.bernstein@uni-weimar.de>
+// Stability  : experimental
+//
+// Window
+// -----------------------------------------------------------------------------
+
 #include "color.hpp"
 
 #include <GL/glew.h>
