@@ -8,7 +8,9 @@ int main(int argc, char* argv[])
   unsigned const height = 600;
   std::string const filename = "./checkerboard.ppm";
 
-  Renderer app(width, height, filename);
+  Renderer app = Renderer(width, height, filename);
+  if (argc>0)
+    app = Renderer(width, height, filename, argv[0]);
 
   std::thread thr([&app]() { app.render(); });
 
