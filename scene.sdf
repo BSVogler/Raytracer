@@ -1,6 +1,6 @@
 # materials
-define material red 100 100 100 10
-define material blue 001 001 001 10
+define material red 1 0 0 1 0 0 1 0 0 1
+define material blue 0 0 1 0 0 1 0 0 1 1
 # geometry
 define shape box rbottom -100 -80 -200
 define shape sphere bsphere 0 0 -100
