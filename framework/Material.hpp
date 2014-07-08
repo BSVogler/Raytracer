@@ -32,22 +32,6 @@ public:
         return m;
     }
     
-    void setKa(Color ka) {
-        this->ka = ka;
-    }
-
-    void setKd(Color kd) {
-        this->kd = kd;
-    }
-
-    void setKs(Color ks) {
-        this->ks = ks;
-    }
-
-    void setM(float m) {
-        this->m = m;
-    }
-
     void setName(std::string name) {
         this->name = name;
     }
