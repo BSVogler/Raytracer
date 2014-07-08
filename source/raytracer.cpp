@@ -8,7 +8,8 @@ int main(int argc, char* argv[])
   unsigned const height = 600;
   std::string const filename = "./checkerboard.ppm";
 
-  Renderer app = Renderer(width, height, filename);
+  std::cout << "welcome to Raytracer ("<< width<<"x"<<height<<"). Files are stored into:" <<filename<<std::endl;
+  Renderer app = Renderer(width, height, filename);//wie legt man die variable ohne initialisierung an?
   if (argc>0)
     app = Renderer(width, height, filename, argv[0]);
 
