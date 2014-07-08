@@ -8,6 +8,7 @@
 // -----------------------------------------------------------------------------
 
 #include "renderer.hpp"
+#include "SDFLoader.hpp"
 
 Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
   : width_(w)
@@ -24,10 +25,11 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file, std::string 
   , filename_(file)
   , scenefile_(scenefile)
   , ppm_(width_, height_)
-{}
-
-void Renderer::render()
 {
+    SDFLoader::load(scenefile);
+}
+
+void Renderer::render() {
   const std::size_t checkersize = 20;
 
   for (unsigned y = 0; y < height_; ++y) {
@@ -45,8 +47,7 @@ void Renderer::render()
   ppm_.save(filename_);
 }
 
-void Renderer::write(Pixel const& p)
-{
+void Renderer::write(Pixel const& p) {
   // flip pixels, because of opengl glDrawPixels
   size_t buf_pos = (width_*p.y + p.x);
   if (buf_pos >= colorbuffer_.size() || (int)buf_pos < 0) {
