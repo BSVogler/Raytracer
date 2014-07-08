@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <cmath>
+#include <algorithm>
 
 PpmWriter::PpmWriter(std::size_t w, std::size_t h, std::string const& file)
   : file_(file),
