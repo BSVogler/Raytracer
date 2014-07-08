@@ -12,9 +12,16 @@
 
 class Material {
 public:
-    Material(): ka(0,0,0),kd(0,0,0),ks(0,0,0){};
+    Material():
+        ka(0,0,0),kd(0,0,0),ks(0,0,0)
+    {};
+    Material(Color ka, Color kd, Color ks, float m, std::string name) :
+        ka(ka), kd(kd), ks(ks), m(m), name(name)
+    {}
+
     Material(const Material& orig);
     virtual ~Material();
+    
     std::string getName();
     Color getKa() const {
         return ka;
