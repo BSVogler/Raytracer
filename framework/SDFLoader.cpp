@@ -38,8 +38,9 @@ Scene SDFLoader::load(const string& scenefile) {
                 Color cd(atoi(line.substr(16,1).c_str()), atoi(line.substr(18,1).c_str()), atoi(line.substr(19,1).c_str()));
                 Color cs(atoi(line.substr(16,1).c_str()), atoi(line.substr(18,1).c_str()), atoi(line.substr(19,1).c_str()));
                 float m = atoi(line.substr(39,1).c_str());
-                cout << "Found material \""<<name<<"\" "<<ca<<","<<cd<<","<<cs<<"m:"<<m<<endl;
-                mvec.push_back(Material(ca, cd, cs,m, name));
+                Material mat(ca, cd, cs,m, name);
+                cout << "Found material:"<<mat<<endl;
+                mvec.push_back(mat);
             } else
                 cout << line <<endl;
         }

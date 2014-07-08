@@ -22,7 +22,10 @@ public:
     Material(const Material& orig);
     virtual ~Material();
     
-    std::string getName();
+    std::string getName() const {
+        return name;
+    }
+    
     Color getKa() const {
         return ka;
     }
@@ -39,9 +42,6 @@ public:
         return m;
     }
     
-    void setName(std::string name) {
-        this->name = name;
-    }
 private:
     std::string name;
     Color ka;
@@ -49,6 +49,8 @@ private:
     Color ks;
     float m;
 };
+
+std::ostream& operator <<(std::ostream& os, Material const& mat);
 
 #endif	/* MATERIAL_HPP */
 

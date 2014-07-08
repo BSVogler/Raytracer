@@ -17,7 +17,14 @@ Material::~Material() {
     
 }
 
-
-
+std::ostream& operator<<(std::ostream& os, Material const& mat)
+{
+  os << "name: \"" << mat.getName()
+     << "\" ka: " << mat.getKa()
+     << " kd: " << mat.getKd()
+     << " ks: " << mat.getKs() 
+     << " m: " << mat.getM() << "\n";
+  return os; 
+}
 
 
