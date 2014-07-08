@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
   std::cout << "welcome to Raytracer ("<< width<<"x"<<height<<"). Files are stored into:" <<filename<<std::endl;
   Renderer app = Renderer(width, height, filename);//wie legt man die variable ohne initialisierung an?
   if (argc>0)
-    app = Renderer(width, height, filename, argv[0]);
+    app = Renderer(width, height, filename, argv[1]);
 
   std::thread thr([&app]() { app.render(); });
 
