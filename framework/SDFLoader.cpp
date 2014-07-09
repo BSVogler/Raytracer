@@ -33,7 +33,16 @@ Scene SDFLoader::load(const string& scenefile) {
         
         while (getline (file,line)){
             if (line.substr(0,15)=="define material"){
-                string name = "material";
+                //extract name
+                int i = 16;
+                //find next space
+                while (line.at(i)!=' ') {
+                    i++;
+                }
+                    
+                string name = line.substr(16,i-16);
+                
+                //extract color
                 Color ca(atoi(line.substr(16,1).c_str()), atoi(line.substr(18,1).c_str()), atoi(line.substr(19,1).c_str()));
                 Color cd(atoi(line.substr(16,1).c_str()), atoi(line.substr(18,1).c_str()), atoi(line.substr(19,1).c_str()));
                 Color cs(atoi(line.substr(16,1).c_str()), atoi(line.substr(18,1).c_str()), atoi(line.substr(19,1).c_str()));
