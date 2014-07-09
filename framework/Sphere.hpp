@@ -9,14 +9,20 @@
 #define	SPHERE_HPP
 
 #include <glm/glm.hpp>
+#include <utility>
 #include "ray.hpp"
+
 
 class Sphere {
 public:
     Sphere();
+    Sphere(glm::vec3 center, float radius) :
+        center(center), radius(radius)
+    {}
+
     Sphere(const Sphere& orig);
     virtual ~Sphere();
-    glm::vec3 intersect(Ray const& ray) const;
+    std::pair<bool, glm::vec3> intersect(Ray const& ray) const;
 private:
     glm::vec3 center;
     float radius;

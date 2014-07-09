@@ -16,7 +16,7 @@ Sphere::Sphere(const Sphere& orig) {
 Sphere::~Sphere() {
 }
 
-glm::vec3 Sphere::intersect(Ray const& ray) const {
+std::pair<bool, glm::vec3> Sphere::intersect(Ray const& ray) const {
     float b = 2 *(glm::dot(ray.origin,ray.direction));
     float c = glm::dot(ray.origin,ray.origin) - radius*radius;
     
@@ -26,11 +26,11 @@ glm::vec3 Sphere::intersect(Ray const& ray) const {
         float t2 = -b+sqrt(root);
         
         if (t1 < t2)//nimm Punkt, welcher näher dran ist
-            return ray.origin+ray.direction*t1;//use t1
+            return std::pair<bool, glm::vec3>(true, ray.origin+ray.direction*t1);//use t1
         else 
-            return ray.origin+ray.direction*t2;//use t2
+            return std::pair<bool, glm::vec3>(true, ray.origin+ray.direction*t2);//use t2
     } else 
-        return ray.origin;//keine Lösung
+        return std::pair<bool, glm::vec3>(false, ray.origin);//keine Lösung
 }
 
 
