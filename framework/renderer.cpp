@@ -8,7 +8,7 @@
 // -----------------------------------------------------------------------------
 
 #include "renderer.hpp"
-#include "SDFLoader.hpp"
+#include "SDFloader.hpp"
 
 Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
   : width_(w)

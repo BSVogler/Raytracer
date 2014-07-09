@@ -5,7 +5,7 @@
  * Created on 8. Juli 2014, 18:52
  */
 
-#include "SDFLoader.hpp"
+#include "SDFloader.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
