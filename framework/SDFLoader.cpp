@@ -30,7 +30,7 @@ Scene SDFLoader::load(const string& scenefile) {
     ifstream file(scenefile);
     //file.open(scenefile, ios::in);
     if (file.is_open()) {
-        
+        //stringStream benutzen
         while (getline (file,line)){
             if (line.substr(0,15)=="define material"){
                 //extract name
