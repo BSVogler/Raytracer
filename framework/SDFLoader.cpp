@@ -21,7 +21,7 @@ SDFLoader::SDFLoader(const SDFLoader& orig) {
 SDFLoader::~SDFLoader() {
 }
 
-Scene SDFLoader::load(const string& scenefile) {
+Scene SDFLoader::load(string const& scenefile) {
     std::cout << "Loading file: " << scenefile << std::endl;
     
     vector<Material> mvec;
