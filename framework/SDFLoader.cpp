@@ -104,7 +104,18 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         LightPoint light = LightPoint(lightname, pos, diff);
                         cout << "light point: "<<lightname<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
                         lvec.push_back(light);
-                    }else {
+                    }else if (type=="ambient") {
+                        string lightname;
+                        ss >> lightname;//name get's ignored
+                        
+                        float red, green, blue;
+                        ss >> red;
+                        ss >> green;
+                        ss >> blue;
+                        Color amb(red, green, blue);
+                        scene.amb = amb;
+                        cout << "ambient light "<<amb<<endl;
+                    } else {
                         cout << "type not supported yet."<<endl;
                     }
                 } else

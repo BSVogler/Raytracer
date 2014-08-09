@@ -23,7 +23,7 @@ struct Scene {
         int resX;
         int resY;
         std::string outputFile;
-    
+        Color amb;
 };
 
 
