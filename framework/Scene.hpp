@@ -9,11 +9,13 @@
 #define	SCENE_HPP
 
 #include "Material.hpp"
+#include "Camera.hpp"
 #include <vector>
 
 struct Scene {
     public:
         std::vector<Material> materials;
+        Camera camera;
         std::string camname;
         int resX;
         int resY;
