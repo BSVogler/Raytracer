@@ -12,12 +12,13 @@
 #include <vector>
 
 struct Scene {
-    std::vector<Material> materials;
+    public:
+        std::vector<Material> materials;
+        std::string camname;
+        int resX;
+        int resY;
+        std::string outputFile;
     
-    Scene(std::vector<Material> materials) :
-        materials(materials)
-    {}
-
 };
 
 

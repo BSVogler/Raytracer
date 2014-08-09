@@ -29,6 +29,7 @@ SDFLoader::~SDFLoader() {
  */
 Scene SDFLoader::load(std::string const& scenefile) {
     std::cout << "Loading file: " << scenefile << std::endl;
+    Scene scene = Scene();
     
     vector<Material> mvec;
     
@@ -81,7 +82,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
         file.close();
     }else cout << "Unable to open file"; 
     
-    return Scene(mvec); 
+    scene.materials = mvec;
+    return scene; 
 }
 
 
