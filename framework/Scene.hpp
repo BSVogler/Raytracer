@@ -17,6 +17,7 @@ struct Scene {
     public:
         std::vector<Material> materials;
         std::vector<LightPoint> lights;
+        //std::vector<RenderObject> renderObjects;
         Camera camera;
         std::string camname;
         int resX;
