@@ -73,6 +73,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     mvec.push_back(mat);
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
+            } else if (tmpString=="#"){
+                cout << line << endl;
             } else
                 cout << "Line not supported:"<<line <<endl;
         }
