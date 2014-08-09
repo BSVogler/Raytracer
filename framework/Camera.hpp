@@ -11,10 +11,10 @@
 class Camera {
 public:
     Camera();
-    Camera(const Camera& orig);
-    virtual ~Camera();
+    Camera(std::string const name, int const fovX);
 private:
-
+    std::string name;
+    int fovX;
 };
 
 #endif	/* CAMERA_HPP */

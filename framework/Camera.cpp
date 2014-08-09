@@ -7,12 +7,12 @@
 
 #include "Camera.hpp"
 
-Camera::Camera() {
-}
+Camera::Camera():
+    name("unnamed"),
+    fovX(100)
+{}
 
-Camera::Camera(const Camera& orig) {
-}
-
-Camera::~Camera() {
-}
-
+Camera::Camera(const std::string name, const int fovX):
+    name(name),
+    fovX(fovX)
+{}
