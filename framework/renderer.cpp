@@ -26,7 +26,7 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file, std::string 
   , scenefile_(scenefile)
   , ppm_(width_, height_)
 {
-    SDFLoader::load(scenefile);
+   scene_ = SDFLoader::load(scenefile);
 }
 
 void Renderer::render() {

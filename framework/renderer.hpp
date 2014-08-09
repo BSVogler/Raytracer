@@ -13,6 +13,7 @@
 #include "color.hpp"
 #include "pixel.hpp"
 #include "ppmwriter.hpp"
+#include "Scene.hpp"
 #include <string>
 #include <glm/glm.hpp>
 
@@ -35,6 +36,7 @@ class Renderer {
       std::vector<Color> colorbuffer_;
       std::string filename_;
       std::string scenefile_;
+      Scene scene_;
       PpmWriter ppm_;
 };
 
