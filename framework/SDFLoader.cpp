@@ -22,6 +22,11 @@ SDFLoader::SDFLoader(const SDFLoader& orig) {
 SDFLoader::~SDFLoader() {
 }
 
+/**
+ * Loads a scene file and reacts to the commands in it
+ * @param scenefile the string to the file
+ * @return 
+ */
 Scene SDFLoader::load(std::string const& scenefile) {
     std::cout << "Loading file: " << scenefile << std::endl;
     
