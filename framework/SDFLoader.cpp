@@ -74,6 +74,11 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     mvec.push_back(mat);
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
+            } else if (tmpString=="render"){
+                ss >> scene.camname;
+                ss >> scene.outputFile;
+                ss >> scene.resX;
+                ss >> scene.resY;
             } else if (tmpString=="#"){
                 cout << line << endl;
             } else
