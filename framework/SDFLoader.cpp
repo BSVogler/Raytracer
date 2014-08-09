@@ -6,6 +6,7 @@
  */
 
 #include "SDFloader.hpp"
+#include "Camera.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -72,7 +73,9 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     Material mat(ca, cd, cs,m, name);
                     cout << "Material specs: "<<endl<<mat;
                     mvec.push_back(mat);
-                } else
+                } else if (tmpString=="camera"){
+                    //scene.camera = Camera("test",150);
+                }else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (tmpString=="render"){
                 ss >> scene.camname;
