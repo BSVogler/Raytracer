@@ -55,19 +55,19 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss>>name;
 
                     //extract color
-                    int tmp1, tmp2, tmp3;
-                    ss >> tmp1;
-                    ss >> tmp2;
-                    ss >> tmp3;
-                    Color ca(tmp1, tmp2, tmp3);
-                    ss >> tmp1;
-                    ss >> tmp2;
-                    ss >> tmp3;
-                    Color cd(tmp1, tmp2, tmp3);
-                    ss >> tmp1;
-                    ss >> tmp2;
-                    ss >> tmp3;
-                    Color cs(tmp1, tmp2, tmp3);
+                    int red, green, blue;
+                    ss >> red;
+                    ss >> green;
+                    ss >> blue;
+                    Color ca(red, green, blue);
+                    ss >> red;
+                    ss >> green;
+                    ss >> blue;
+                    Color cd(red, green, blue);
+                    ss >> red;
+                    ss >> green;
+                    ss >> blue;
+                    Color cs(red, green, blue);
                     float m;
                     ss >> m;
                     Material mat(ca, cd, cs,m, name);
