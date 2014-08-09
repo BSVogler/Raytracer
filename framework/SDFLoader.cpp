@@ -79,6 +79,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 ss >> scene.outputFile;
                 ss >> scene.resX;
                 ss >> scene.resY;
+                if (scene.resX<=0) scene.resX=100;
+                if (scene.resY<=0) scene.resY=100;
             } else if (tmpString=="#"){
                 cout << line << endl;
             } else
