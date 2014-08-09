@@ -6,9 +6,19 @@
  */
 
 #include "LightPoint.hpp"
+#include "glm/detail/type_vec.hpp"
 
-LightPoint::LightPoint() {
-}
+LightPoint::LightPoint() :
+    name("unnamed"),
+    pos(glm::vec3(0,0,0)),
+    diff(Color())   
+{}
+
+LightPoint::LightPoint(const std::string& name, const glm::vec3& pos, const Color& diff):
+    name(name),
+    pos(pos),
+    diff(diff)   
+{}
 
 LightPoint::LightPoint(const LightPoint& orig) {
 }

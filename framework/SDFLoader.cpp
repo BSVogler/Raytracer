@@ -12,6 +12,7 @@
 #include <string>
 #include <sstream>
 #include "Material.hpp"
+#include "LightPoint.hpp"
 using namespace std;
 
 SDFLoader::SDFLoader() {
@@ -33,6 +34,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
     Scene scene = Scene();
     
     vector<Material> mvec;
+    vector<LightPoint> lvec;
     
     string line;
     ifstream file(scenefile);
@@ -55,7 +57,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss>>name;
 
                     //extract color
-                    int red, green, blue;
+                    float red, green, blue;
                     ss >> red;
                     ss >> green;
                     ss >> blue;
@@ -79,8 +81,33 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     int fovX;
                     ss >> fovX;
                     scene.camera = Camera(cameraname,fovX);
-                    cout << "a camera: "<<cameraname<<"("<<fovX<<")"<<endl;
-                }else
+                    cout << "camera: "<<cameraname<<"("<<fovX<<")"<<endl;
+                } else if (tmpString=="light"){
+                    string type;
+                    ss>>type;
+                    
+                    if (type=="diffuse") {
+                        string lightname;
+                        ss >> lightname;
+
+                        glm::vec3 pos;
+                        ss >> pos.x;
+                        ss >> pos.y;
+                        ss >> pos.z;
+
+                        float red, green, blue;
+                        ss >> red;
+                        ss >> green;
+                        ss >> blue;
+                        Color diff(red, green, blue);
+
+                        LightPoint light = LightPoint(lightname, pos, diff);
+                        cout << "light point: "<<lightname<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
+                        lvec.push_back(light);
+                    }else {
+                        cout << "type not supported yet."<<endl;
+                    }
+                } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (tmpString=="render"){
                 ss >> scene.camname;
