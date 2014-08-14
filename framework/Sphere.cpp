@@ -7,12 +7,6 @@
 
 #include "Sphere.hpp"
 
-Sphere::Sphere() {
-}
-
-Sphere::Sphere(const Sphere& orig) {
-}
-
 Sphere::~Sphere() {
 }
 
