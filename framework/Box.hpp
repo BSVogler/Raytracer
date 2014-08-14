@@ -18,7 +18,7 @@ public:
         RenderObject("unnamed", Material()), edge1(glm::vec3()), edge2(glm::vec3())
     {};
     
-    Box(string name, glm::vec3 const& edge1, glm::vec3 const&  edge2, float const radius, Material const& material) :
+    Box(string name, glm::vec3 const& edge1, glm::vec3 const&  edge2, Material const& material) :
         RenderObject(name, material), edge1(edge1), edge2(edge2)
     {}
     
