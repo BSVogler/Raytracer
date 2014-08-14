@@ -14,16 +14,12 @@
 
 class RenderObject {
 public:
-    RenderObject(Material material, glm::vec3 pos) :
-        material(material), pos(pos)
+    RenderObject(Material material) :
+        material(material)
     {}
 
     virtual std::pair<bool, glm::vec3> intersect(Ray const& ray) const  =0;
-    glm::vec3 getPos() const {
-        return pos;
-    }
 private:
-    glm::vec3  pos;
     Material material;
 };
 
