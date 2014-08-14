@@ -19,7 +19,7 @@ public:
         RenderObject(Material()), radius(0)
     {};
     
-    Sphere(glm::vec3 center, float radius) :
+    Sphere(glm::vec3 const& center, float const radius) :
         RenderObject(Material()), center(center), radius(radius)
     {}
 

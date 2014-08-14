@@ -14,7 +14,7 @@
 
 class RenderObject {
 public:
-    RenderObject(Material material) :
+    RenderObject(Material const& material) :
         material(material)
     {}
 
