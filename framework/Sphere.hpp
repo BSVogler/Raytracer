@@ -16,16 +16,18 @@
 
 class Sphere: public RenderObject {
 public:
-    Sphere();
+    Sphere():
+        RenderObject(Material(),glm::vec3()), radius(0)
+    {};
+    
     Sphere(glm::vec3 center, float radius) :
-        center(center), radius(radius)
+        RenderObject(Material(),center), radius(radius)
     {}
 
     Sphere(const Sphere& orig);
     virtual ~Sphere();
     std::pair<bool, glm::vec3> intersect(Ray const& ray) const;
 private:
-    glm::vec3 center;
     float radius;
 };
 

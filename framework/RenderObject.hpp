@@ -10,12 +10,21 @@
 
 #include <glm/glm.hpp>
 #include "ray.hpp"
+#include "Material.hpp"
 
 class RenderObject {
 public:
-    virtual std::pair<bool, glm::vec3> intersect(Ray const& ray) const  =0 ;
+    RenderObject(Material material, glm::vec3 pos) :
+        material(material), pos(pos)
+    {}
+
+    virtual std::pair<bool, glm::vec3> intersect(Ray const& ray) const  =0;
+    glm::vec3 getPos() const {
+        return pos;
+    }
 private:
     glm::vec3  pos;
+    Material material;
 };
 
 #endif	/* RENDEROBJECT_HPP */
