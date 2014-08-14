@@ -118,6 +118,14 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     } else {
                         cout << "type not supported yet."<<endl;
                     }
+                } else if (tmpString=="shape"){
+                    string classname;
+                    ss >> classname;
+                    if (classname=="box"){
+                        cout << "Shape \""<< classname << "\"."<<endl;
+                    }else if (classname=="shpere") {
+                        cout << "Shape \""<< classname << "\"."<<endl;
+                    }else cout << "Shape \""<< classname << "\" not defined."<<endl;
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (tmpString=="render"){
