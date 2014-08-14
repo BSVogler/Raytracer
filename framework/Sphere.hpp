@@ -11,9 +11,10 @@
 #include <glm/glm.hpp>
 #include <utility>
 #include "ray.hpp"
+#include "RenderObject.hpp"
 
 
-class Sphere {
+class Sphere: public RenderObject {
 public:
     Sphere();
     Sphere(glm::vec3 center, float radius) :
