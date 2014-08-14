@@ -7,12 +7,15 @@
 
 #include "SDFloader.hpp"
 #include "Camera.hpp"
+#include "Box.hpp"
+#include "Sphere.hpp"
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include "Material.hpp"
 #include "LightPoint.hpp"
+
 using namespace std;
 
 SDFLoader::SDFLoader() {
@@ -33,8 +36,9 @@ Scene SDFLoader::load(std::string const& scenefile) {
     std::cout << "Loading file: " << scenefile << std::endl;
     Scene scene = Scene();
     
-    vector<Material> mvec;
-    vector<LightPoint> lvec;
+    vector<Material> mVec;
+    vector<LightPoint> lVec;
+    vector<RenderObject> roVec;
     
     string line;
     ifstream file(scenefile);
@@ -74,7 +78,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss >> m;
                     Material mat(ca, cd, cs,m, name);
                     cout << "Material specs: "<<endl<<mat;
-                    mvec.push_back(mat);
+                    mVec.push_back(mat);
                 } else if (tmpString=="camera"){
                     string cameraname;
                     ss >> cameraname;
@@ -103,7 +107,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
 
                         LightPoint light = LightPoint(lightname, pos, diff);
                         cout << "light point: "<<lightname<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
-                        lvec.push_back(light);
+                        lVec.push_back(light);
                     }else if (type=="ambient") {
                         string lightname;
                         ss >> lightname;//name get's ignored
@@ -121,11 +125,37 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 } else if (tmpString=="shape"){
                     string classname;
                     ss >> classname;
+                    RenderObject* rObject = nullptr;
                     if (classname=="box"){
                         cout << "Shape \""<< classname << "\"."<<endl;
+                        string name;
+                        ss >> name;
+                        int edge1x, edge1y, edge1z;
+                        ss>> edge1x;
+                        ss>> edge1y;
+                        ss>> edge1z;
+                        
+                        int edge2x, edge2y, edge2z;
+                        ss>> edge2x;
+                        ss>> edge2y;
+                        ss>> edge2z;
+                        
+                        string materialString;
+                        ss>>materialString;
+                        Material* material = findMaterial(mVec, materialString);
+                        
+                        rObject = new Box(
+                                name,
+                                glm::vec3(edge1x, edge1y, edge1z),
+                                glm::vec3(edge2x, edge2y, edge2z),
+                                *material
+                                );
                     }else if (classname=="shpere") {
                         cout << "Shape \""<< classname << "\"."<<endl;
                     }else cout << "Shape \""<< classname << "\" not defined."<<endl;
+                    
+                    if (rObject!= nullptr)
+                        roVec.push_back(rObject);
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (tmpString=="render"){
@@ -137,16 +167,33 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 if (scene.resY<=0) scene.resY=100;
                 cout << "Scene should be rendered from "<< scene.camname << " at resolution "<<scene.resX<<"x"<< scene.resY<< " to "<<scene.outputFile<<endl;
             } else if (tmpString=="#"){
-                cout << line << endl;
+                cout << line << endl;//just print comment lines
             } else
                 cout << "Line not supported:"<<line <<endl;
         }
         file.close();
     }else cout << "Unable to open file"; 
     
-    scene.materials = mvec;
+    //save collected data in scene
+    scene.materials = mVec;
+    scene.renderObjects = roVec;
+    scene.lights = lVec;
     return scene; 
 }
 
-
+/**
+ * Find the material by the name
+ * @param materials the list of the materials
+ * @param name the name looking for
+ * @return the material with the name
+ */
+Material* SDFLoader::findMaterial(std::vector<Material> const& materials, string const& name) {
+    auto i = materials.begin();
+    while ((i)!=nullptr) {
+        i++;
+        if (i->getName() == name)
+            break;
+    }
+    return i;
+}
 

@@ -15,6 +15,7 @@ public:
     SDFLoader();
     SDFLoader(const SDFLoader& orig);
     static Scene load(std::string const& scenefile);
+    static Material* findMaterial(std::vector<Material> const& materials, string const& name);
     virtual ~SDFLoader();
 private:
 };
