@@ -15,10 +15,11 @@
 class Box : public RenderObject {
 public:
     Box():
-        RenderObject(Material()), edge1(glm::vec3()), edge2(glm::vec3())
+        RenderObject("unnamed", Material()), edge1(glm::vec3()), edge2(glm::vec3())
     {};
-    Box(glm::vec3 const& edge1, glm::vec3 const&  edge2, float const radius, Material const& material) :
-        RenderObject(material), edge1(edge1), edge2(edge2)
+    
+    Box(string name, glm::vec3 const& edge1, glm::vec3 const&  edge2, float const radius, Material const& material) :
+        RenderObject(name, material), edge1(edge1), edge2(edge2)
     {}
     
     Box(const Box& orig);

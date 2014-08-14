@@ -16,11 +16,11 @@
 class Sphere: public RenderObject {
 public:
     Sphere():
-        RenderObject(Material()), radius(0)
+        RenderObject("unnamed", Material()), radius(0)
     {};
     
-    Sphere(glm::vec3 const& center, float const radius) :
-        RenderObject(Material()), center(center), radius(radius)
+    Sphere(string name, glm::vec3 const& center, float const radius) :
+        RenderObject(name, Material()), center(center), radius(radius)
     {}
 
     Sphere(const Sphere& orig);

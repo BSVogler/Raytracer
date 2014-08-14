@@ -11,16 +11,20 @@
 #include <glm/glm.hpp>
 #include "ray.hpp"
 #include "Material.hpp"
+#include <string>
+
+using std::string;
 
 class RenderObject {
 public:
-    RenderObject(Material const& material) :
-        material(material)
+    RenderObject(string const& name, Material const& material) :
+        name(name), material(material)
     {}
 
     virtual std::pair<bool, glm::vec3> intersect(Ray const& ray) const  =0;
 private:
     Material material;
+    string name;
 };
 
 #endif	/* RENDEROBJECT_HPP */
