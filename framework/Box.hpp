@@ -23,6 +23,7 @@ public:
     {}
     
     Box(const Box& orig);
+    std::pair<bool, glm::vec3> intersect(Ray const& ray) const;
     virtual ~Box();
 private:
     glm::vec3 edge1;
