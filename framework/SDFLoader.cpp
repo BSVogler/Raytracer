@@ -36,9 +36,9 @@ Scene SDFLoader::load(std::string const& scenefile) {
     cout << "Loading file: " << scenefile << endl;
     Scene scene = Scene();
     
-    vector<Material> mVec;
-    vector<LightPoint> lVec;
-    vector<RenderObject> roVec;
+    std::map<std::string, Material> mMap;
+    std::map<std::string, LightPoint> lMap;
+    std::map<std::string, RenderObject*> roMap;
     
     string line;
     ifstream file(scenefile);
@@ -78,7 +78,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss >> m;
                     Material mat(ca, cd, cs,m, name);
                     cout << "Material specs: "<<endl<<mat;
-                    mVec.push_back(mat);
+                    mMap[name]=mat;
                 } else if (tmpString=="camera"){
                     string cameraname;
                     ss >> cameraname;
@@ -91,8 +91,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss>>type;
                     
                     if (type=="diffuse") {
-                        string lightname;
-                        ss >> lightname;
+                        string name;
+                        ss >> name;
 
                         glm::vec3 pos;
                         ss >> pos.x;
@@ -105,9 +105,9 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         ss >> blue;
                         Color diff(red, green, blue);
 
-                        LightPoint light = LightPoint(lightname, pos, diff);
-                        cout << "light point: "<<lightname<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
-                        lVec.push_back(light);
+                        LightPoint light = LightPoint(name, pos, diff);
+                        cout << "light point: "<<name<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
+                        lMap[name] = light;
                     }else if (type=="ambient") {
                         string lightname;
                         ss >> lightname;//name get's ignored
@@ -117,6 +117,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         ss >> green;
                         ss >> blue;
                         Color amb(red, green, blue);
+                        
                         scene.amb = amb;
                         cout << "ambient light "<<amb<<endl;
                     } else {
@@ -125,16 +126,18 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 } else if (tmpString=="shape"){
                     string classname;
                     ss >> classname;
+                    
+                    string name;
+                    ss >> name;
+                    
                     RenderObject* rObject = nullptr;
                     if (classname=="box"){
                         cout << "Shape \""<< classname << "\"."<<endl;
-                        string name;
-                        ss >> name;
                         int edge1x, edge1y, edge1z;
                         ss>> edge1x;
                         ss>> edge1y;
                         ss>> edge1z;
-                        
+                            
                         int edge2x, edge2y, edge2z;
                         ss>> edge2x;
                         ss>> edge2y;
@@ -142,20 +145,20 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         
                         string materialString;
                         ss>>materialString;
-                        Material* material = findMaterial(mVec, materialString);
+                        Material material = mMap[materialString];
                         
                         rObject = new Box(
                                 name,
                                 glm::vec3(edge1x, edge1y, edge1z),
                                 glm::vec3(edge2x, edge2y, edge2z),
-                                *material
+                                material
                                 );
                     }else if (classname=="shpere") {
                         cout << "Shape \""<< classname << "\"."<<endl;
                     }else cout << "Shape \""<< classname << "\" not defined."<<endl;
                     
-                    if (rObject!= nullptr)
-                        roVec.push_back(*rObject);
+                    if (rObject != nullptr)
+                        roMap[name] = rObject;
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (tmpString=="render"){
@@ -175,25 +178,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
     }else cout << "Unable to open file"; 
     
     //save collected data in scene
-    scene.materials = mVec;
-    scene.renderObjects = roVec;
-    scene.lights = lVec;
+    scene.materials = mMap;
+    scene.renderObjects = roMap;
+    scene.lights = lMap;
     return scene; 
 }
-
-/**
- * Find the material by the name
- * @param materials the list of the materials
- * @param name the name looking for
- * @return the material with the name
- */
-Material* SDFLoader::findMaterial(std::vector<Material> const& materials, string const& name) {
-    auto i = materials.begin();
-    while (i != materials.end()) {
-        i++;
-        if (i->getName() == name)
-            break;
-    }
-    return i;
-}
-

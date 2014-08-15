@@ -12,13 +12,13 @@
 #include "Camera.hpp"
 #include "LightPoint.hpp"
 #include "RenderObject.hpp"
-#include <vector>
+#include <map>
 
 struct Scene {
     public:
-        std::vector<Material> materials;
-        std::vector<LightPoint> lights;
-        std::vector<RenderObject> renderObjects;
+        std::map<std::string, Material> materials;
+        std::map<std::string, LightPoint> lights;
+        std::map<std::string, RenderObject*> renderObjects;
         Camera camera;
         std::string camname;
         int resX;
