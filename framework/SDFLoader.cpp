@@ -5,6 +5,7 @@
  * Created on 8. Juli 2014, 18:52
  */
 
+#include <algorithm>
 #include "SDFloader.hpp"
 #include "Camera.hpp"
 #include "Box.hpp"
@@ -126,13 +127,14 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 } else if (tmpString=="shape"){
                     string classname;
                     ss >> classname;
+                    cout << "Shape \""<< classname << "\"."<<endl;
+                    transform(classname.begin(), classname.end(),classname.begin(), ::toupper);
                     
                     string name;
                     ss >> name;
                     
                     RenderObject* rObject = nullptr;
-                    if (classname=="box"){
-                        cout << "Shape \""<< classname << "\"."<<endl;
+                    if (classname=="BOX"){
                         int edge1x, edge1y, edge1z;
                         ss>> edge1x;
                         ss>> edge1y;
@@ -153,9 +155,25 @@ Scene SDFLoader::load(std::string const& scenefile) {
                                 glm::vec3(edge2x, edge2y, edge2z),
                                 material
                                 );
-                    }else if (classname=="shpere") {
-                        cout << "Shape \""<< classname << "\"."<<endl;
-                    }else cout << "Shape \""<< classname << "\" not defined."<<endl;
+                    }else if (classname=="SPHERE") {
+                        int posX, posY, posZ;
+                        ss>> posX;
+                        ss>> posY;
+                        ss>> posZ;
+                        float radius;
+                        ss>>radius;
+                        
+                        string materialString;
+                        ss>>materialString;
+                        Material material = mMap[materialString];
+                        
+                        rObject = new Sphere(
+                                name,
+                                glm::vec3(posX, posY, posZ),
+                                radius,
+                                material
+                                );
+                    }else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
                     
                     if (rObject != nullptr)
                         roMap[name] = rObject;
