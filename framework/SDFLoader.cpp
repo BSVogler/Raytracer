@@ -33,7 +33,7 @@ SDFLoader::~SDFLoader() {
  * @return 
  */
 Scene SDFLoader::load(std::string const& scenefile) {
-    std::cout << "Loading file: " << scenefile << std::endl;
+    cout << "Loading file: " << scenefile << endl;
     Scene scene = Scene();
     
     vector<Material> mVec;
