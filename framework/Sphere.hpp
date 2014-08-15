@@ -26,7 +26,7 @@ public:
      * @param radius The radius of the sphere.
      * @param material 
      */
-    Sphere(string name, glm::vec3 const& center, float const radius, Material material) :
+    Sphere(string name, glm::vec3 const& center, float const radius, Material const& material) :
         RenderObject(name, material), center(center), radius(radius)
     {}
 
