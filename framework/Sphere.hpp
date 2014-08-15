@@ -19,8 +19,15 @@ public:
         RenderObject("unnamed", Material()), radius(0)
     {};
     
-    Sphere(string name, glm::vec3 const& center, float const radius) :
-        RenderObject(name, Material()), center(center), radius(radius)
+    /**
+     * Creates a shpere.
+     * @param name The name of the shpere.
+     * @param center the center position vector of the sphere
+     * @param radius The radius of the sphere.
+     * @param material 
+     */
+    Sphere(string name, glm::vec3 const& center, float const radius, Material material) :
+        RenderObject(name, material), center(center), radius(radius)
     {}
 
     Sphere(const Sphere& orig);
