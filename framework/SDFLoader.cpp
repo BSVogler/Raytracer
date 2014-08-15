@@ -155,7 +155,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     }else cout << "Shape \""<< classname << "\" not defined."<<endl;
                     
                     if (rObject!= nullptr)
-                        roVec.push_back(rObject);
+                        roVec.push_back(*rObject);
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (tmpString=="render"){
