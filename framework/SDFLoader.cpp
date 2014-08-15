@@ -189,7 +189,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
  */
 Material* SDFLoader::findMaterial(std::vector<Material> const& materials, string const& name) {
     auto i = materials.begin();
-    while ((i)!=nullptr) {
+    while (i != materials.end()) {
         i++;
         if (i->getName() == name)
             break;
