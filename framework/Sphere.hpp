@@ -31,7 +31,7 @@ public:
     {}
 
     Sphere(const Sphere& orig);
-    std::pair<bool, glm::vec3> intersect(Ray const& ray) const;
+    std::pair<bool, Ray> intersect(Ray const& ray) const;
     
 private:
     float radius;

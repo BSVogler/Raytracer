@@ -7,7 +7,7 @@
 
 #include "Box.hpp"
 
-std::pair<bool, glm::vec3> Box::intersect(const Ray& ray) const {
-    return std::pair<bool, glm::vec3>(false, ray.origin);//never intersect
+std::pair<bool, Ray> Box::intersect(const Ray& ray) const {
+    return std::make_pair(false, Ray());//never intersect
 }
 
