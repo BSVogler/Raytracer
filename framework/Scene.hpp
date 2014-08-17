@@ -24,6 +24,13 @@ struct Scene {
     int resY;
     std::string outputFile;
     Color amb;
+    
+    //manual destructor needed?
+    ~Scene(){
+        for (auto itr=materials.begin(); itr !=materials.end();++itr) {
+            materials.erase(itr++);
+        }
+    }
 };
 
 
