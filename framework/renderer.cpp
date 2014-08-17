@@ -10,6 +10,7 @@
 #include "renderer.hpp"
 #include "SDFloader.hpp"
 #include "ray.hpp"
+#include <cmath>
 
 using namespace std;
 
@@ -40,24 +41,29 @@ void Renderer::render() {
   cout << "Camera: "<<scene_.camname<<endl;
   cout << "ambient light "<<scene_.amb<<endl;
   
+  float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
+          
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
         p.color = scene_.amb;
-
+        
         //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
         Ray ray = Ray();
-        ray.direction = glm::vec3(0,0,-1);//ray moves in negative z axis
-        //apply camera fov, little different angle for each pixel
-        ray.direction.x -= tan(scene_.camera.GetFovX()*x/scene_.resX-scene_.camera.GetFovX())*ray.direction.z; 
-        ray.direction.y -= tan(scene_.camera.GetFovX()*x/scene_.resY-scene_.camera.GetFovX())*ray.direction.z;
+        ray.direction.x = scene_.resX/-2+x; 
+        ray.direction.y = -scene_.resY/2+y;
+        ray.direction.z = d;
+       
+        //ray.direction.z = -scene_.camera.GetFovX();//Should be calculated by regarding resolution. Take a look at slide 35!
+        
+        cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
         
         //here should get the camera transofratmion applied
         
         for(auto iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
             auto intersection = ((RenderObject*) iterator->second)->intersect(ray);
             if (intersection.first){
-                cout << "Intersection @"<<x<<"x"<<y<<" with: "<<iterator->first<<endl;
+                //cout << "Intersection @"<<x<<"x"<<y<<" with: "<<iterator->first<<endl;
                 p.color += ((RenderObject*) iterator->second)->getMaterial().getKa()
                          + ((RenderObject*) iterator->second)->getMaterial().getKd()
                          + ((RenderObject*) iterator->second)->getMaterial().getKs();
