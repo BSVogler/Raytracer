@@ -19,9 +19,6 @@ public:
         ka(ka), kd(kd), ks(ks), m(m), name(name)
     {}
 
-    Material(const Material& orig);
-    virtual ~Material();
-    
     std::string getName() const {
         return name;
     }
