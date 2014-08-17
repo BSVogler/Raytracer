@@ -3,7 +3,8 @@ define material red 1 0 0 1 0 0 1 0 0 1
 define material blue 0 0 1 0 0 1 0 0 1 1
 # geometry
 define shape box rbottom -100 -80 -200 100 80 -100 blue
-define shape sphere bsphere 0 0 -100 50 red
+define shape sphere COLLIDE 0 0 -100 50 red
+define shape sphere NOCOLLIDE 0 0 100 50 red
 # composite
 define shape composite root rbottom bsphere
 # scene xform
@@ -20,4 +21,4 @@ define camera eye 60.0 480 320
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100
 # ... and go
-render eye image.ppm 5 5
+render eye image.ppm 50 50
