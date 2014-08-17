@@ -65,9 +65,8 @@ void Renderer::render() {
             auto intersection = ((RenderObject*) iterator->second)->intersect(ray);
             if (intersection.first){
                 cout << "#";
-                p.color += ((RenderObject*) iterator->second)->getMaterial().getKa()
-                         + ((RenderObject*) iterator->second)->getMaterial().getKd()
-                         + ((RenderObject*) iterator->second)->getMaterial().getKs();
+                cout<<((RenderObject*) iterator->second)->getMaterial().getKd();
+                p.color += ((RenderObject*) iterator->second)->getMaterial().getKd();
             }
         }
         cout << "]";
