@@ -25,18 +25,18 @@ struct Scene {
     std::string outputFile;
     Color amb;
     
-    //manual destructor needed?
-    ~Scene(){
-        for (auto itr=materials.begin(); itr !=materials.end();++itr) {
-            materials.erase(itr++);
-        }
-        for (auto itr=lights.begin(); itr !=lights.end();++itr) {
-            lights.erase(itr++);
-        }
-        for (auto itr=renderObjects.begin(); itr !=renderObjects.end();++itr) {
-            renderObjects.erase(itr++);
-        }
-    }
+//    //manual destructor needed?
+//    ~Scene(){
+//        for (auto itr=materials.begin(); itr !=materials.end();++itr) {
+//            materials.erase(itr);
+//        }
+//        for (auto itr=lights.begin(); itr !=lights.end();++itr) {
+//            lights.erase(itr);
+//        }
+//        for (auto itr=renderObjects.begin(); itr !=renderObjects.end();++itr) {
+//            renderObjects.erase(itr);
+//        }
+//    }
 };
 
 
