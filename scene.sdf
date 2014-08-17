@@ -31,8 +31,9 @@ define shape composite root rbottom bsphere
 # transform root scale 2 2 2
 transform root rotate 45 0 0 1
 transform root translate 0 0 -10
+
 # lights
-define light ambient amb 0.1 0.3 0.5
+define light ambient amb 0.1 0.2 0.1
 define light diffuse sun 500 800 0 1.0 1.0 1.0
 define light diffuse spot1 -500 800 0 0.8 0.8 0.8
 # camera
