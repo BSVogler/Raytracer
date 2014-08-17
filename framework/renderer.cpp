@@ -32,11 +32,15 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file, std::string 
 
 void Renderer::render() {
   //const std::size_t checkersize = 20;
-
+  
+  std::cout << "#####RENDERING####"<<std::endl;
+  std::cout << "Camera: "<<scene_.camname<<std::endl;
+  std::cout << "ambient light "<<scene_.amb<<std::endl;
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
         p.color = scene_.amb;
+
         //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
         Ray ray = Ray();
         ray.origin = scene_.camera.GetOrigin();//ray starts at camera
