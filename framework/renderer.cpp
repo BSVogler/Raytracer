@@ -48,7 +48,13 @@ void Renderer::render() {
         //apply camera fov, little different angle for each pixel
         ray.direction.x -= tan(scene_.camera.GetFovX()*x/scene_.resX-scene_.camera.GetFovX())*ray.direction.z; 
         ray.direction.y -= tan(scene_.camera.GetFovX()*x/scene_.resY-scene_.camera.GetFovX())*ray.direction.z;
-      
+        
+        typedef std::map<std::string, RenderObject*>::iterator it_type;
+        for(it_type iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
+            auto intersection = iterator->second->intersect(ray);
+            if (intersection.first)
+                p.color += iterator->second->getMaterial().getKa();
+        }
         write(p);
     }
   }
