@@ -36,6 +36,14 @@ Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& sce
 void Renderer::render() {
   //const size_t checkersize = 20;
   
+  if (width_<scene_.resX){
+      cout << "ERROR: Resolution X to big"<<endl;
+      scene_.resX=width_;
+  }
+  if (height_<scene_.resY){
+      cout << "ERROR: Resolution Y to big"<<endl;
+      scene_.resY=height_;
+  }
   cout << "#####RENDERING####"<<endl;
   cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<endl;
   cout << "Camera: "<<scene_.camname<<endl;
