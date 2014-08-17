@@ -15,16 +15,15 @@
 #include <map>
 
 struct Scene {
-    public:
-        std::map<std::string, Material> materials;
-        std::map<std::string, LightPoint> lights;
-        std::map<std::string, RenderObject*> renderObjects;
-        Camera camera;
-        std::string camname;
-        int resX;
-        int resY;
-        std::string outputFile;
-        Color amb;
+    std::map<std::string, Material> materials;
+    std::map<std::string, LightPoint> lights;
+    std::map<std::string, RenderObject*> renderObjects;
+    Camera camera;
+    std::string camname;
+    int resX;
+    int resY;
+    std::string outputFile;
+    Color amb;
 };
 
 
