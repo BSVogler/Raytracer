@@ -34,8 +34,10 @@ void Renderer::render() {
   //const std::size_t checkersize = 20;
   
   std::cout << "#####RENDERING####"<<std::endl;
+  std::cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<std::endl;
   std::cout << "Camera: "<<scene_.camname<<std::endl;
   std::cout << "ambient light "<<scene_.amb<<std::endl;
+  
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
