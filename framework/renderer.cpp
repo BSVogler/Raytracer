@@ -11,6 +11,7 @@
 #include "SDFloader.hpp"
 #include "ray.hpp"
 #include <cmath>
+#include <glm/glm.hpp>
 
 using namespace std;
 
@@ -67,10 +68,18 @@ void Renderer::render() {
         //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
         
         //here should get the camera transofratmion applied
-        for(auto iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
-            auto intersection = ((RenderObject*) iterator->second)->intersect(ray);
+        for(auto roIterator = scene_.renderObjects.begin(); roIterator != scene_.renderObjects.end(); roIterator++) {
+            auto intersection = ((RenderObject*) roIterator->second)->intersect(ray);
             if (intersection.first){
-                p.color += ((RenderObject*) iterator->second)->getMaterial().getKd();
+                for(auto lIterator = scene_.lights.begin(); lIterator != scene_.lights.end(); lIterator++) {//starting from the intersection go to every light source
+                    auto lightray = Ray(
+                        intersection.second.origin,
+                        (lIterator->second).GetPos()-intersection.second.origin
+                    );
+                    //diffuse light
+                    p.color += lIterator->second.GetDiff() * ((RenderObject*) roIterator->second)->getMaterial().getKd()
+                            *glm::dot(glm::normalize(lightray.direction),intersection.second.direction);
+                }
             }
         }
         write(p);
