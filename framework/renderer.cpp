@@ -47,16 +47,17 @@ void Renderer::render() {
 
         //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
         Ray ray = Ray();
-        ray.origin = scene_.camera.GetOrigin();//ray starts at camera
-        ray.direction = scene_.camera.GetN();//ray moves in cameras looking direction
+        ray.direction = glm::vec3(0,0,-1);//ray moves in negative z axis
         //apply camera fov, little different angle for each pixel
         ray.direction.x -= tan(scene_.camera.GetFovX()*x/scene_.resX-scene_.camera.GetFovX())*ray.direction.z; 
         ray.direction.y -= tan(scene_.camera.GetFovX()*x/scene_.resY-scene_.camera.GetFovX())*ray.direction.z;
         
+        //here should get the camera transofratmion applied
+        
         for(auto iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
             auto intersection = ((RenderObject*) iterator->second)->intersect(ray);
             if (intersection.first){
-                cout << "Intersection with: "<<iterator->first<<endl;
+                cout << "Intersection @"<<x<<"x"<<y<<" with: "<<iterator->first<<endl;
                 p.color += ((RenderObject*) iterator->second)->getMaterial().getKa()
                          + ((RenderObject*) iterator->second)->getMaterial().getKd()
                          + ((RenderObject*) iterator->second)->getMaterial().getKs();

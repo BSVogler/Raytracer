@@ -11,15 +11,11 @@
 Camera::Camera():
     name("unnamed"),
     fovX(100),
-    origin(glm::vec3(0,0,0)),  
-    n(glm::vec3(0,0,-1)),
-    up(glm::vec3(0,1,0))
+    transformation(glm::mat4x4())
 {}
 
 Camera::Camera(const std::string name, const int fovX):
     name(name),
     fovX(fovX),
-    origin(glm::vec3(0,0,0)),  
-    n(glm::vec3(0,0,-1)),
-    up(glm::vec3(0,1,0))
+    transformation(glm::mat4x4())
 {}

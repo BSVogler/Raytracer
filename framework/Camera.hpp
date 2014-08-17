@@ -19,24 +19,14 @@ public:
         return fovX;
     }
 
-    glm::vec3 GetN() const {
-        return n;
-    }
-
-    glm::vec3 GetOrigin() const {
-        return origin;
-    }
-
-    glm::vec3 GetUp() const {
-        return up;
+    glm::mat4 GetTransformation() const {
+        return transformation;
     }
 
 private:
     std::string name;
     int fovX;
-    glm::vec3 origin;
-    glm::vec3 n;
-    glm::vec3 up;
+    glm::mat4 transformation;
 };
 
 #endif	/* CAMERA_HPP */
