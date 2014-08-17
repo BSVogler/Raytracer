@@ -44,7 +44,6 @@ void Renderer::render() {
   float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
           
   for (unsigned y = 0; y < scene_.resY; ++y) {
-      cout <<endl;
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
         p.color = scene_.amb;
@@ -60,16 +59,12 @@ void Renderer::render() {
         //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
         
         //here should get the camera transofratmion applied
-        cout << "[";
         for(auto iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
             auto intersection = ((RenderObject*) iterator->second)->intersect(ray);
             if (intersection.first){
-                cout << "#";
-                cout<<((RenderObject*) iterator->second)->getMaterial().getKd();
                 p.color += ((RenderObject*) iterator->second)->getMaterial().getKd();
             }
         }
-        cout << "]";
         write(p);
     }
   }
