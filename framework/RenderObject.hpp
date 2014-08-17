@@ -22,6 +22,10 @@ public:
     {}
 
     virtual std::pair<bool, glm::vec3> intersect(Ray const& ray) const  =0;
+    Material getMaterial() const {
+        return material;
+    }
+
 private:
     Material material;
     string name;
