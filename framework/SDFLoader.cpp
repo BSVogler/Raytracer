@@ -165,15 +165,14 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         
                         string materialString;
                         ss>>materialString;
-                        Material material = mMap[materialString];
                         
                         rObject = new Sphere(
                                 name,
                                 glm::vec3(posX, posY, posZ),
                                 radius,
-                                material
+                                mMap[materialString]
                                 );
-                        cout << "Shape \""<< name << "\" aus Material "<<material<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
+                        cout << "Shape \""<< name << "\" aus Material "<<materialString<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
                     }else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
                     
                     if (rObject != nullptr)
