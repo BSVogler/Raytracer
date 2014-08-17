@@ -173,7 +173,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                                 radius,
                                 material
                                 );
-                        cout << "Shape \""<< name << "\" aus Material "<<materialString<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
+                        cout << "Shape \""<< name << "\" aus Material "<<material<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
                     }else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
                     
                     if (rObject != nullptr)
