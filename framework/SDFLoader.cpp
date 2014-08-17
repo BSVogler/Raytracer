@@ -145,9 +145,9 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         ss>> edge2y;
                         ss>> edge2z;
                         
-                        string materialString;
-                        ss>>materialString;
-                        Material material = mMap[materialString];
+                        string materialName;
+                        ss>>materialName;
+                        Material material = mMap[materialName];
                         
                         rObject = new Box(
                                 name,
