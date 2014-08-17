@@ -9,6 +9,7 @@
 
 #include "renderer.hpp"
 #include "SDFloader.hpp"
+#include "ray.hpp"
 
 Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
   : width_(w)
@@ -30,21 +31,24 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file, std::string 
 }
 
 void Renderer::render() {
-  const std::size_t checkersize = 20;
+  //const std::size_t checkersize = 20;
 
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
-      Pixel p(x,y);
-      if ( ((x/checkersize)%2) != ((y/checkersize)%2)) {
-        p.color = Color(0.0, 1.0, float(x)/scene_.resY);
-      } else {
-        p.color = Color(1.0, 0.0, float(y)/scene_.resX);
-      }
-
-      write(p);
+        Pixel p(x,y);
+        p.color = scene_.amb;
+        //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
+        Ray ray = Ray();
+        ray.origin = scene_.camera.GetOrigin();//ray starts at camera
+        ray.direction = scene_.camera.GetN();//ray moves in cameras looking direction
+        //apply camera fov, little different angle for each pixel
+        ray.direction.x -= tan(scene_.camera.GetFovX()*x/scene_.resX-scene_.camera.GetFovX())*ray.direction.z; 
+        ray.direction.y -= tan(scene_.camera.GetFovX()*x/scene_.resY-scene_.camera.GetFovX())*ray.direction.z;
+      
+        write(p);
     }
   }
-  ppm_.save(filename_);
+  //ppm_.save(filename_);
 }
 
 void Renderer::write(Pixel const& p) {
