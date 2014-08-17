@@ -16,8 +16,6 @@ class LightPoint {
 public:
     LightPoint();
     LightPoint(std::string const& name, glm::vec3 const& pos, Color const& diff);
-    LightPoint(const LightPoint& orig);
-    virtual ~LightPoint();
 private:
     std::string name;
     glm::vec3 pos;

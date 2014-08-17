@@ -19,10 +19,3 @@ LightPoint::LightPoint(const std::string& name, const glm::vec3& pos, const Colo
     pos(pos),
     diff(diff)   
 {}
-
-LightPoint::LightPoint(const LightPoint& orig) {
-}
-
-LightPoint::~LightPoint() {
-}
-
