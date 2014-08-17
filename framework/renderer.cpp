@@ -50,8 +50,8 @@ void Renderer::render() {
         
         //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
         Ray ray = Ray();
-        ray.direction.x = scene_.resX/-2+x; 
-        ray.direction.y = -scene_.resY/2+y;
+        ray.direction.x = (float) -scene_.resX/2+x; 
+        ray.direction.y = (float) -scene_.resY/2+y;
         ray.direction.z = d;
        
         //ray.direction.z = -scene_.camera.GetFovX();//Should be calculated by regarding resolution. Take a look at slide 35!
