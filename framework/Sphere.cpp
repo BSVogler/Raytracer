@@ -6,6 +6,7 @@
  */
 
 #include "Sphere.hpp"
+#include <glm/glm.hpp>
 
 std::pair<bool, Ray> Sphere::intersect(Ray const& ray) const {
     glm::vec3 l = ray.origin - center;
@@ -21,13 +22,18 @@ std::pair<bool, Ray> Sphere::intersect(Ray const& ray) const {
         if (t1 < t2){//nimm Punkt, welcher näher dran ist
             if (t1<0)
                 return std::make_pair(false, Ray());//keine Lösung
-            else
-                return std::make_pair(true, Ray(l-(ray.origin+ray.direction*t1)));//use t1
+            else{
+                auto p =l-(ray.origin+ray.direction*t1);
+                return std::make_pair(true, Ray(p,glm::normalize(center-p)));//use t1
+            }
         } else{
             if (t2<0)
                 return std::make_pair(false, Ray());//keine Lösung
-            else
-                return std::make_pair(true, Ray(l-(ray.origin+ray.direction*t2)));//use t2
+            else{
+                auto p =l-(ray.origin+ray.direction*t2);
+                return std::make_pair(true, Ray(p,glm::normalize(center-p)));//use t2
+            }
+                
         }
     } else 
         return std::make_pair(false, Ray());//keine Lösung
