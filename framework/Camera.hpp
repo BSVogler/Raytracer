@@ -9,6 +9,7 @@
 #define	CAMERA_HPP
 
 #include <string>
+#include <glm/glm.hpp>
 
 class Camera {
 public:
