@@ -18,10 +18,17 @@ std::pair<bool, glm::vec3> Sphere::intersect(Ray const& ray) const {
         float t1 = (-b-sqrt(det))/(2.0f*a);
         float t2 = (-b+sqrt(det))/(2.0f*a);
         
-        if (t1 < t2)//nimm Punkt, welcher näher dran ist
-            return std::make_pair(true, l-(ray.origin+ray.direction*t1));//use t1
-        else 
-            return std::make_pair(true, l-(ray.origin+ray.direction*t2));//use t2
+        if (t1 < t2){//nimm Punkt, welcher näher dran ist
+            if (t1<0)
+                return std::make_pair(false, ray.origin);//keine Lösung
+            else
+                return std::make_pair(true, l-(ray.origin+ray.direction*t1));//use t1
+        } else{
+            if (t2<0)
+                return std::make_pair(false, ray.origin);//keine Lösung
+            else
+                return std::make_pair(true, l-(ray.origin+ray.direction*t2));//use t2
+        }
     } else 
         return std::make_pair(false, ray.origin);//keine Lösung
 }
