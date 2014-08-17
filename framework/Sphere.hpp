@@ -31,7 +31,6 @@ public:
     {}
 
     Sphere(const Sphere& orig);
-    virtual ~Sphere();
     std::pair<bool, glm::vec3> intersect(Ray const& ray) const;
     
 private:

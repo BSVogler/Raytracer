@@ -7,9 +7,6 @@
 
 #include "Sphere.hpp"
 
-Sphere::~Sphere() {
-}
-
 std::pair<bool, glm::vec3> Sphere::intersect(Ray const& ray) const {
     float b = 2 *(glm::dot(ray.origin,ray.direction));
     float c = glm::dot(ray.origin,ray.origin) - radius*radius;
