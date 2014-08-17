@@ -184,6 +184,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 ss >> scene.outputFile;
                 ss >> scene.resX;
                 ss >> scene.resY;
+                //set default if not set
                 if (scene.resX<=0) scene.resX=100;
                 if (scene.resY<=0) scene.resY=100;
                 cout << "Scene should be rendered from "<< scene.camname << " at resolution "<<scene.resX<<"x"<< scene.resY<< " to "<<scene.outputFile<<endl;
