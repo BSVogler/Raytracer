@@ -11,7 +11,9 @@
 #include "SDFloader.hpp"
 #include "ray.hpp"
 
-Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
+using namespace std;
+
+Renderer::Renderer(unsigned w, unsigned h, string const& file)
   : width_(w)
   , height_(h)
   , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
@@ -19,7 +21,7 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file)
   , ppm_(width_, height_)
 {}
 
-Renderer::Renderer(unsigned w, unsigned h, std::string const& file, std::string const& scenefile)
+Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& scenefile)
   : width_(w)
   , height_(h)
   , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
@@ -31,12 +33,12 @@ Renderer::Renderer(unsigned w, unsigned h, std::string const& file, std::string 
 }
 
 void Renderer::render() {
-  //const std::size_t checkersize = 20;
+  //const size_t checkersize = 20;
   
-  std::cout << "#####RENDERING####"<<std::endl;
-  std::cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<std::endl;
-  std::cout << "Camera: "<<scene_.camname<<std::endl;
-  std::cout << "ambient light "<<scene_.amb<<std::endl;
+  cout << "#####RENDERING####"<<endl;
+  cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<endl;
+  cout << "Camera: "<<scene_.camname<<endl;
+  cout << "ambient light "<<scene_.amb<<endl;
   
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
@@ -51,11 +53,14 @@ void Renderer::render() {
         ray.direction.x -= tan(scene_.camera.GetFovX()*x/scene_.resX-scene_.camera.GetFovX())*ray.direction.z; 
         ray.direction.y -= tan(scene_.camera.GetFovX()*x/scene_.resY-scene_.camera.GetFovX())*ray.direction.z;
         
-        typedef std::map<std::string, RenderObject*>::iterator it_type;
-        for(it_type iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
-            auto intersection = iterator->second->intersect(ray);
-            if (intersection.first)
-                p.color += iterator->second->getMaterial().getKa();
+        for(auto iterator = scene_.renderObjects.begin(); iterator != scene_.renderObjects.end(); iterator++) {
+            auto intersection = ((RenderObject*) iterator->second)->intersect(ray);
+            if (intersection.first){
+                cout << "Intersection with: "<<iterator->first<<endl;
+                p.color += ((RenderObject*) iterator->second)->getMaterial().getKa()
+                         + ((RenderObject*) iterator->second)->getMaterial().getKd()
+                         + ((RenderObject*) iterator->second)->getMaterial().getKs();
+            }
         }
         write(p);
     }
@@ -67,10 +72,10 @@ void Renderer::write(Pixel const& p) {
   // flip pixels, because of opengl glDrawPixels
   size_t buf_pos = (width_*p.y + p.x);
   if (buf_pos >= colorbuffer_.size() || (int)buf_pos < 0) {
-    std::cerr << "Fatal Error Renderer::write(Pixel p) : "
+    cerr << "Fatal Error Renderer::write(Pixel p) : "
       << "pixel out of ppm_ : "
       << (int)p.x << "," << (int)p.y
-      << std::endl;
+      << endl;
   } else {
     colorbuffer_[buf_pos] = p.color;
   }
