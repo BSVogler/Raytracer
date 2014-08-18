@@ -9,11 +9,13 @@ int main(int argc, char* argv[])
   std::string const filename = "./checkerboard.ppm";
 
   std::cout << "welcome to Raytracer ("<< width<<"x"<<height<<"). Files are stored into:" <<filename<<std::endl;
-  Renderer app = Renderer(width, height, filename);//wie legt man die variable ohne initialisierung an?
+  Renderer* app = nullptr;
   if (argc>0)
-    app = Renderer(width, height, filename, argv[1]);
+    app = new Renderer(width, height, filename, argv[1]);
+  else
+      app = new Renderer(width, height, filename);
 
-  std::thread thr([&app]() { app.render(); });
+  std::thread thr([&app]() { app->render(); });
 
   Window win(glm::ivec2(width,height));
 
@@ -23,12 +25,12 @@ int main(int argc, char* argv[])
     }
 
     glDrawPixels( width, height, GL_RGB, GL_FLOAT
-                , app.colorbuffer().data());
+                , app->colorbuffer().data());
 
     win.update();
   }
 
   thr.join();
-
+  delete(app);
   return 0;
 }
