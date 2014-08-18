@@ -55,7 +55,7 @@ void Renderer::render() {
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
-        p.color = scene_.amb;
+        p.color = scene_.amb;//starting with ambient light
         
         //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
         Ray ray = Ray();
@@ -68,17 +68,20 @@ void Renderer::render() {
         //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
         
         //here should get the camera transofratmion applied
-        for(auto roIterator = scene_.renderObjects.begin(); roIterator != scene_.renderObjects.end(); roIterator++) {
-            auto intersection = ((RenderObject*) roIterator->second)->intersect(ray);
-            if (intersection.first){
-                for(auto lIterator = scene_.lights.begin(); lIterator != scene_.lights.end(); lIterator++) {//starting from the intersection go to every light source
-                    auto lightray = Ray(
+        for(auto renderObjectIt = scene_.renderObjects.begin(); renderObjectIt != scene_.renderObjects.end(); renderObjectIt++) {//every render object
+            auto intersection(((RenderObject*) renderObjectIt->second)->intersect(ray));
+            if (intersection.first){//if intersection happened
+                //starting from the intersection go to every light source
+                for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
+                    auto light = lightIt->second;
+                    //a ray pointing to the current light source
+                    auto lightRay = Ray(
                         intersection.second.origin,
-                        (lIterator->second).GetPos()-intersection.second.origin
+                        glm::normalize(light.GetPos()-intersection.second.origin)
                     );
                     //diffuse light
-                    p.color += lIterator->second.GetDiff() * ((RenderObject*) roIterator->second)->getMaterial().getKd()
-                            *glm::dot(glm::normalize(lightray.direction),intersection.second.direction);
+                    p.color += light.GetDiff() * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()
+                            *glm::dot(lightRay.direction,intersection.second.direction);
                 }
             }
         }
