@@ -9,7 +9,7 @@
 #include <glm/glm.hpp>
 
 std::pair<bool, Ray> Sphere::intersect(Ray const& ray) const {
-    glm::vec3 l = ray.origin - center;
+    glm::vec3 l{ray.origin - center};
     float a{glm::dot(ray.direction, ray.direction)};
     float b{2.0f*(glm::dot(l,ray.direction))};
     float c{glm::dot(l,l) - radius*radius};
