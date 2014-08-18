@@ -38,11 +38,11 @@ void Renderer::render() {
   //const size_t checkersize = 20;
   
   if (width_<scene_.resX){
-      cout << "ERROR: Resolution X to big"<<endl;
+      cout << "ERROR: Resolution X to big. Forcing: "<<width_<<endl;
       scene_.resX=width_;
   }
   if (height_<scene_.resY){
-      cout << "ERROR: Resolution Y to big"<<endl;
+      cout << "ERROR: Resolution Y to big. Forcing: "<<height_<<endl;
       scene_.resY=height_;
   }
   cout << "#####RENDERING####"<<endl;
