@@ -53,36 +53,63 @@ void Renderer::render() {
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
-        Ray ray = Ray();
-        ray.direction.x = (float) -scene_.resX/2+x; 
-        ray.direction.y = (float) -scene_.resY/2+y;
-        ray.direction.z = d;
-        
-        //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-        Color diffuse;
-        //here should get the camera transofratmion applied
-        for(auto renderObjectIt = scene_.renderObjects.begin(); renderObjectIt != scene_.renderObjects.end(); renderObjectIt++) {//every render object
-            auto intersection(((RenderObject*) renderObjectIt->second)->intersect(ray));
-            if (intersection.first){//if intersection happened
-                //starting from the intersection go to every light source
-                for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
-                    auto light = lightIt->second;
-                    //a ray pointing to the current light source
-                    auto lightRay = Ray(
-                        intersection.second.origin,
-                        glm::normalize(light.GetPos()-intersection.second.origin)
-                    );
-                    //diffuse light
-                    diffuse = light.GetDiff() * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()
-                            *glm::dot(lightRay.direction,intersection.second.direction);
-                }
-            }
+        if (scene_.antialiase){
+            Ray ray1 = Ray();
+            ray1.direction.x = (float) -scene_.resX/2+x-0.25f; 
+            ray1.direction.y = (float) -scene_.resY/2+y+0.25f;
+            ray1.direction.z = d;
+            Ray ray2 = Ray();
+            ray2.direction.x = (float) -scene_.resX/2+x+0.25f; 
+            ray2.direction.y = (float) -scene_.resY/2+y+0.25f;
+            ray2.direction.z = d;
+            Ray ray3 = Ray();
+            ray3.direction.x = (float) -scene_.resX/2+x-0.25f; 
+            ray3.direction.y = (float) -scene_.resY/2+y-0.25f;
+            ray3.direction.z = d;
+            Ray ray4 = Ray();
+            ray4.direction.x = (float) -scene_.resX/2+x+0.25f; 
+            ray4.direction.y = (float) -scene_.resY/2+y-0.25f;
+            ray4.direction.z = d;
+            
+            
+            p.color +=scene_.amb+(getColor(ray1)+getColor(ray2)+getColor(ray3)+getColor(ray4))/4;
+        } else {
+            Ray ray = Ray();
+            ray.direction.x = (float) -scene_.resX/2+x; 
+            ray.direction.y = (float) -scene_.resY/2+y;
+            ray.direction.z = d;
+
+            //here should get the camera transofratmion applied
+
+            //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
+
+            p.color +=scene_.amb+getColor(ray);
         }
-        p.color +=scene_.amb+diffuse;
         write(p);
     }
   }
   //ppm_.save(filename_);
+}
+
+Color Renderer::getColor(const Ray& ray) {
+    for(auto renderObjectIt = scene_.renderObjects.begin(); renderObjectIt != scene_.renderObjects.end(); renderObjectIt++) {//every render object
+        auto intersection(((RenderObject*) renderObjectIt->second)->intersect(ray));
+        if (intersection.first){//if intersection happened
+            //starting from the intersection go to every light source
+            for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
+                auto light = lightIt->second;
+                //a ray pointing to the current light source
+                auto lightRay = Ray(
+                    intersection.second.origin,
+                    glm::normalize(light.GetPos()-intersection.second.origin)
+                );
+                //diffuse light
+                return light.GetDiff() * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()
+                        *glm::dot(lightRay.direction,intersection.second.direction);
+            }
+        }
+    }
+    return Color();
 }
 
 void Renderer::write(Pixel const& p) {
