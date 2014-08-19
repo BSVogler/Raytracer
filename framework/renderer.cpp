@@ -72,7 +72,7 @@ void Renderer::render() {
             ray.direction.y = -scene_.resY/2.0f+y;
             ray.direction.z = d;
 
-            //here should get the camera transofratmion applied
+            //here should get the camera transformation applied
 
             //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
 
