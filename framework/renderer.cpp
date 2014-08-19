@@ -35,8 +35,6 @@ Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& sce
 }
 
 void Renderer::render() {
-  //const size_t checkersize = 20;
-  
   if (width_<scene_.resX){
       cout << "ERROR: Resolution X to big. Forcing: "<<width_<<endl;
       scene_.resX=width_;
@@ -55,15 +53,10 @@ void Renderer::render() {
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
-        p.color = scene_.amb;//starting with ambient light
-        
-        //p.color = Color(0.0, 1.0, float(x)/scene_.resY);
         Ray ray = Ray();
         ray.direction.x = (float) -scene_.resX/2+x; 
         ray.direction.y = (float) -scene_.resY/2+y;
         ray.direction.z = d;
-       
-        //ray.direction.z = -scene_.camera.GetFovX();//Should be calculated by regarding resolution. Take a look at slide 35!
         
         //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
         Color diffuse;
@@ -85,7 +78,7 @@ void Renderer::render() {
                 }
             }
         }
-        p.color +=diffuse;
+        p.color +=scene_.amb+diffuse;
         write(p);
     }
   }
