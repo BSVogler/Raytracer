@@ -98,8 +98,9 @@ Color Renderer::getColor(const Ray& ray) {
                     glm::normalize(light.GetPos()-intersection.second.origin)
                 );
                 //diffuse light
-                return light.GetDiff() * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()
-                        *glm::dot(lightRay.direction,intersection.second.direction);
+                return light.GetDiff()//get light color
+                        * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()//multiply by material
+                        * glm::dot(lightRay.direction,intersection.second.direction);//l*n
             }
         }
     }
