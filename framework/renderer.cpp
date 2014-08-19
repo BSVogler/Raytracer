@@ -66,7 +66,7 @@ void Renderer::render() {
         //ray.direction.z = -scene_.camera.GetFovX();//Should be calculated by regarding resolution. Take a look at slide 35!
         
         //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-        
+        Color diffuse;
         //here should get the camera transofratmion applied
         for(auto renderObjectIt = scene_.renderObjects.begin(); renderObjectIt != scene_.renderObjects.end(); renderObjectIt++) {//every render object
             auto intersection(((RenderObject*) renderObjectIt->second)->intersect(ray));
@@ -80,11 +80,12 @@ void Renderer::render() {
                         glm::normalize(light.GetPos()-intersection.second.origin)
                     );
                     //diffuse light
-                    p.color += light.GetDiff() * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()
+                    diffuse = light.GetDiff() * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()
                             *glm::dot(lightRay.direction,intersection.second.direction);
                 }
             }
         }
+        p.color +=diffuse;
         write(p);
     }
   }
