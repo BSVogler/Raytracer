@@ -86,6 +86,7 @@ void Renderer::render() {
 }
 
 Color Renderer::getColor(const Ray& ray) {
+    Color diff;
     for(auto renderObjectIt = scene_.renderObjects.begin(); renderObjectIt != scene_.renderObjects.end(); renderObjectIt++) {//every render object
         auto intersection(((RenderObject*) renderObjectIt->second)->intersect(ray));
         if (intersection.first){//if intersection happened
@@ -98,13 +99,13 @@ Color Renderer::getColor(const Ray& ray) {
                     glm::normalize(light.GetPos()-intersection.second.origin)
                 );
                 //diffuse light
-                return light.GetDiff()//get light color
+                diff =  light.GetDiff()//get light color
                         * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()//multiply by material
                         * glm::dot(lightRay.direction,intersection.second.direction);//l*n
             }
         }
     }
-    return Color();
+    return diff;
 }
 
 void Renderer::write(Pixel const& p) {
