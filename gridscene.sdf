@@ -1,0 +1,43 @@
+# materials
+define material red 1 0 0 1 0 0 1 0 0 1
+define material blue 0 0 1 0 0 1 0 0 1 1
+define material white 1 1 1 1 1 1 1 1 1 1
+define material yellow 1 1 0 1 1 0 1 1 0 1
+# geometry
+
+define shape sphere g00-00   00   0 -500 50 white
+define shape sphere g01-00  100   0 -500 50 white
+define shape sphere g02-00  200   0 -500 50 white
+define shape sphere g03-00  300   0 -500 50 white
+define shape sphere g00-01   00 100 -500 50 white
+define shape sphere g01-01  100 100 -500 50 white
+define shape sphere g02-01  200 100 -500 50 white
+define shape sphere g03-01  300 100 -500 50 white
+define shape sphere g00-02   00 200 -500 50 white
+define shape sphere g01-02  100 200 -500 50 white
+define shape sphere g02-02  200 200 -500 50 white
+define shape sphere g03-02  300 200 -500 50 white
+define shape sphere g00-03   00 300 -500 50 white
+define shape sphere g01-03  100 300 -500 50 white
+define shape sphere g02-03  200 300 -500 50 white
+define shape sphere g03-03  300 300 -500 50 white
+
+
+# composite
+define shape composite root rbottom bsphere
+# scene xform
+# transform root scale 2 2 2
+transform root rotate 45 0 0 1
+transform root translate 0 0 -10
+
+# lights
+define light ambient amb 0.1 0.2 0.1
+define light diffuse sun 0 0 -50 1.0 1.0 1.0
+define shape sphere sunsphere 2 0 -50 5 yellow
+# camera
+define camera eye 65.0
+# camera xform
+transform eye rotate -45 0 1 0
+transform eye translate 100 0 100
+# ... and go
+render eye image.ppm 600 600 0
