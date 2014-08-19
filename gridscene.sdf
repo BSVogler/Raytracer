@@ -5,22 +5,39 @@ define material white 1 1 1 1 1 1 1 1 1 1
 define material yellow 1 1 0 1 1 0 1 1 0 1
 # geometry
 
-define shape sphere g00-00   00   0 -500 50 white
-define shape sphere g01-00  100   0 -500 50 white
-define shape sphere g02-00  200   0 -500 50 white
-define shape sphere g03-00  300   0 -500 50 white
-define shape sphere g00-01   00 100 -500 50 white
-define shape sphere g01-01  100 100 -500 50 white
-define shape sphere g02-01  200 100 -500 50 white
-define shape sphere g03-01  300 100 -500 50 white
-define shape sphere g00-02   00 200 -500 50 white
-define shape sphere g01-02  100 200 -500 50 white
-define shape sphere g02-02  200 200 -500 50 white
-define shape sphere g03-02  300 200 -500 50 white
-define shape sphere g00-03   00 300 -500 50 white
-define shape sphere g01-03  100 300 -500 50 white
-define shape sphere g02-03  200 300 -500 50 white
-define shape sphere g03-03  300 300 -500 50 white
+define shape sphere g-00-00 -000 -000 -500 50 white
+
+define shape sphere g-01-00 -100 -000 -500 50 white
+define shape sphere g-02-00 -200 -000 -500 50 white
+define shape sphere g-03-00 -300 -000 -500 50 white
+define shape sphere g-00-01 -000 -100 -500 50 white
+define shape sphere g-01-01 -100 -100 -500 50 white
+define shape sphere g-02-01 -200 -100 -500 50 white
+define shape sphere g-03-01 -300 -100 -500 50 white
+define shape sphere g-00-02 -000 -200 -500 50 white
+define shape sphere g-01-02 -100 -200 -500 50 white
+define shape sphere g-02-02 -200 -200 -500 50 white
+define shape sphere g-03-02 -300 -200 -500 50 white
+define shape sphere g-00-03 -000 -300 -500 50 white
+define shape sphere g-01-03 -100 -300 -500 50 white
+define shape sphere g-02-03 -200 -300 -500 50 white
+define shape sphere g-03-03 -300 -300 -500 50 white
+
+define shape sphere g01+00   100    0 -500 50 red
+define shape sphere g02+00   200    0 -500 50 red
+define shape sphere g03+00   300    0 -500 50 red
+define shape sphere g00+01    00  100 -500 50 red
+define shape sphere g01+01   100  100 -500 50 red
+define shape sphere g02+01   200  100 -500 50 red
+define shape sphere g03+01   300  100 -500 50 red
+define shape sphere g00+02    00  200 -500 50 red
+define shape sphere g01+02   100  200 -500 50 red
+define shape sphere g02+02   200  200 -500 50 red
+define shape sphere g03+02   300  200 -500 50 red
+define shape sphere g00+03    00  300 -500 50 red
+define shape sphere g01+03   100  300 -500 50 red
+define shape sphere g02+03   200  300 -500 50 red
+define shape sphere g03+03   300  300 -500 50 red
 
 
 # composite
@@ -33,7 +50,7 @@ transform root translate 0 0 -10
 # lights
 define light ambient amb 0.1 0.2 0.1
 define light diffuse sun 0 0 -50 1.0 1.0 1.0
-define shape sphere sunsphere 2 0 -50 5 yellow
+define shape sphere sunsphere 2 0 -600 20 yellow
 # camera
 define camera eye 65.0
 # camera xform
