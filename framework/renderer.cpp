@@ -53,30 +53,23 @@ void Renderer::render() {
   for (unsigned y = 0; y < scene_.resY; ++y) {
     for (unsigned x = 0; x < scene_.resX; ++x) {
         Pixel p(x,y);
-        if (scene_.antialiase){
-            Ray ray1 = Ray();
-            ray1.direction.x = (float) -scene_.resX/2+x-0.25f; 
-            ray1.direction.y = (float) -scene_.resY/2+y+0.25f;
-            ray1.direction.z = d;
-            Ray ray2 = Ray();
-            ray2.direction.x = (float) -scene_.resX/2+x+0.25f; 
-            ray2.direction.y = (float) -scene_.resY/2+y+0.25f;
-            ray2.direction.z = d;
-            Ray ray3 = Ray();
-            ray3.direction.x = (float) -scene_.resX/2+x-0.25f; 
-            ray3.direction.y = (float) -scene_.resY/2+y-0.25f;
-            ray3.direction.z = d;
-            Ray ray4 = Ray();
-            ray4.direction.x = (float) -scene_.resX/2+x+0.25f; 
-            ray4.direction.y = (float) -scene_.resY/2+y-0.25f;
-            ray4.direction.z = d;
+        if (scene_.antialiase>0){//SSAA
             
-            
-            p.color +=scene_.amb+(getColor(ray1)+getColor(ray2)+getColor(ray3)+getColor(ray4))/4;
+            for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
+                for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
+                    Ray ray = Ray();
+                    ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
+                    ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
+                    ray.direction.z = d;
+                    p.color +=getColor(ray);
+                }
+            }
+            p.color /=scene_.antialiase;
+            p.color += scene_.amb;
         } else {
             Ray ray = Ray();
-            ray.direction.x = (float) -scene_.resX/2+x; 
-            ray.direction.y = (float) -scene_.resY/2+y;
+            ray.direction.x = -scene_.resX/2.0f+x; 
+            ray.direction.y = -scene_.resY/2.0f+y;
             ray.direction.z = d;
 
             //here should get the camera transofratmion applied

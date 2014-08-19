@@ -185,13 +185,12 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 ss >> scene.resX;
                 ss >> scene.resY;
                 string antialiase;
-                ss >> antialiase;
-                scene.antialiase = (antialiase=="true");
+                ss >> scene.antialiase;
                 
                 //set default if not set
                 if (scene.resX<=0) scene.resX=480;
                 if (scene.resY<=0) scene.resY=320;
-                cout << "Scene should be rendered from "<< scene.camname << " at resolution "<<scene.resX<<"x"<< scene.resY<< ( scene.antialiase  ? " with antialiasing" : "" )<<" to "<<scene.outputFile<<endl;
+                cout << "Scene should be rendered from "<< scene.camname << " at resolution "<<scene.resX<<"x"<< scene.resY<<"with "<< scene.antialiase<<"x SSAA to "<<scene.outputFile<<endl;
             } else if (tmpString=="#"){
                 cout << line << endl;//just print comment lines
             } else
