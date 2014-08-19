@@ -24,6 +24,7 @@ struct Scene {
     int resY;
     std::string outputFile;
     Color amb;
+    bool antialiase;
     
 //    //manual destructor needed?
 //    ~Scene(){

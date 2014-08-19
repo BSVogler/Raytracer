@@ -43,9 +43,9 @@ define light diffuse sun -60 10 -50 1.0 1.0 1.0
 define shape sphere sunsphere -60 10 -50 5 yellow
 #define light diffuse spot1 -500 800 0 0.8 0.8 0.8
 # camera
-define camera eye 75.0
+define camera eye 65.0
 # camera xform
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100
 # ... and go
-render eye image.ppm 600 600
+render eye image.ppm 600 600 true
