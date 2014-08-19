@@ -40,6 +40,38 @@ define shape sphere g02+03   200  300 -500 50 red
 define shape sphere g03+03   300  300 -500 50 red
 
 
+define shape box g-01+00 -100  000 -500 -150  050 -600 white
+define shape box g-02+00 -200  000 -500 -250  050 -600 white
+define shape box g-03+00 -300  000 -500 -350  050 -600 white
+define shape box g-00+01 -000  100 -500 -050  150 -600 white
+define shape box g-01+01 -100  100 -500 -150  150 -600 white
+define shape box g-02+01 -200  100 -500 -250  150 -600 white
+define shape box g-03+01 -300  100 -500 -350  150 -600 white
+define shape box g-00+02 -000  200 -500 -050  250 -600 white
+define shape box g-01+02 -100  200 -500 -150  250 -600 white
+define shape box g-02+02 -200  200 -500 -250  250 -600 white
+define shape box g-03+02 -300  200 -500 -350  250 -600 white
+define shape box g-00+03 -000  300 -500 -050  350 -600 white
+define shape box g-01+03 -100  300 -500 -150  350 -600 white
+define shape box g-02+03 -200  300 -500 -250  350 -600 white
+define shape box g-03+03 -300  300 -500 -350  350 -600 white
+
+define shape box g01-00   100 -000 -500  150 -050 -600 red
+define shape box g02-00   200 -000 -500  250 -050 -600 red
+define shape box g03-00   300 -000 -500  350 -050 -600 red
+define shape box g00-01   000 -100 -500  050 -150 -600 red
+define shape box g01-01   100 -100 -500  150 -150 -600 red
+define shape box g02-01   200 -100 -500  250 -150 -600 red
+define shape box g03-01   300 -100 -500  350 -150 -600 red
+define shape box g00-02   000 -200 -500  050 -250 -600 red
+define shape box g01-02   100 -200 -500  150 -250 -600 red
+define shape box g02-02   200 -200 -500  250 -250 -600 red
+define shape box g03-02   300 -200 -500  350 -250 -600 red
+define shape box g00-03   000 -300 -500  050 -350 -600 red
+define shape box g01-03   100 -300 -500  150 -350 -600 red
+define shape box g02-03   200 -300 -500  250 -350 -600 red
+define shape box g03-03   300 -300 -500  350 -350 -600 red
+
 # composite
 define shape composite root rbottom bsphere
 # scene xform
@@ -49,10 +81,10 @@ transform root translate 0 0 -10
 
 # lights
 define light ambient amb 0.1 0.2 0.1
-define light diffuse sun 0 0 -50 1.0 1.0 1.0
-define shape sphere sunsphere 2 0 -600 20 yellow
+define light diffuse sun 0 0 -200 1.0 1.0 1.0
+define shape sphere sunsphere 0 0 -200 5 yellow
 # camera
-define camera eye 65.0
+define camera eye 60.0
 # camera xform
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100
