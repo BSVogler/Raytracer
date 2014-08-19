@@ -10,6 +10,7 @@
 #include "renderer.hpp"
 #include "SDFloader.hpp"
 #include "ray.hpp"
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <glm/glm.hpp>
 
