@@ -32,6 +32,7 @@ public:
 private:
     glm::vec3 edge1;
     glm::vec3 edge2;
+    glm::vec3 calcNormal(float const& x, float const& y, float const& z) const;
 
 };
 
