@@ -48,14 +48,14 @@ Scene SDFLoader::load(std::string const& scenefile) {
     if (file.is_open()) {
         while (getline (file,line)){//get line
             ss = stringstream(line);//fill the line into stringstream
-            string tmpString;
-            ss >> tmpString;
+            string firstWord;
+            ss >> firstWord;
             //is first string define?
-            if (tmpString=="define"){
+            if (firstWord=="define"){
                 cout << "defininig: ";
                 
-                ss >> tmpString;
-                if (tmpString=="material"){
+                ss >> firstWord;
+                if (firstWord=="material"){
                     cout << "a material: "<<endl;
                     //extract name
                     string name;
@@ -80,14 +80,14 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     Material mat(ca, cd, cs,m, name);
                     cout << "Material specs: "<<endl<<mat;
                     mMap[name]=mat;
-                } else if (tmpString=="camera"){
+                } else if (firstWord=="camera"){
                     string cameraname;
                     ss >> cameraname;
                     int fovX;
                     ss >> fovX;
                     scene.camera = Camera(cameraname,fovX);
                     cout << "camera: "<<cameraname<<"("<<fovX<<")"<<endl;
-                } else if (tmpString=="light"){
+                } else if (firstWord=="light"){
                     string type;
                     ss>>type;
                     
@@ -124,7 +124,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     } else {
                         cout << "type not supported yet."<<endl;
                     }
-                } else if (tmpString=="shape"){
+                } else if (firstWord=="shape"){
                     string classname;
                     ss >> classname;
                     cout << "Shape \""<< classname << "\"."<<endl;
@@ -179,7 +179,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         roMap[name] = rObject;
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
-            } else if (tmpString=="render"){
+            } else if (firstWord=="render"){
                 ss >> scene.camname;
                 ss >> scene.outputFile;
                 ss >> scene.resX;
@@ -191,7 +191,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 if (scene.resX<=0) scene.resX=480;
                 if (scene.resY<=0) scene.resY=320;
                 cout << "Scene should be rendered from "<< scene.camname << " at resolution "<<scene.resX<<"x"<< scene.resY<<"with "<< scene.antialiase<<"x SSAA to "<<scene.outputFile<<endl;
-            } else if (tmpString=="#"){
+            } else if (firstWord=="#" || firstWord.substr(0,1)=="#"){
                 cout << line << endl;//just print comment lines
             } else
                 cout << "Line not supported:"<<line <<endl;
