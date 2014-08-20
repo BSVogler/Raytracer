@@ -100,8 +100,8 @@ Color Renderer::getColor(const Ray& ray) {
                 );
                 //diffuse light
                 double fDiffuse = glm::dot(lightRay.direction, intersection.second.direction);//l*n
-                fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;
-                //cout <<fDiffuse<<endl; 
+                //fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;
+                cout <<fDiffuse<<endl; 
                 
                 diff =  light.GetDiff()//get light color
                         * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()//multiply by material, (l_p * k_d)
