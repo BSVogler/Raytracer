@@ -96,12 +96,16 @@ Color Renderer::getColor(const Ray& ray) {
                 //a ray pointing to the current light source
                 auto lightRay = Ray(
                     intersection.second.origin,
-                    glm::normalize(light.GetPos()-intersection.second.origin)
+                    glm::normalize(light.GetPos()-intersection.second.origin)//l=IL =L-I 
                 );
                 //diffuse light
+                double fDiffuse = glm::dot(lightRay.direction, intersection.second.direction);//l*n
+                fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;
+                //cout <<fDiffuse<<endl; 
+                
                 diff =  light.GetDiff()//get light color
-                        * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()//multiply by material
-                        * glm::dot(lightRay.direction,intersection.second.direction);//l*n
+                        * ((RenderObject*) renderObjectIt->second)->getMaterial().getKd()//multiply by material, (l_p * k_d)
+                        * fDiffuse;
             }
         }
     }
