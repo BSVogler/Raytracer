@@ -172,11 +172,16 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     } else if(classname=="COMPOSITE") {
                         rObject = new Composite(name);
                         cout << "Composite \""<< name << "\" (" ;
-                        string object;
+                        string objectString;
                         while (!ss.eof()){
-                            ss>>object;
-                            ((Composite*)rObject)->add_child(roMap[object]);
-                            cout<<", "<<object;
+                            ss>>objectString;
+                            auto linkedObject = roMap.find(objectString);
+                            if (linkedObject == roMap.end()){
+                                cout << "Error: "<<objectString <<" not found!";
+                            } else {
+                                ((Composite*)rObject)->add_child(linkedObject->second);
+                                cout<<", "<<objectString;
+                            }
                         }
                         cout<<")"<<endl;
                     } else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
