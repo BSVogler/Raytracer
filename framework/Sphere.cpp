@@ -23,8 +23,7 @@ std::pair<bool, Ray> Sphere::intersect(Ray const& ray) const {
         if (t2 < t1)//nimm Punkt, welcher näher dran ist
             std::swap(t2,t1);
         
-        if (t1<ray.distance && t1>=0) {//collide if nearest point in front of camera
-
+        if (t1>=0) {//collide if nearest point in front of camera
             ray.distance=t1;
             auto i(ray.origin+ray.direction*t1);
             return std::make_pair(true, Ray(i,glm::normalize(i-center)));//use t1, normal is n=CI=I-C, same as CO+i

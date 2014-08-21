@@ -32,7 +32,7 @@ define shape sphere redB -50  50 -100 10 red
 # composite
 define shape composite whiteCompo white1 white2 white3 white4 white5 white6 white7 white8
 define shape composite redCompo red1 red2 red3 red4 red5 red6 red7 red8 red9 redA redB
-define shape composite root redCompo whiteCompo
+define shape composite root whiteCompo redCompo
 
 # scene xform
 # transform root scale 2 2 2

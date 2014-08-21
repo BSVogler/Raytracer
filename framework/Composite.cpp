@@ -17,10 +17,14 @@ Intersection Composite::intersect(Ray const& ray) const {
     std::vector<Intersection> intersections;
 
     //collect every intersection
-    for(auto child = children.begin(); child != children.end(); child++) {//every render object
-        intersections.push_back((*child)->intersect(ray));
+    for(auto child = children.begin(); child != children.end(); ++child) {//every children
+        auto intersection = (*child)->intersect(ray);
+        if (intersection.first)
+            intersections.push_back(intersection);
     }
   
+    if (intersections.size()==0) return std::make_pair(false,Ray());//no intersection
+    
     //return only intersection with nearest point
     return *std::min_element(
         intersections.begin(),
