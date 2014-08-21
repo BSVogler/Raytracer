@@ -39,7 +39,7 @@ transform root rotate 45 0 0 1
 transform root translate 0 0 -10
 
 # lights
-define light ambient amb 0.1 0.2 0.1
+define light ambient amb 0.05 0.1 0.05
 define light diffuse sun -60 10 -50 1.0 1.0 1.0
 define shape sphere sunsphere -60 10 -50 5 yellow
 #define light diffuse spot1 -500 800 0 0.8 0.8 0.8
