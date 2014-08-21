@@ -151,7 +151,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                                 glm::vec3(edge2x, edge2y, edge2z),
                                 material
                                 );
-                    }else if (classname=="SPHERE") {
+                    } else if (classname=="SPHERE") {
                         int posX, posY, posZ;
                         ss>> posX;
                         ss>> posY;
@@ -173,7 +173,6 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         rObject = new Composite(name);
                         cout << "Composite \""<< name << "\" (" ;
                         string object;
-                        //ss>>object;
                         while (!ss.eof()){
                             ss>>object;
                             ((Composite*)rObject)->add_child(roMap[object]);
