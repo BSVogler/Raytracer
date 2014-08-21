@@ -201,7 +201,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
             } else if (firstWord=="#" || firstWord.substr(0,1)=="#"){
                 cout << line << endl;//just print comment lines
             } else
-                cout << "Line not supported:"<<line <<endl;
+                cout << "???:"<<line <<endl;
         }
         file.close();
     }else cout << "Unable to open file"; 
