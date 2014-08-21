@@ -13,9 +13,7 @@
 class SDFLoader {
 public:
     SDFLoader();
-    SDFLoader(const SDFLoader& orig);
     static Scene load(std::string const& scenefile);
-    virtual ~SDFLoader();
 private:
 };
 

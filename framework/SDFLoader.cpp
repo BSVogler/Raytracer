@@ -22,11 +22,6 @@ using namespace std;
 SDFLoader::SDFLoader() {
 }
 
-SDFLoader::SDFLoader(const SDFLoader& orig) {
-}
-
-SDFLoader::~SDFLoader() {
-}
 
 /**
  * Loads a scene file and reacts to the commands in it
