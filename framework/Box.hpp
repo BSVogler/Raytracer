@@ -1,9 +1,9 @@
-/* 
- * File:   Box.hpp
- * Author: Benedikt Vogler
- *
- * Created on 14. August 2014, 16:59
- */
+/*
+* File:   Box.hpp
+* Author: Benedikt Vogler
+*
+* Created on 14. August 2014, 16:59
+*/
 
 #ifndef BOX_HPP
 #define	BOX_HPP
@@ -14,25 +14,25 @@
 
 class Box : public RenderObject {
 public:
-    Box():
-        RenderObject("unnamed", Material()), edge1(glm::vec3()), edge2(glm::vec3())
-    {};
-    
-    Box(
-        string name,
-        glm::vec3 const& edge1,
-        glm::vec3 const&  edge2,
-        Material const& material
-    ) :
-        RenderObject(name, material), edge1(edge1), edge2(edge2)
-    {}
-    
-    Box(const Box& orig);
-    std::pair<bool, Ray> intersect(Ray const& ray) const;
+	Box() :
+		RenderObject("unnamed", Material()), edge1(glm::vec3()), edge2(glm::vec3())
+	{};
+
+	Box(
+		string name,
+		glm::vec3 const& edge1,
+		glm::vec3 const&  edge2,
+		Material const& material
+		) :
+		RenderObject(name, material), edge1(edge1), edge2(edge2)
+	{}
+
+	Box(const Box& orig);
+	std::pair<bool, Ray> intersect(Ray const& ray) const;
 private:
-    glm::vec3 edge1;
-    glm::vec3 edge2;
-    glm::vec3 calcNormal(float const& x, float const& y, float const& z) const;
+	glm::vec3 edge1;
+	glm::vec3 edge2;
+	glm::vec3 calcNormal(float const& x, float const& y, float const& z) const;
 
 };
 
