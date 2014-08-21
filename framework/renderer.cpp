@@ -36,53 +36,57 @@ Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& sce
 }
 
 void Renderer::render() {
-  if (width_<scene_.resX){
-      cout << "ERROR: Resolution X to big. Forcing: "<<width_<<endl;
-      scene_.resX=width_;
-  }
-  if (height_<scene_.resY){
-      cout << "ERROR: Resolution Y to big. Forcing: "<<height_<<endl;
-      scene_.resY=height_;
-  }
-  cout << "#####RENDERING####"<<endl;
-  cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<endl;
-  cout << "Camera: "<<scene_.camname<<endl;
-  cout << "ambient light "<<scene_.amb<<endl;
-  
-  float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
-          
-  for (unsigned y = 0; y < scene_.resY; ++y) {
-    for (unsigned x = 0; x < scene_.resX; ++x) {
-        Pixel p(x,y);
-        if (scene_.antialiase>0){//SSAA
-            
-            for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
-                for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
-                    Ray ray = Ray();
-                    ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
-                    ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
-                    ray.direction.z = d;
-                    p.color +=getColor(ray);
-                }
-            }
-            p.color /=scene_.antialiase;
-            p.color += scene_.amb;
-        } else {
-            Ray ray = Ray();
-            ray.direction.x = -scene_.resX/2.0f+x; 
-            ray.direction.y = -scene_.resY/2.0f+y;
-            ray.direction.z = d;
-
-            //here should get the camera transformation applied
-
-            //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-
-            p.color +=scene_.amb+getColor(ray);
-        }
-        write(p);
+    if (width_<scene_.resX){
+        cout << "ERROR: Resolution X to big. Forcing: "<<width_<<endl;
+        scene_.resX=width_;
     }
-  }
-  //ppm_.save(filename_);
+    if (height_<scene_.resY){
+        cout << "ERROR: Resolution Y to big. Forcing: "<<height_<<endl;
+        scene_.resY=height_;
+    }
+    if (scene_.renderObjects.find("root")!= scene_.renderObjects.end()){
+        cout << "#####RENDERING####"<<endl;
+        cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<endl;
+        cout << "Camera: "<<scene_.camname<<endl;
+        cout << "ambient light "<<scene_.amb<<endl;
+
+        float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
+
+        for (unsigned y = 0; y < scene_.resY; ++y) {
+          for (unsigned x = 0; x < scene_.resX; ++x) {
+              Pixel p(x,y);
+              if (scene_.antialiase>0){//SSAA
+
+                  for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
+                      for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
+                          Ray ray = Ray();
+                          ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
+                          ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
+                          ray.direction.z = d;
+                          p.color +=getColor(ray);
+                      }
+                  }
+                  p.color /=scene_.antialiase;
+                  p.color += scene_.amb;
+              } else {
+                  Ray ray = Ray();
+                  ray.direction.x = -scene_.resX/2.0f+x; 
+                  ray.direction.y = -scene_.resY/2.0f+y;
+                  ray.direction.z = d;
+
+                  //here should get the camera transformation applied
+
+                  //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
+
+                  p.color +=scene_.amb+getColor(ray);
+              }
+              write(p);
+            }
+        }
+        //ppm_.save(filename_);
+    } else {
+        cout << "no root found!"<<endl;
+    }
 }
 
 Color Renderer::getColor(const Ray& ray) {
