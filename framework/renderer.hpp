@@ -38,6 +38,7 @@ class Renderer {
       std::string scenefile_;
       Scene scene_;
       PpmWriter ppm_;
+      Color getColor(Ray const& ray);
 };
 
 #endif // #ifndef BUW_RENDERER_HPP
