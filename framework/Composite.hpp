@@ -15,12 +15,11 @@
 class Composite : public RenderObject {
 public:
     
-    void add_child(std::shared_ptr<RenderObject> const& child);
+    void add_child(RenderObject const& child);
     virtual std::pair<bool, Ray> intersect(const Ray& ray) const;
 
 private:
     std::vector<RenderObject> children;
-    
 
 };
 

@@ -9,6 +9,10 @@
 
 typedef std::pair<bool, Ray> Intersection;
 
+void Composite::add_child(RenderObject const& child) {
+    children.push_back(child);
+}
+
 Intersection Composite::intersect(Ray const& ray) const {
     std::vector<Intersection> intersections;
 
@@ -17,7 +21,7 @@ Intersection Composite::intersect(Ray const& ray) const {
         intersections.push_back(child->intersect(ray));
     }
   
-    //return nearest point
+    //return only intersection with nearest point
     return *std::min_element(
         intersections.begin(),
         intersections.end(),
