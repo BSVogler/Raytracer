@@ -14,6 +14,9 @@
 
 class Composite : public RenderObject {
 public:
+    Composite(string const& name):
+        RenderObject(name,Material())
+    {}
     
     void add_child(RenderObject* const& child);
     virtual std::pair<bool, Ray> intersect(const Ray& ray) const;

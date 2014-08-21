@@ -16,6 +16,7 @@
 #include <sstream>
 #include "Material.hpp"
 #include "LightPoint.hpp"
+#include "Composite.hpp"
 
 using namespace std;
 
@@ -162,13 +163,24 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         ss>>materialString;
                         
                         rObject = new Sphere(
-                                name,
-                                glm::vec3(posX, posY, posZ),
-                                radius,
-                                mMap[materialString]
-                                );
-                        cout << "Shape \""<< name << "\" aus Material "<<materialString<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
-                    }else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
+                            name,
+                            glm::vec3(posX, posY, posZ),
+                            radius,
+                            mMap[materialString]
+                        );
+                        cout << "Sphere \""<< name << "\" aus Material "<<materialString<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
+                    } else if(classname=="COMPOSITE") {
+                        rObject = new Composite(name);
+                        cout << "Composite \""<< name << "\" (" ;
+                        string object;
+                        //ss>>object;
+                        while (!ss.eof()){
+                            ss>>object;
+                            ((Composite*)rObject)->add_child(roMap[object]);
+                            cout<<", "<<object;
+                        }
+                        cout<<")"<<endl;
+                    } else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
                     
                     if (rObject != nullptr)
                         roMap[name] = rObject;
