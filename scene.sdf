@@ -29,9 +29,9 @@ define shape sphere red9 -30  30 -80 10 red
 define shape sphere redA -40  40 -90 10 red
 define shape sphere redB -50  50 -100 10 red
 
-
 # composite
-define shape composite root rbottom bsphere
+define shape composite root white1 white2
+
 # scene xform
 # transform root scale 2 2 2
 transform root rotate 45 0 0 1
