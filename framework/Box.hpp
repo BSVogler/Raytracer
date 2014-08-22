@@ -28,7 +28,7 @@ public:
     {}
     
     Box(const Box& orig);
-    std::pair<bool, Ray> intersect(Ray const& ray) const;
+    Intersection intersect(Ray const& ray) const;
 private:
     glm::vec3 edge1;
     glm::vec3 edge2;

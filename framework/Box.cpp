@@ -6,8 +6,11 @@
  */
 
 #include "Box.hpp"
+#include "Intersection.hpp"
 
-std::pair<bool,Ray> Box::intersect(Ray const& ray) const {
+Intersection Box::intersect(Ray const& ray) const {
+    Intersection inter;
+    
     float tmin = (edge1.x - ray.origin.x) / ray.direction.x;
     float tmax = (edge2.x - ray.origin.x) / ray.direction.x;
     if(tmin > tmax) std::swap(tmin, tmax);
@@ -16,8 +19,10 @@ std::pair<bool,Ray> Box::intersect(Ray const& ray) const {
     float ty_max = (edge2.y - ray.origin.y) / ray.direction.y;
     if(ty_min > ty_max) std::swap(ty_min, ty_max);
 
-    if((tmin > ty_max) || (ty_min > tmax))
-        return std::make_pair(false,Ray());
+    if((tmin > ty_max) || (ty_min > tmax)){
+        inter.hit=false;
+        return inter;
+    }
     if(ty_min > tmin) tmin = ty_min;
     if(ty_max < tmax) tmax = ty_max;
 
@@ -25,17 +30,20 @@ std::pair<bool,Ray> Box::intersect(Ray const& ray) const {
     float tz_max = (edge2.z - ray.origin.z) / ray.direction.z;
     if(tz_min > tz_max) std::swap(tz_min, tz_max);
 
-    if((tmin > tz_max) || (tz_min > tmax))
-      return std::make_pair(false,Ray());
+    if((tmin > tz_max) || (tz_min > tmax)){
+        inter.hit=false;
+        return inter;
+    }
     if(tz_min > tmin) tmin = tz_min;
     if(tz_max < tmax) tmax = tz_max;
 
     ray.distance = tmin;
     glm::vec3 n = ray.origin + tmin * ray.direction;
-    return std::make_pair(
-            true,
-            Ray(ray.origin + tmin * ray.direction, calcNormal(n.x, n.y, n.z))
-    );
+    inter.hit = true;
+    inter.ray.origin = ray.origin + tmin * ray.direction;
+    inter.ray.direction = calcNormal(n.x, n.y, n.z);
+    inter.material = getMaterial();
+    return inter;
 }
 
 glm::vec3 Box::calcNormal(float const& x, float const& y, float const& z) const {

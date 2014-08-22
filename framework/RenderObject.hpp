@@ -12,6 +12,7 @@
 #include "ray.hpp"
 #include "Material.hpp"
 #include <string>
+#include "Intersection.hpp"
 
 using std::string;
 
@@ -21,7 +22,7 @@ public:
         name(name), material(material)
     {}
 
-    virtual std::pair<bool, Ray> intersect(Ray const& ray) const  =0;
+    virtual Intersection intersect(Ray const& ray) const  =0;
     Material getMaterial() const {
         return material;
     }

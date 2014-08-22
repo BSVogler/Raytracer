@@ -31,7 +31,7 @@ public:
     {}
 
     Sphere(const Sphere& orig);
-    std::pair<bool, Ray> intersect(Ray const& ray) const;
+    virtual Intersection intersect(Ray const& ray) const;
     
 private:
     float radius;

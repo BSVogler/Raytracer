@@ -6,9 +6,8 @@
  */
 
 #include "Composite.hpp"
+#include "Intersection.hpp"
 #include <algorithm>
-
-typedef std::pair<bool, Ray> Intersection;
 
 void Composite::add_child(RenderObject* const& child) {
     children.push_back(child);
@@ -20,17 +19,17 @@ Intersection Composite::intersect(Ray const& ray) const {
     //collect every intersection
     for(auto child = children.begin(); child != children.end(); ++child) {//every children
         auto intersection = (*child)->intersect(ray);
-        if (intersection.first)
+        if (intersection.hit)
             intersections.push_back(intersection);
     }
   
-    if (intersections.size()==0) return std::make_pair(false,Ray());//no intersection
+    if (intersections.size()==0) return Intersection();//no intersection
     
     //return only intersection with nearest point
     return *std::min_element(
         intersections.begin(),
         intersections.end(),
-        [](Intersection const& a, Intersection const& b)->bool { return a.second.distance < b.second.distance;}
+        [](Intersection const& a, Intersection const& b)->bool { return a.ray.distance < b.ray.distance;}
     );
 
 }

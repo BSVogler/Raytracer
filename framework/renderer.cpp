@@ -94,21 +94,21 @@ Color Renderer::getColor(const Ray& ray) {
     
     auto intersection( scene_.renderObjects["root"]->intersect(ray) );
 
-    if (intersection.first){//if intersection happened
+    if (intersection.hit){//if intersection happened
         //starting from the intersection go to every light source
         for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
             auto light = lightIt->second;
             //a ray pointing to the current light source
             auto lightRay = Ray(
-                intersection.second.origin,
-                glm::normalize(light.GetPos()-intersection.second.origin)//l=IL =L-I 
+                intersection.ray.origin,
+                glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
             );
             //diffuse light
-            double fDiffuse = glm::dot(lightRay.direction, intersection.second.direction);//l*n
+            double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
             fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
 
             diff =  light.GetDiff()//get light color
-                    //* (scene_.renderObjects["root"])->getMaterial().getKd()//multiply by material, (l_p * k_d)
+                    * intersection.material.getKd()//multiply by material, (l_p * k_d)
                     * fDiffuse;
         }
     }

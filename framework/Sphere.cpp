@@ -6,9 +6,10 @@
  */
 
 #include "Sphere.hpp"
+#include "Intersection.hpp"
 #include <glm/glm.hpp>
 
-std::pair<bool, Ray> Sphere::intersect(Ray const& ray) const {
+Intersection Sphere::intersect(Ray const& ray) const {
     glm::vec3 CO{ ray.origin - center };//why CO and not OC???
     float a{ glm::dot(ray.direction, ray.direction) };
     float b{ 2.0f * glm::dot(CO, ray.direction) };
@@ -25,9 +26,14 @@ std::pair<bool, Ray> Sphere::intersect(Ray const& ray) const {
         
         if (t1>=0) {//collide if nearest point in front of camera
             ray.distance=t1;
-            auto i(ray.origin+ray.direction*t1);
-            return std::make_pair(true, Ray(i,glm::normalize(i-center)));//use t1, normal is n=CI=I-C, same as CO+i
+            auto p(ray.origin+ray.direction*t1);
+            Intersection inter;
+            inter.hit = true;
+            inter.ray.origin = p;
+            inter.ray.direction = glm::normalize(p-center);//use t1, normal is n=CI=I-C, same as CO+i
+            inter.material = getMaterial();
+            return inter;
         }
     }
-    return std::make_pair(false, Ray());//keine Lösung
+    return Intersection();//keine Lösung
 }
