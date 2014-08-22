@@ -72,10 +72,12 @@ define shape box g01-03   100 -300 -500  150 -350 -900 red
 define shape box g02-03   200 -300 -500  250 -350 -900 red
 define shape box g03-03   300 -300 -500  350 -350 -900 red
 
+define shape sphere sunsphere 0 0 -200 50 yellow
+
 # composite
-define shape composite spheres g-01-00 g-02-00 g-03-00 g-00-01 g-01-01 g-02-01 g-03-01 g-00-02 g-01-02 g-02-02 g-03-02 g-00-03 g-01-03 g-02-03 g-03-03 g01+00 g02+00 g03+00 g00+01 g01+01 g02+01 g03+01 g00+02 g01+02 g02+02 g03+02 g00+03 g01+03 g02+03 g03+03 
+define shape composite spheres g-00-00 g-01-00 g-02-00 g-03-00 g-00-01 g-01-01 g-02-01 g-03-01 g-00-02 g-01-02 g-02-02 g-03-02 g-00-03 g-01-03 g-02-03 g-03-03 g01+00 g02+00 g03+00 g00+01 g01+01 g02+01 g03+01 g00+02 g01+02 g02+02 g03+02 g00+03 g01+03 g02+03 g03+03 
 define shape composite boxes g-01+00 g-02+00 g-03+00 g-00+01 g-01+01 g-02+01 g-03+01 g-00+02 g-01+02 g-02+02 g-03+02 g-00+03 g-01+03 g-02+03 g-03+03 g01-00 g02-00 g03-00 g00-01 g01-01 g02-01 g03-01 g00-02 g01-02 g02-02 g03-02 g00-03 g01-03 g02-03 g03-03
-define shape composite root boxes spheres
+define shape composite root boxes spheres sunsphere
 # scene xform
 # transform root scale 2 2 2
 transform root rotate 45 0 0 1
@@ -84,7 +86,7 @@ transform root translate 0 0 -10
 # lights
 define light ambient amb 0.1 0.2 0.1
 define light diffuse sun 0 0 -200 1.0 1.0 1.0
-define shape sphere sunsphere 0 0 -200 5 yellow
+
 # camera
 define camera eye 60.0
 # camera xform
