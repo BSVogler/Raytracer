@@ -37,11 +37,12 @@ Intersection Box::intersect(Ray const& ray) const {
     if(tz_min > tmin) tmin = tz_min;
     if(tz_max < tmax) tmax = tz_max;
 
-    ray.distance = tmin;
+
     glm::vec3 n = ray.origin + tmin * ray.direction;
     inter.hit = true;
     inter.ray.origin = ray.origin + tmin * ray.direction;
     inter.ray.direction = calcNormal(n.x, n.y, n.z);
+    inter.distance = tmin;
     inter.material = getMaterial();
     return inter;
 }

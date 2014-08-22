@@ -29,7 +29,7 @@ Intersection Composite::intersect(Ray const& ray) const {
     return *std::min_element(
         intersections.begin(),
         intersections.end(),
-        [](Intersection const& a, Intersection const& b)->bool { return a.ray.distance < b.ray.distance;}
+        [](Intersection const& a, Intersection const& b)->bool { return a.distance < b.distance;}
     );
 
 }

@@ -25,12 +25,11 @@ Intersection Sphere::intersect(Ray const& ray) const {
             std::swap(t2,t1);
         
         if (t1>=0) {//collide if nearest point in front of camera
-            ray.distance=t1;
-            auto p(ray.origin+ray.direction*t1);
             Intersection inter;
             inter.hit = true;
-            inter.ray.origin = p;
-            inter.ray.direction = glm::normalize(p-center);//use t1, normal is n=CI=I-C, same as CO+i
+            inter.ray.origin = ray.origin+ray.direction*t1;
+            inter.ray.direction = glm::normalize(inter.ray.origin-center);//use t1, normal is n=CI=I-C, same as CO+i
+            inter.distance= t1;
             inter.material = getMaterial();
             return inter;
         }

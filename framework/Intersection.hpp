@@ -12,6 +12,7 @@ struct Intersection {
     bool hit;
     Material material;
     Ray ray;
+    float distance =INFINITY;
 
 };
 

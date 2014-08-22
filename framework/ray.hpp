@@ -11,8 +11,6 @@ struct Ray
 {
     glm::vec3 origin;
     glm::vec3 direction;
-    mutable float distance =INFINITY;
-    
     
     Ray():
         direction(glm::vec3()), origin(glm::vec3())
