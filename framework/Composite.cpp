@@ -6,6 +6,7 @@
  */
 
 #include "Composite.hpp"
+#include <algorithm>
 
 typedef std::pair<bool, Ray> Intersection;
 
