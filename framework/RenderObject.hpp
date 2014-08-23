@@ -23,6 +23,11 @@ public:
     {}
 
     virtual Intersection intersect(Ray const& ray) const  =0;
+
+	virtual void transalte(glm::vec3 const& translateLocation) const = 0;
+	virtual void rotate(int const& angle) const = 0;
+	virtual void scale(double const& scale) const = 0;
+
     Material getMaterial() const {
         return material;
     }

@@ -8,6 +8,26 @@
 #include "Sphere.hpp"
 #include "Intersection.hpp"
 #include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+
+
+void Sphere::transalte(glm::vec3 const& translateLocation) const {
+	
+	glm::vec4 translateLoc = glm::vec4(translateLocation, 1.0);
+	glm::mat4 translateModel = glm::mat4();
+	translateModel[3] = glm::vec4(center, 1.0);
+
+	glm::vec4 newCenter = translateModel * translateLoc;
+
+	center = glm::vec3(newCenter.x, newCenter.y, newCenter.z);
+
+}
+void Sphere::rotate(int const& angle) const {
+	
+}
+void Sphere::scale(double const& scale) const {
+	radius *= scale;
+}
 
 Intersection Sphere::intersect(Ray const& ray) const {
     glm::vec3 CO{ ray.origin - center };//why CO and not OC???

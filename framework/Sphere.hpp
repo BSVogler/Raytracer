@@ -26,12 +26,15 @@ public:
      * @param radius The radius of the sphere.
      * @param material 
      */
-    Sphere(string name, glm::vec3 const& center, float const radius, Material const& material) :
+    Sphere(string name, glm::vec3 center, float const radius, Material const& material) :
         RenderObject(name, material), center(center), radius(radius)
     {}
 
     Sphere(const Sphere& orig);
     virtual Intersection intersect(Ray const& ray) const;
+	virtual void transalte(glm::vec3 const& translateLocation) const;
+	virtual void rotate(int const& angle) const;
+	virtual void scale(double const& scale) const;
     
 private:
     float radius;

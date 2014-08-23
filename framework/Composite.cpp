@@ -13,6 +13,22 @@ void Composite::add_child(RenderObject* const& child) {
     children.push_back(child);
 }
 
+void Composite::transalte(glm::vec3 const& translateLocation) const {
+	for (auto child = children.begin(); child != children.end(); ++child) {//every children
+		(*child)->transalte(translateLocation);
+	}
+}
+void Composite::rotate(int const& angle) const {
+	for (auto child = children.begin(); child != children.end(); ++child) {//every children
+		(*child)->rotate(angle);
+	}
+}
+void Composite::scale(double const& scale) const {
+	for (auto child = children.begin(); child != children.end(); ++child) {//every children
+		(*child)->scale(scale);
+	}
+}
+
 Intersection Composite::intersect(Ray const& ray) const {
     std::vector<Intersection> intersections;
 
