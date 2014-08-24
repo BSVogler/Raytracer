@@ -12,24 +12,37 @@
 
 
 void Sphere::transalte(glm::vec4 translateLocation)  {
-	/*
-	glm::vec4 translateLoc = glm::vec4(translateLocation, 1.0);
+	
+	glm::vec4 translateLoc = glm::vec4(translateLocation);
 	glm::mat4 translateModel = glm::mat4();
 	translateModel[3] = glm::vec4(center, 1.0);
 
 	glm::vec4 newCenter = translateModel * translateLoc;
 
 	center = glm::vec3(newCenter.x, newCenter.y, newCenter.z);
-	*/
-
-	glm::mat4 location = glm::translate(translateLocation);
-
-}
-void Sphere::rotate(int angle)  {
 	
+
+
 }
-void Sphere::(double  scale)  {
-	radius *= scale;
+void Sphere::rotateX(float angle)  {
+	glm::vec3 rotationAxis(1, 0, 0);
+	glm::rotate(glm::mat4(1.0f),angle, rotationAxis);
+}
+
+void Sphere::rotateY(float angle)  {
+	glm::vec3 rotationAxis(0, 1, 0);
+	glm::rotate(glm::mat4(1.0f), angle, rotationAxis);
+}
+
+void Sphere::rotateZ(float angle)  {
+	glm::vec3 rotationAxis(0, 0, 1);
+	glm::rotate(glm::mat4(1.0f), angle, rotationAxis);
+}
+
+
+
+void Sphere::scale(float scaleFactor){
+	center *= scaleFactor;
 }
 
 Intersection Sphere::intersect(Ray const& ray) const {
