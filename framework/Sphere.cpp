@@ -7,12 +7,12 @@
 
 #include "Sphere.hpp"
 #include "Intersection.hpp"
+#include "glm/gtx/transform.hpp"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 
-void Sphere::transalte(glm::vec4 translateLocation)  {
-	
+void Sphere::translate(glm::vec4 const& translateLocation) {
 	glm::vec4 translateLoc = glm::vec4(translateLocation);
 	glm::mat4 translateModel = glm::mat4();
 	translateModel[3] = glm::vec4(center, 1.0);
@@ -24,24 +24,12 @@ void Sphere::transalte(glm::vec4 translateLocation)  {
 
 
 }
-void Sphere::rotateX(float angle)  {
-	glm::vec3 rotationAxis(1, 0, 0);
-	glm::rotate(glm::mat4(1.0f),angle, rotationAxis);
+
+void Sphere::rotate(int angle, glm::vec3 const& vector) {
+    //glm::rotate(glm::mat4(1.0f),angle, vector);
 }
 
-void Sphere::rotateY(float angle)  {
-	glm::vec3 rotationAxis(0, 1, 0);
-	glm::rotate(glm::mat4(1.0f), angle, rotationAxis);
-}
-
-void Sphere::rotateZ(float angle)  {
-	glm::vec3 rotationAxis(0, 0, 1);
-	glm::rotate(glm::mat4(1.0f), angle, rotationAxis);
-}
-
-
-
-void Sphere::scale(float scaleFactor){
+void Sphere::scale(double scaleFactor){
 	center *= scaleFactor;
 }
 

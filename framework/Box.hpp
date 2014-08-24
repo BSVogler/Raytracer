@@ -29,9 +29,10 @@ public:
     
     Box(const Box& orig);
     Intersection intersect(Ray const& ray) const;
-	virtual void transalte(glm::vec3 const& translateLocation) const;
-	virtual void rotate(int const& angle) const;
-	virtual void scale(double const& scale) const;
+    virtual void translate(glm::vec4 const& translateLocation);
+    virtual void rotate(int angle, glm::vec3 const& vector);
+    virtual void scale(double scale);
+
 private:
     glm::vec3 edge1;
     glm::vec3 edge2;

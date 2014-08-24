@@ -77,3 +77,16 @@ glm::vec3 Box::calcNormal(float const& x, float const& y, float const& z) const 
     return normal;
 }
 
+void Box::rotate(int angle, const glm::vec3& vector) {
+
+}
+
+void Box::scale(double scale) {
+
+}
+
+void Box::translate(const glm::vec4& translateLocation) {
+
+}
+
+

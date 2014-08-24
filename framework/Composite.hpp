@@ -20,9 +20,9 @@ public:
     
     void add_child(RenderObject* const& child);
     virtual Intersection intersect(const Ray& ray) const;
-	virtual void transalte(glm::vec3 const& translateLocation) const;
-	virtual void rotate(int const& angle) const;
-	virtual void scale(double const& scale) const;
+    virtual void translate(glm::vec4 const& translateLocation);
+    virtual void rotate(int angle, const glm::vec3& vector);
+    virtual void scale(double scale);
 
 private:
     std::vector<RenderObject*> children;
