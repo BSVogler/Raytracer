@@ -32,9 +32,9 @@ public:
 
     Sphere(const Sphere& orig);
     virtual Intersection intersect(Ray const& ray) const;
-	virtual void transalte(glm::vec3 const& translateLocation) const;
-	virtual void rotate(int const& angle) const;
-	virtual void scale(double const& scale) const;
+	void transalte(glm::vec4 translateLocation);
+	void rotate(int angle);
+	void scale(double scale);
     
 private:
     float radius;

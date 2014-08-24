@@ -8,11 +8,11 @@
 #include "Sphere.hpp"
 #include "Intersection.hpp"
 #include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 
-void Sphere::transalte(glm::vec3 const& translateLocation) const {
-	
+void Sphere::transalte(glm::vec4 translateLocation)  {
+	/*
 	glm::vec4 translateLoc = glm::vec4(translateLocation, 1.0);
 	glm::mat4 translateModel = glm::mat4();
 	translateModel[3] = glm::vec4(center, 1.0);
@@ -20,12 +20,15 @@ void Sphere::transalte(glm::vec3 const& translateLocation) const {
 	glm::vec4 newCenter = translateModel * translateLoc;
 
 	center = glm::vec3(newCenter.x, newCenter.y, newCenter.z);
+	*/
+
+	glm::mat4 location = glm::translate(translateLocation);
 
 }
-void Sphere::rotate(int const& angle) const {
+void Sphere::rotate(int angle)  {
 	
 }
-void Sphere::scale(double const& scale) const {
+void Sphere::(double  scale)  {
 	radius *= scale;
 }
 
