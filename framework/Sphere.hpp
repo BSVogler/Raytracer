@@ -15,10 +15,6 @@
 
 class Sphere: public RenderObject {
 public:
-    Sphere():
-        RenderObject("unnamed", Material()), radius(0)
-    {};
-    
     /**
      * Creates a shpere.
      * @param name The name of the shpere.
@@ -30,7 +26,6 @@ public:
         RenderObject(name, material), center(center), radius(radius)
     {}
 
-    Sphere(const Sphere& orig);
     virtual Intersection intersect(Ray const& ray) const;
     virtual void translate(glm::vec4 const& translateLocation);
     virtual void rotate(int angle, glm::vec3 const& vector);
