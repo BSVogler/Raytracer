@@ -204,7 +204,36 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 cout << "Scene should be rendered from "<< scene.camname << " at resolution "<<scene.resX<<"x"<< scene.resY<<"with "<< scene.antialiase<<"x SSAA to "<<scene.outputFile<<endl;
             } else if (firstWord=="#" || firstWord.substr(0,1)=="#"){
                 cout << line << endl;//just print comment lines
-            } else
+
+			}
+			else if (firstWord == "transform"){
+				
+				string object, transform;
+				ss >> object;
+				ss >> transform;
+
+				if (transform == "scale")
+				{
+				}
+				else if (transform=="roatate")
+				{
+
+				}
+				else if (transform == "translate")
+				{
+
+				}
+				else
+				{ 
+					cout << "Error in SDF file. Please check the structure." << endl;
+				}
+			
+			}
+			
+			
+			
+			
+			else
                 cout << "???:"<<line <<endl;
         }
         file.close();

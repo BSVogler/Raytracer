@@ -23,17 +23,22 @@ public:
     {}
 
     virtual Intersection intersect(Ray const& ray) const  =0;
-    virtual void translate(glm::vec4 const& translateLocation) = 0;
-    virtual void rotate(int angle, glm::vec3 const& vector) = 0;
-    virtual void scale(double scale) = 0;
+	
 
     Material getMaterial() const {
         return material;
     }
 
+
+	glm::mat4 const& worldCoords() const;
+	void invertWorldCoords(glm::mat4 const& m);
+
 private:
     Material material;
     string name;
+	glm::mat4 world_transformation;
+	glm::mat4 world_transformation_inv;
+
 };
 
 #endif	/* RENDEROBJECT_HPP */
