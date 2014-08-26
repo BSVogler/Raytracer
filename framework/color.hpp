@@ -14,92 +14,80 @@
 
 struct Color {
     
-  Color(float red, float green, float blue):
-    r(red),
-    g(green),
-    b(blue)
-  {}
-  
-  Color():
-    r(0),
-    g(0),
-    b(0)
-  {}
-  
-  
-  float r;
-  float g;
-  float b;
+    Color(float red, float green, float blue):
+      r(red),
+      g(green),
+      b(blue)
+    {}
 
-  friend std::ostream& operator<<(std::ostream& os, Color const& c){
-    os << "(" << c.r << "," << c.g << "," << c.b << ")";
-    return os;
-  }
+    Color():
+      r(0),
+      g(0),
+      b(0)
+    {}
 
-  Color& operator+=(Color const& other){
-    r += other.r;
-    g += other.g;
-    b += other.b;
-    return *this;
-  }
 
-  Color& operator-=(Color const& other){
-    r -= other.r;
-    g -= other.g;
-    b -= other.b;
-    return *this;
-  }
-  
-    Color& operator/=(float a){
-        r /= a;
-        g /= a;
-        b /= a;
+    float r;
+    float g;
+    float b;
+
+    friend std::ostream& operator<<(std::ostream& os, Color const& c){
+      os << "(" << c.r << "," << c.g << "," << c.b << ")";
+      return os;
+    }
+
+    Color& operator+=(Color const& other){
+        r += other.r;
+        g += other.g;
+        b += other.b;
+        return *this;
+    }
+
+    Color& operator-=(Color const& rsd){
+        r -= rsd.r;
+        g -= rsd.g;
+        b -= rsd.b;
+        return *this;
+    }
+
+    Color& operator/=(float rsd){
+        r /= rsd;
+        g /= rsd;
+        b /= rsd;
+        return *this;
+    }
+
+    Color& operator*=(float rsd){
+        r *= rsd;
+        g *= rsd;
+        b *= rsd;
+        return *this;
+    }
+    Color& operator*=(Color rsd){
+        r *= rsd.r;
+        g *= rsd.g;
+        b *= rsd.b;
         return *this;
     }
     
-    Color& operator*=(float a){
-        r *= a;
-        g *= a;
-        b *= a;
-        return *this;
-    }
-    
-    
-
-  friend Color operator+(Color const& a, Color const& b){
-    auto tmp(a);
-    tmp += b;
-    return tmp;
+  friend Color operator+(Color const& lsd, Color const& rsd){
+    return Color(lsd)+=rsd;
   }
 
-  friend Color operator-(Color const& a, Color const& b){
-    auto tmp(a);
-    tmp -= b;
-    return tmp;
+  friend Color operator-(Color const& lsd, Color const& rsd){
+    return Color(lsd)-=rsd;
   }
   
-  friend Color operator*(Color const& a, Color const& b){
-    auto tmp(a);
-    tmp.r *= b.r;
-    tmp.g *= b.g;
-    tmp.b *= b.b;
-    return tmp;
+  friend Color operator*(Color const& lsd, Color const& rsd){
+    return Color(lsd)*=rsd;
   }
   
-  friend Color operator*(Color const& a, float b){
-    auto tmp(a);
-    tmp.r *= b;
-    tmp.g *= b;
-    tmp.b *= b;
-    return tmp;
+  friend Color operator*(Color const& lsd, float rsd){
+    return Color(lsd)*=rsd;
   }
   
-  friend Color operator/(Color const& a, float b){
-    auto tmp(a);
-    tmp.r /= b;
-    tmp.g /= b;
-    tmp.b /= b;
-    return tmp;
+  friend Color operator/(Color const& lsd, float rsd){
+    return Color(lsd)/=rsd;
   }
 };
 
