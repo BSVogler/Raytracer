@@ -31,6 +31,11 @@ public:
 
 
     glm::mat4 const& worldCoords() const;
+
+    void setWorld_transformation(glm::mat4 world_transformation) {
+        this->world_transformation = world_transformation;
+    }
+
     void invertWorldCoords(glm::mat4 const& m);
     virtual void scale(glm::vec3 const& axis) =0;
     virtual void translate(glm::vec3 const& axis) =0;
