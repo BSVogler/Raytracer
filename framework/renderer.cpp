@@ -22,6 +22,7 @@ Renderer::Renderer(unsigned w, unsigned h, string const& file)
   , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
   , filename_(file)
   , ppm_(width_, height_)
+  ,finished_(false)
 {}
 
 Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& scenefile)
@@ -31,6 +32,7 @@ Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& sce
   , filename_(file)
   , scenefile_(scenefile)
   , ppm_(width_, height_)
+  ,finished_(false)
 {
    scene_ = SDFLoader::load(scenefile);
 }
@@ -84,6 +86,7 @@ void Renderer::render() {
             }
         }
         ppm_.save(filename_);
+        finished_ = true;
     } else {
         cout << "no root found!"<<endl;
     }

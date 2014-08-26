@@ -19,16 +19,19 @@
 
 class Renderer {
     public:
-      Renderer(unsigned w, unsigned h, std::string const& file);
-      Renderer(unsigned w, unsigned h, std::string const& file, std::string const& scenefile);
+        Renderer(unsigned w, unsigned h, std::string const& file);
+        Renderer(unsigned w, unsigned h, std::string const& file, std::string const& scenefile);
 
-      void render();
-      void write(Pixel const& p);
+        void render();
+        void write(Pixel const& p);
+        bool finished() const{
+            return finished_;
+        };
 
-      inline std::vector<Color> const& colorbuffer() const
-      {
-        return colorbuffer_;
-      }
+        inline std::vector<Color> const& colorbuffer() const
+        {
+          return colorbuffer_;
+        }
 
     private:
       unsigned width_;
@@ -38,6 +41,7 @@ class Renderer {
       std::string scenefile_;
       Scene scene_;
       PpmWriter ppm_;
+      bool finished_;
       Color getColor(Ray const& ray);
 };
 
