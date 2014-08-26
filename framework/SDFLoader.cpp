@@ -208,51 +208,43 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 ss >> name;
                 ss >> transform;
 
-
                 auto linkedObject = roMap.find(name);
-                if (linkedObject == roMap.end()){
-                        cout << "Error: " << name << " not found!";
+                if (linkedObject == roMap.end()){//check if object can be found
+                    cout << "Error: " << name << " not found!";
                 } else {
                     object = linkedObject->second;
                     if (transform == "scale") {
+                        ss >> X;
+                        ss >> Y;
+                        ss >> Z;
 
+                        glm::vec3 coords(X, Y, Z);
+                        object->scale(coords);
+                    } else if (transform == "rotate") {
+                            
+                        double angle;
+                        ss >> angle;
 
-                            ss >> X;
-                            ss >> Y;
-                            ss >> Z;
+                        ss >> X;
+                        ss >> Y;
+                        ss >> Z;
 
-
-
-                            glm::vec3 coords(X, Y, Z);
-                            object->scale(coords);
-                    } else if (transform == "roatate") {
-                            double angle;
-
-                            ss >> angle;
-                            ss >> X;
-                            ss >> Y;
-                            ss >> Z;
-
-
-
-                            glm::vec3 coords(X, Y, Z);
-                            object->rotate(angle,coords);
+                        glm::vec3 coords(X, Y, Z);
+                        object->rotate(angle,coords);
 
                     } else if (transform == "translate"){
-                            ss >> X;
-                            ss >> Y;
-                            ss >> Z;
+                        ss >> X;
+                        ss >> Y;
+                        ss >> Z;
 
-
-
-                            glm::vec3 coords(X, Y, Z);
-                            object->translate(coords);
+                        glm::vec3 coords(X, Y, Z);
+                        object->translate(coords);
 
                     } else {
-                            cout << "Error in SDF file. Please check the structure." << endl;
+                            cout << "Unknown transformation" << endl;
                     }
                 }
-            } else cout << "???:"<<line <<endl;//prinkt uknown lines
+            } else cout << "???:"<<line <<endl;//print unknown lines
         }
         file.close();
     }else cout << "Unable to open file"; 
