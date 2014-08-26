@@ -32,9 +32,9 @@ public:
 
     glm::mat4 const& worldCoords() const;
     void invertWorldCoords(glm::mat4 const& m);
-    virtual void scale(glm::vec3  axis) =0;
-    virtual void translate(glm::vec3 axis) =0;
-    virtual void rotate(double angle, glm::vec3 axis)=0;
+    virtual void scale(glm::vec3 const& axis) =0;
+    virtual void translate(glm::vec3 const& axis) =0;
+    virtual void rotate(double angle, glm::vec3 const& axis)=0;
 
 private:
     Material material;

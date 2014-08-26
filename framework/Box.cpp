@@ -77,7 +77,7 @@ glm::vec3 Box::calcNormal(float const& x, float const& y, float const& z) const 
     return normal;
 }
 
-void Box::rotate(double angle, glm::vec3 vector) 
+void Box::rotate(double angle, glm::vec3 const& vector) 
 {
 	glm::mat4 rotateModel = glm::mat4();
 	rotateModel[1] = glm::vec4(0, glm::cos(angle), glm::sin(angle), 0);
@@ -93,7 +93,7 @@ void Box::rotate(double angle, glm::vec3 vector)
 	edge2 = glm::vec3(newEdge2.x, newEdge2.y, newEdge2.z);
 }
 
-void Box::scale(glm::vec3 axis) 
+void Box::scale(glm::vec3 const& axis) 
 {
 	glm::mat4 scaleModel = glm::mat4();
 	scaleModel[0] = glm::vec4(axis.x,0 , 0, 0);
@@ -110,7 +110,7 @@ void Box::scale(glm::vec3 axis)
 	edge2 = glm::vec3(newEdge2.x, newEdge2.y, newEdge2.z);
 }
 
-void Box::translate(glm::vec3 translateLocation) {
+void Box::translate(glm::vec3 const& translateLocation) {
 	glm::vec4 translateLoc = glm::vec4(translateLocation,1.0);
 	glm::mat4 translateModelEdge1 = glm::mat4();
 	translateModelEdge1[3] = glm::vec4(edge1, 1.0);

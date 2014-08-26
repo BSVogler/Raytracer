@@ -12,7 +12,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 
-void Sphere::translate(glm::vec3  translateLocation) {
+void Sphere::translate(glm::vec3 const& translateLocation) {
 	glm::vec4 translateLoc = glm::vec4(translateLocation, 1.0);
 	glm::mat4 translateModel = glm::mat4();
 	translateModel[3] = glm::vec4(center, 1.0);
@@ -25,7 +25,7 @@ void Sphere::translate(glm::vec3  translateLocation) {
 
 }
 
-void Sphere::rotate(double angle,  glm::vec3 vector) {
+void Sphere::rotate(double angle, glm::vec3 const& vector) {
 	glm::mat4 rotateModel = glm::mat4();
 	rotateModel[2] = glm::vec4(0, glm::cos(angle), glm::sin(angle), 0);
 	rotateModel[3] = glm::vec4(0, -1 * glm::sin(angle), glm::cos(angle), 0);
@@ -35,7 +35,7 @@ void Sphere::rotate(double angle,  glm::vec3 vector) {
 	center = glm::vec3(newCenter.x, newCenter.y, newCenter.z);
 }
 
-void Sphere::scale(glm::vec3 axis){
+void Sphere::scale(glm::vec3 const& axis){
 	glm::mat4 scaleModel = glm::mat4();
 	scaleModel[0] = glm::vec4(axis.x, 0, 0, 0);
 	scaleModel[1] = glm::vec4(0, axis.y, 0, 0);

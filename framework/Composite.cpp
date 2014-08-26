@@ -13,17 +13,17 @@ void Composite::add_child(RenderObject* const& child) {
     children.push_back(child);
 }
 
-void Composite::translate(glm::vec3  translateLocation) {
+void Composite::translate(glm::vec3 const& translateLocation) {
 	for (auto child = children.begin(); child != children.end(); ++child) {//every children
 		(*child)->translate(translateLocation);
 	}
 }
-void Composite::rotate(double angle, glm::vec3 vector) {
+void Composite::rotate(double angle, glm::vec3 const& vector) {
 	for (auto child = children.begin(); child != children.end(); ++child) {//every children
 		(*child)->rotate(angle,vector);
 	}
 }
-void Composite::scale(glm::vec3 axis) {
+void Composite::scale(glm::vec3 const& axis) {
 	for (auto child = children.begin(); child != children.end(); ++child) {//every children
 		(*child)->scale(axis);
 	}

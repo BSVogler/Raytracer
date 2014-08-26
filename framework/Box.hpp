@@ -21,7 +21,7 @@ public:
     Box(
         string name,
         glm::vec3 const& edge1,
-        glm::vec3 const&  edge2,
+        glm::vec3 const& edge2,
         Material const& material
     ) :
         RenderObject(name, material), edge1(edge1), edge2(edge2)
@@ -30,9 +30,9 @@ public:
     Box(const Box& orig);
     Intersection intersect(Ray const& ray) const;
 
-    virtual void translate(glm::vec3 translateLocation);
-    virtual void rotate(double angle, glm::vec3 vector);
-    virtual void scale(glm::vec3 axis);
+    virtual void translate(glm::vec3 const& translateLocation);
+    virtual void rotate(double angle, glm::vec3 const& vector);
+    virtual void scale(glm::vec3 const& axis);
 
 private:
     glm::vec3 edge1;
