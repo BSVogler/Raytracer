@@ -22,7 +22,7 @@ public:
         name(name), material(material)
     {}
 
-    virtual Intersection intersect(Ray const& ray) const  =0;
+    virtual Intersection intersect(Ray const& ray) const =0;
 	
 
     Material getMaterial() const {
@@ -39,8 +39,8 @@ public:
 private:
     Material material;
     string name;
-	glm::mat4 world_transformation;
-	glm::mat4 world_transformation_inv;
+    glm::mat4 world_transformation;
+    glm::mat4 world_transformation_inv;
 
 };
 
