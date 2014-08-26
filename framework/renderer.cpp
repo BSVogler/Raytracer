@@ -83,7 +83,7 @@ void Renderer::render() {
               write(p);
             }
         }
-        //ppm_.save(filename_);
+        ppm_.save(filename_);
     } else {
         cout << "no root found!"<<endl;
     }
