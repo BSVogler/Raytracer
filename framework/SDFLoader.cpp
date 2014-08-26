@@ -191,7 +191,6 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 ss >> scene.outputFile;
                 ss >> scene.resX;
                 ss >> scene.resY;
-                string antialiase;
                 ss >> scene.antialiase;
                 
                 //set default if not set
