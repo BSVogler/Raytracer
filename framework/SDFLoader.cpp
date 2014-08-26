@@ -208,25 +208,67 @@ Scene SDFLoader::load(std::string const& scenefile) {
 			}
 			else if (firstWord == "transform"){
 				
-				string object, transform;
-				ss >> object;
+				string name, transform;
+				double X, Y, Z;
+				RenderObject* object;
+
+				ss >> name;
 				ss >> transform;
+				
 
-				if (transform == "scale")
-				{
+				auto linkedObject = roMap.find(name);
+				if (linkedObject == roMap.end()){
+					cout << "Error: " << name << " not found!";
 				}
-				else if (transform=="roatate")
-				{
+				else {
+					object = linkedObject->second;
+					if (transform == "scale")
+					{
+						
 
-				}
-				else if (transform == "translate")
-				{
+						ss >> X;
+						ss >> Y;
+						ss >> Z;
 
+
+
+						glm::vec3 coords(X, Y, Z);
+						object->scale(coords);
+					}
+					else if (transform == "roatate")
+					{
+						double angle;
+
+						ss >> angle;
+						ss >> X;
+						ss >> Y;
+						ss >> Z;
+
+
+
+						glm::vec3 coords(X, Y, Z);
+						object->rotate(angle,coords);
+
+					}
+					else if (transform == "translate")
+					{
+						ss >> X;
+						ss >> Y;
+						ss >> Z;
+
+
+
+						glm::vec3 coords(X, Y, Z);
+						object->translate(coords);
+
+					}
+					else
+					{
+						cout << "Error in SDF file. Please check the structure." << endl;
+					}
 				}
-				else
-				{ 
-					cout << "Error in SDF file. Please check the structure." << endl;
-				}
+
+				
 			
 			}
 			

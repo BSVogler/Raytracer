@@ -32,6 +32,9 @@ public:
 
 	glm::mat4 const& worldCoords() const;
 	void invertWorldCoords(glm::mat4 const& m);
+	void scale(glm::vec3  axis);
+	void translate(glm::vec3 axis);
+	void rotate(double angle, glm::vec3 axis);
 
 private:
     Material material;

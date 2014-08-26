@@ -12,8 +12,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 
-void Sphere::translate(glm::vec4 const& translateLocation) {
-	glm::vec4 translateLoc = glm::vec4(translateLocation);
+void Sphere::translate(glm::vec3  translateLocation) {
+	glm::vec4 translateLoc = glm::vec4(translateLocation, 1.0);
 	glm::mat4 translateModel = glm::mat4();
 	translateModel[3] = glm::vec4(center, 1.0);
 
@@ -25,12 +25,26 @@ void Sphere::translate(glm::vec4 const& translateLocation) {
 
 }
 
-void Sphere::rotate(int angle, glm::vec3 const& vector) {
-    //glm::rotate(glm::mat4(1.0f),angle, vector);
+void Sphere::rotate(double angle,  glm::vec3 vector) {
+	glm::mat4 rotateModel = glm::mat4();
+	rotateModel[2] = glm::vec4(0, glm::cos(angle), glm::sin(angle), 0);
+	rotateModel[3] = glm::vec4(0, -1 * glm::sin(angle), glm::cos(angle), 0);
+	
+	glm::vec4 rotateLoc = glm::vec4(vector, 1);
+	glm::vec4 newCenter = rotateModel * rotateLoc;
+	center = glm::vec3(newCenter.x, newCenter.y, newCenter.z);
 }
 
-void Sphere::scale(double scaleFactor){
-	center *= scaleFactor;
+void Sphere::scale(glm::vec3 axis){
+	glm::mat4 scaleModel = glm::mat4();
+	scaleModel[0] = glm::vec4(axis.x, 0, 0, 0);
+	scaleModel[1] = glm::vec4(0, axis.y, 0, 0);
+	scaleModel[2] = glm::vec4(0, 0, axis.z, 0);
+	scaleModel[3] = glm::vec4(0, 0, 0, 1);
+
+	glm::vec4 scaleLoc = glm::vec4(center, 1);
+	glm::vec4 newCenter = scaleModel * scaleLoc;
+	center = glm::vec3(newCenter.x, newCenter.y, newCenter.z);
 }
 
 Intersection Sphere::intersect(Ray const& ray) const {

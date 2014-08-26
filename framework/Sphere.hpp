@@ -27,9 +27,10 @@ public:
     {}
 
     virtual Intersection intersect(Ray const& ray) const;
-    virtual void translate(glm::vec4 const& translateLocation);
-    virtual void rotate(int angle, glm::vec3 const& vector);
-    virtual void scale(double scale);
+
+	void translate(glm::vec3  translateLocation);
+	void rotate(double angle,  glm::vec3 vector);
+	void scale(glm::vec3 axis);
     
 private:
     float radius;
