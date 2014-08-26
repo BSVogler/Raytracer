@@ -200,78 +200,59 @@ Scene SDFLoader::load(std::string const& scenefile) {
             } else if (firstWord=="#" || firstWord.substr(0,1)=="#"){
                 cout << line << endl;//just print comment lines
 
-			}
-			else if (firstWord == "transform"){
-				
-				string name, transform;
-				double X, Y, Z;
-				RenderObject* object;
+            } else if (firstWord == "transform"){
+                string name, transform;
+                double X, Y, Z;
+                RenderObject* object;
 
-				ss >> name;
-				ss >> transform;
-				
+                ss >> name;
+                ss >> transform;
 
-				auto linkedObject = roMap.find(name);
-				if (linkedObject == roMap.end()){
-					cout << "Error: " << name << " not found!";
-				}
-				else {
-					object = linkedObject->second;
-					if (transform == "scale")
-					{
-						
 
-						ss >> X;
-						ss >> Y;
-						ss >> Z;
+                auto linkedObject = roMap.find(name);
+                if (linkedObject == roMap.end()){
+                        cout << "Error: " << name << " not found!";
+                } else {
+                    object = linkedObject->second;
+                    if (transform == "scale") {
+
+
+                            ss >> X;
+                            ss >> Y;
+                            ss >> Z;
 
 
 
-						glm::vec3 coords(X, Y, Z);
-						object->scale(coords);
-					}
-					else if (transform == "roatate")
-					{
-						double angle;
+                            glm::vec3 coords(X, Y, Z);
+                            object->scale(coords);
+                    } else if (transform == "roatate") {
+                            double angle;
 
-						ss >> angle;
-						ss >> X;
-						ss >> Y;
-						ss >> Z;
+                            ss >> angle;
+                            ss >> X;
+                            ss >> Y;
+                            ss >> Z;
 
 
 
-						glm::vec3 coords(X, Y, Z);
-						object->rotate(angle,coords);
+                            glm::vec3 coords(X, Y, Z);
+                            object->rotate(angle,coords);
 
-					}
-					else if (transform == "translate")
-					{
-						ss >> X;
-						ss >> Y;
-						ss >> Z;
+                    } else if (transform == "translate"){
+                            ss >> X;
+                            ss >> Y;
+                            ss >> Z;
 
 
 
-						glm::vec3 coords(X, Y, Z);
-						object->translate(coords);
+                            glm::vec3 coords(X, Y, Z);
+                            object->translate(coords);
 
-					}
-					else
-					{
-						cout << "Error in SDF file. Please check the structure." << endl;
-					}
-				}
-
-				
-			
-			}
-			
-			
-			
-			
-			else
-                cout << "???:"<<line <<endl;
+                    } else {
+                            cout << "Error in SDF file. Please check the structure." << endl;
+                    }
+                }
+            } else cout << "???:"<<line <<endl;//prinkt uknown lines
         }
         file.close();
     }else cout << "Unable to open file"; 
