@@ -20,10 +20,6 @@
 
 using namespace std;
 
-SDFLoader::SDFLoader() {
-}
-
-
 /**
  * Loads a scene file and reacts to the commands in it
  * @param scenefile the string to the file
