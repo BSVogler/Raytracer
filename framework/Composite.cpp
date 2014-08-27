@@ -13,28 +13,19 @@ void Composite::add_child(RenderObject* const& child) {
     children.push_back(child);
 }
 
-void Composite::translate(glm::vec3 const& translateLocation) {
-	for (auto child = children.begin(); child != children.end(); ++child) {//every children
-		(*child)->translate(translateLocation);
-	}
-}
-void Composite::rotate(double angle, glm::vec3 const& vector) {
-	for (auto child = children.begin(); child != children.end(); ++child) {//every children
-		(*child)->rotate(angle,vector);
-	}
-}
-void Composite::scale(glm::vec3 const& axis) {
-	for (auto child = children.begin(); child != children.end(); ++child) {//every children
-		(*child)->scale(axis);
-	}
-}
 
 Intersection Composite::intersect(Ray const& ray) const {
+    Ray ray_t(
+        glm::vec3(getWorldTransfInv() * glm::vec4(ray.origin, 1)),
+        glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
+    );
+           
+    
     std::vector<Intersection> intersections;
-
+    
     //collect every intersection
     for(auto child = children.begin(); child != children.end(); ++child) {//every children
-        auto intersection = (*child)->intersect(ray);
+        auto intersection = (*child)->intersect(ray_t);
         if (intersection.hit)
             intersections.push_back(intersection);
     }

@@ -77,54 +77,5 @@ glm::vec3 Box::calcNormal(float const& x, float const& y, float const& z) const 
     return normal;
 }
 
-void Box::rotate(double angle, glm::vec3 const& vector) 
-{
-	glm::mat4 rotateModel = glm::mat4();
-	rotateModel[1] = glm::vec4(0, glm::cos(angle), glm::sin(angle), 0);
-	rotateModel[2] = glm::vec4(0, -1 * glm::sin(angle), glm::cos(angle), 0);
-
-	glm::vec4 rotateLocEdge1 = glm::vec4(edge1, 1);
-	glm::vec4 newEdge1 = rotateModel * rotateLocEdge1;
-	edge1 = glm::vec3(newEdge1.x, newEdge1.y, newEdge1.z);
-
-
-	glm::vec4 rotateLocEdge2 = glm::vec4(edge2, 1);
-	glm::vec4 newEdge2 = rotateModel * rotateLocEdge2;
-	edge2 = glm::vec3(newEdge2.x, newEdge2.y, newEdge2.z);
-}
-
-void Box::scale(glm::vec3 const& axis) 
-{
-	glm::mat4 scaleModel = glm::mat4();
-	scaleModel[0] = glm::vec4(axis.x,0 , 0, 0);
-	scaleModel[1] = glm::vec4(0,  axis.y, 0, 0);
-	scaleModel[2] = glm::vec4(0, 0, axis.z, 0);
-	scaleModel[3] = glm::vec4(0, 0, 0, 1);
-
-	glm::vec4 scaleLocEdge1 = glm::vec4(edge1, 1);
-	glm::vec4 newEdge1 = scaleModel * scaleLocEdge1;
-	edge1 = glm::vec3(newEdge1.x, newEdge1.y, newEdge1.z);
-
-	glm::vec4 scaleLocEdge2 = glm::vec4(edge2, 1);
-	glm::vec4 newEdge2 = scaleModel * scaleLocEdge2;
-	edge2 = glm::vec3(newEdge2.x, newEdge2.y, newEdge2.z);
-}
-
-void Box::translate(glm::vec3 const& translateLocation) {
-	glm::vec4 translateLoc = glm::vec4(translateLocation,1.0);
-	glm::mat4 translateModelEdge1 = glm::mat4();
-	translateModelEdge1[3] = glm::vec4(edge1, 1.0);
-
-	glm::vec4 newEdge1 = translateModelEdge1 * translateLoc;
-
-	edge1 = glm::vec3(newEdge1.x, newEdge1.y, newEdge1.z);
-
-	glm::mat4 translateModelEdge2 = glm::mat4();
-	translateModelEdge2[3] = glm::vec4(edge2, 1.0);
-
-	glm::vec4 newEdge2 = translateModelEdge2 * translateLoc;
-
-	edge2 = glm::vec3(newEdge2.x, newEdge2.y, newEdge2.z);
-}
 
 

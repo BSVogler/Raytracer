@@ -29,23 +29,29 @@ public:
         return material;
     }
 
-
-    glm::mat4 const& worldCoords() const;
-
-    void setWorld_transformation(glm::mat4 world_transformation) {
-        this->world_transformation = world_transformation;
+    glm::mat4 const& getWorldTransf() const{
+        return t;
     }
 
-    void invertWorldCoords(glm::mat4 const& m);
-    virtual void scale(glm::vec3 const& axis) =0;
-    virtual void translate(glm::vec3 const& axis) =0;
-    virtual void rotate(double angle, glm::vec3 const& axis)=0;
+    glm::mat4 const& getWorldTransfInv() const {
+        return t_inv;
+    }
+    
+    glm::mat4 getWorldTransfInvTransp() const {
+        return t_inv_transp;
+    }
+
+    
+    void scale(glm::vec3 const& axis);
+    void translate(glm::vec3 const& axis);
+    void rotate(float angle, glm::vec3 const& axis);
 
 private:
     Material material;
     string name;
-    glm::mat4 world_transformation;
-    glm::mat4 world_transformation_inv;
+    glm::mat4 t;
+    glm::mat4 t_inv;
+    glm::mat4 t_inv_transp;
 
 };
 

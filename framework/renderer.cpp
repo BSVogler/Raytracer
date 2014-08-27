@@ -55,34 +55,33 @@ void Renderer::render() {
         float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
 
         for (unsigned y = 0; y < scene_.resY; ++y) {
-          for (unsigned x = 0; x < scene_.resX; ++x) {
-              Pixel p(x,y);
-              if (scene_.antialiase>0){//SSAA
+            for (unsigned x = 0; x < scene_.resX; ++x) {
+                Pixel p(x,y);
+                if (scene_.antialiase>0){//SSAA
 
-                  for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
-                      for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
-                          Ray ray = Ray();
-                          ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
-                          ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
-                          ray.direction.z = d;
-                          p.color +=getColor(ray);
-                      }
-                  }
-                  p.color /=scene_.antialiase;
-                  p.color += scene_.amb;
-              } else {
-                  Ray ray = Ray();
-                  ray.direction.x = -scene_.resX/2.0f+x; 
-                  ray.direction.y = -scene_.resY/2.0f+y;
-                  ray.direction.z = d;
+                    for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
+                        for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
+                            Ray ray = Ray();
+                            ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
+                            ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
+                            ray.direction.z = d;
+                            p.color +=getColor(ray);
+                        }
+                    }
+                    p.color /=scene_.antialiase;
+                    p.color += scene_.amb;
+                } else {
+                    Ray ray = Ray();
+                    ray.direction.x = -scene_.resX/2.0f+x; 
+                    ray.direction.y = -scene_.resY/2.0f+y;
+                    ray.direction.z = d;
 
-                  //here should get the camera transformation applied
+                    //here should get the camera transformation applied
+                    //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
 
-                  //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-
-                  p.color +=scene_.amb+getColor(ray);
-              }
-              write(p);
+                    p.color +=scene_.amb+getColor(ray);
+                }
+                write(p);
             }
         }
         ppm_.save(filename_);
