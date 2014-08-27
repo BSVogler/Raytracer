@@ -201,7 +201,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
 
             } else if (firstWord == "transform"){
                 string name, transform;
-                double X, Y, Z;
+                float x, y, z;
                 RenderObject* object;
 
                 ss >> name;
@@ -209,36 +209,38 @@ Scene SDFLoader::load(std::string const& scenefile) {
 
                 auto linkedObject = roMap.find(name);
                 if (linkedObject == roMap.end()){//check if object can be found
-                    cout << "Error: " << name << " not found!";
+                    cout << "Error: " << name << " not found!"<<endl;
                 } else {
                     object = linkedObject->second;
                     if (transform == "scale") {
-                        ss >> X;
-                        ss >> Y;
-                        ss >> Z;
+                        ss >> x;
+                        ss >> y;
+                        ss >> z;
 
-                        glm::vec3 coords(X, Y, Z);
+                        glm::vec3 coords(x, y, z);
                         object->scale(coords);
+                        cout << "Scaling:"<< x <<","<< y <<","<< z <<endl;
                     } else if (transform == "rotate") {
                             
                         double angle;
                         ss >> angle;
 
-                        ss >> X;
-                        ss >> Y;
-                        ss >> Z;
+                        ss >> x;
+                        ss >> y;
+                        ss >> z;
 
-                        glm::vec3 coords(X, Y, Z);
+                        glm::vec3 coords(x, y, z);
                         object->rotate(angle,coords);
+                        cout << "Rotating:"<< angle <<" axis:"<< x <<","<< y <<","<< z <<endl;
 
                     } else if (transform == "translate"){
-                        ss >> X;
-                        ss >> Y;
-                        ss >> Z;
+                        ss >> x;
+                        ss >> y;
+                        ss >> z;
 
-                        glm::vec3 coords(X, Y, Z);
+                        glm::vec3 coords(x, y, z);
                         object->translate(coords);
-
+                        cout << "translating:"<< x <<","<< y <<","<< z <<endl;
                     } else {
                             cout << "Unknown transformation" << endl;
                     }
