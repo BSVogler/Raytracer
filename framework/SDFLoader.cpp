@@ -244,7 +244,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     }
                 }
             } else if (firstWord.length()<1){
-            
+            //empty lines
             } else cout << "???:"<<line <<endl;//print unknown lines
         }
         file.close();
