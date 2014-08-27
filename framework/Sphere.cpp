@@ -35,7 +35,7 @@ Intersection Sphere::intersect(Ray const& ray) const {
             inter.ray.origin = ray_t.origin+ray_t.direction*t1;
             //use t1, normal is n=CI=I-C, same as CO+i
             //then multiplay with transformationmatrix, inverse transponed
-            inter.ray.direction = glm::vec3(getWorldTransfInvTransp()*glm::vec4(glm::normalize(inter.ray.origin-center),0));
+            inter.ray.direction = getWorldTransfInvTransp()*glm::normalize(inter.ray.origin-center);
             inter.distance= t1;
             inter.material = getMaterial();
             return inter;

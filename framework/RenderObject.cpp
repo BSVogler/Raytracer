@@ -16,6 +16,7 @@ void RenderObject::scale(const glm::vec3& axis) {
     t = glm::scale(glm::mat4(), axis) * t;
     t_inv = glm::scale(glm::mat4(), -axis) * t_inv;
     t_inv_transp = glm::transpose(t_inv);
+    t_inv = glm::scale(glm::mat4(), 1.0f /axis) * t_inv;
 }
 
 /**
