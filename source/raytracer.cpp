@@ -12,14 +12,13 @@
 int main(int argc, char* argv[]) {
     unsigned const width = 600;
     unsigned const height = 600;
-    std::string const filename = (argc>2)?argv[2] : "./output.ppm";
 
-    std::cout << "welcome to Raytracer ("<< width<<"x"<<height<<"). Files are stored into:" <<filename<<std::endl;
+    std::cout << "welcome to Raytracer ("<< width<<"x"<<height<<")." <<std::endl;
     Renderer* app = nullptr;
     if (argc>1)
-        app = new Renderer(width, height, filename, argv[1]);
+        app = new Renderer(width, height, argv[1]);
     else
-        app = new Renderer(width, height, filename);
+        app = new Renderer(width, height);
 
     std::thread thr([&app]() { app->render(); });
 

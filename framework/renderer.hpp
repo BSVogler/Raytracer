@@ -19,8 +19,8 @@
 
 class Renderer {
     public:
-        Renderer(unsigned w, unsigned h, std::string const& file);
-        Renderer(unsigned w, unsigned h, std::string const& file, std::string const& scenefile);
+        Renderer(unsigned w, unsigned h);
+        Renderer(unsigned w, unsigned h, std::string const& scenefile);
 
         void render();
         void write(Pixel const& p);
@@ -37,7 +37,6 @@ class Renderer {
       unsigned width_;
       unsigned height_;
       std::vector<Color> colorbuffer_;
-      std::string filename_;
       std::string scenefile_;
       Scene scene_;
       PpmWriter ppm_;

@@ -16,20 +16,18 @@
 
 using namespace std;
 
-Renderer::Renderer(unsigned w, unsigned h, string const& file)
+Renderer::Renderer(unsigned w, unsigned h)
   : width_(w)
   , height_(h)
   , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
-  , filename_(file)
   , ppm_(width_, height_)
   ,finished_(false)
 {}
 
-Renderer::Renderer(unsigned w, unsigned h, string const& file, string const& scenefile)
+Renderer::Renderer(unsigned w, unsigned h, string const& scenefile)
   : width_(w)
   , height_(h)
   , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
-  , filename_(file)
   , scenefile_(scenefile)
   , ppm_(width_, height_)
   ,finished_(false)
@@ -84,7 +82,7 @@ void Renderer::render() {
                 write(p);
             }
         }
-        ppm_.save(filename_);
+        ppm_.save(scene_.outputFile);
         finished_ = true;
     } else {
         cout << "no root found!"<<endl;
