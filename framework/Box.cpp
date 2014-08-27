@@ -11,71 +11,70 @@
 Intersection Box::intersect(Ray const& ray) const {
     Intersection inter;
     
-    float tmin = (edge1.x - ray.origin.x) / ray.direction.x;
-    float tmax = (edge2.x - ray.origin.x) / ray.direction.x;
-    if(tmin > tmax) std::swap(tmin, tmax);
+    //calculate smallest hit t's
+    float minX = ( pmin.x - ray.origin.x ) / ray.direction.x;
+    float maxX = ( pmax.x - ray.origin.x ) / ray.direction.x;
+    if (minX > maxX) std::swap(minX, maxX);
+    
+    float tminy = ( pmin.y - ray.origin.y ) / ray.direction.y;
+    float maxY = ( pmax.y - ray.origin.y ) / ray.direction.y;
+    if (tminy > maxY) std::swap(tminy, maxY);
+   
+    //XY
+    //fitler ray not hitting, maybe useless chcek
+    if ((minX > maxY) || (tminy > maxX))
+        return Intersection(); 
+    
+    //find bigger/smaller values
+    if (tminy > minX)
+        minX = tminy;
+    if (maxY < maxX)
+        maxX = maxY;
 
-    float ty_min = (edge1.y - ray.origin.y) / ray.direction.y;
-    float ty_max = (edge2.y - ray.origin.y) / ray.direction.y;
-    if(ty_min > ty_max) std::swap(ty_min, ty_max);
-
-    if((tmin > ty_max) || (ty_min > tmax)){
-        inter.hit=false;
-        return inter;
+    //z
+    float minZ = ( pmin.z - ray.origin.z ) / ray.direction.z;
+    float maxZ = ( pmax.z - ray.origin.z ) / ray.direction.z;
+    if (minZ > maxZ) std::swap(minZ, maxZ);
+    //ray not hitting
+    if ((minX > maxZ) || (minZ > maxX))
+        return Intersection(); 
+    
+    if (minZ > minX)
+        minX = minZ;
+    if (maxZ < maxX)
+        maxX = maxZ;
+    
+    
+    float t=minX;
+    if (t<=0)
+        return Intersection();  
+    
+    auto p = ray.origin + t * ray.direction;
+    inter.ray.origin = p;
+    
+    if(fabs(p.x - pmin.x) < 0.0001f){//normal from left
+        inter.ray.direction = glm::vec3 (-1.0f, 0.0f, 0.0f);
+    }else if(fabs(p.x - pmax.x) < 0.0001f){//normal from right
+        inter.ray.direction = glm::vec3 (1.0f, 0.0f, 0.0f);
+    }else if(fabs(p.y - pmin.y) < 0.0001f){//normal from bottom
+        inter.ray.direction = glm::vec3 (0.0f, -1.0f, 0.0f);
+    }else if(fabs(p.y - pmax.y) < 0.0001f){//normal from up
+        inter.ray.direction = glm::vec3 (0.0f, 1.0f, 0.0f);
+    }else if(fabs(p.z - pmin.z) < 0.0001f){//normal from front
+        inter.ray.direction = glm::vec3 (0.0f, 0.0f, -1.0f);//somehow the normal is in the wrong way?
+    }else if(fabs(p.z - pmax.z) < 0.0001f){//normal from back
+        inter.ray.direction = glm::vec3 (0.0f, 0.0f, 1.0f);//somehow the normal is in the wrong way?
     }
-    if(ty_min > tmin) tmin = ty_min;
-    if(ty_max < tmax) tmax = ty_max;
-
-    float tz_min = (edge1.z - ray.origin.z) / ray.direction.z;
-    float tz_max = (edge2.z - ray.origin.z) / ray.direction.z;
-    if(tz_min > tz_max) std::swap(tz_min, tz_max);
-
-    if((tmin > tz_max) || (tz_min > tmax)){
-        inter.hit=false;
-        return inter;
-    }
-    if(tz_min > tmin) tmin = tz_min;
-    if(tz_max < tmax) tmax = tz_max;
-
-
-    glm::vec3 n = ray.origin + tmin * ray.direction;
-    inter.hit = true;
-    inter.ray.origin = ray.origin + tmin * ray.direction;
-    inter.ray.direction = calcNormal(n.x, n.y, n.z);
-    inter.distance = tmin;
+    
+    inter.distance = t;
     inter.material = getMaterial();
-    return inter;
+    inter.hit=true;
+    return inter;    
+        
+
 }
 
-glm::vec3 Box::calcNormal(float const& x, float const& y, float const& z) const {
-    glm::vec3 normal;
-    if(fabs(x - edge1.x) < 0.01f){//normal from left
-      normal.x = -1;
-      normal.y = 0;
-      normal.z = 0;
-    }else if(fabs(x - edge2.x) < 0.01f){//normal from right
-      normal.x = 1;
-      normal.y = 0;
-      normal.z = 0;
-    }else if(fabs(y - edge1.y) < 0.01f){//normal from bottom
-      normal.x = 0;
-      normal.y = -1;
-      normal.z = 0;
-    }else if(fabs(y - edge2.y) < 0.01f){//normal from up
-      normal.x = 0;
-      normal.y = 1;
-      normal.z = 0;
-    }else if(fabs(z - edge1.z) < 0.01f){//normal from back
-      normal.x = 0;
-      normal.y = 0;
-      normal.z = 1;
-    }else if(fabs(z - edge2.z) < 0.01f){//normal from front
-      normal.x = 0;
-      normal.y = 0;
-      normal.z = -1;
-    }
-    return normal;
-}
+
 
 
 
