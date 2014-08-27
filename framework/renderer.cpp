@@ -67,7 +67,6 @@ void Renderer::render() {
                         }
                     }
                     p.color /=scene_.antialiase;
-                    p.color += scene_.amb;
                 } else {
                     Ray ray = Ray();
                     ray.direction.x = -scene_.resX/2.0f+x; 
@@ -77,8 +76,9 @@ void Renderer::render() {
                     //here should get the camera transformation applied
                     //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
 
-                    p.color +=scene_.amb+getColor(ray);
+                    p.color +=getColor(ray);
                 }
+                p.color += scene_.amb;
                 write(p);
             }
         }
