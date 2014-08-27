@@ -35,9 +35,9 @@ define shape composite redCompo red1 red2 red3 red4 red5 red6 red7 red8 red9 red
 define shape composite root whiteCompo redCompo
 
 # scene xform
-# transform root scale 2 2 2
+#transform root scale 1 1 1
 transform root rotate 45 0 0 1
-transform root translate 0 3 -2
+transform root translate 0 3 -100
 
 # lights
 define light ambient amb 0.05 0.1 0.05
