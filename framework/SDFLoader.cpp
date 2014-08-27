@@ -141,11 +141,11 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         Material material = mMap[materialName];
                         
                         rObject = new Box(
-                                name,
-                                glm::vec3(edge1x, edge1y, edge1z),
-                                glm::vec3(edge2x, edge2y, edge2z),
-                                material
-                                );
+                            name,
+                            glm::vec3(edge1x, edge1y, edge1z),
+                            glm::vec3(edge2x, edge2y, edge2z),
+                            material
+                        );
                     } else if (classname=="SPHERE") {
                         int posX, posY, posZ;
                         ss>> posX;
