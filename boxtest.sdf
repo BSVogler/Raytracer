@@ -1,0 +1,31 @@
+# materials
+define material red 1 0 0 1 0 0 1 0 0 1
+define material blue 0 0 1 0 0 1 0 0 1 1
+define material white 1 1 1 1 1 1 1 1 1 1
+define material yellow 1 1 0 1 1 0 1 1 0 1
+define material green 0 1 0 0 1 0 0 1 0 1
+# geometry
+define shape box boxtest 0 0 -200 100 100 -300 blue
+define shape box boxtest2 100 100 -200 200 200 -300 red
+define shape box boxtest3 0 0 -200 -100 -100 -300 yellow
+define shape box boxtest4 -100 -100 -200 -200 -200 -300 green
+
+# composite
+define shape composite root boxtest boxtest2 boxtest3 boxtest4
+
+# scene xform
+#transform root scale 2 1 1
+transform root rotate 0.1 0.5 0 1
+transform root translate 0 0 -100
+
+# lights
+define light ambient amb 0.05 0.1 0.05
+define light diffuse sun -60 10 -50 1.0 1.0 1.0
+
+# camera
+define camera eye 60.0
+# camera xform
+transform eye rotate -45 0 1 0
+transform eye translate 100 0 100
+# ... and go
+render eye image.ppm 600 600 0
