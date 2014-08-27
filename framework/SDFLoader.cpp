@@ -119,7 +119,6 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 } else if (firstWord=="shape"){
                     string classname;
                     ss >> classname;
-                    cout << "Shape \""<< classname << "\"."<<endl;
                     transform(classname.begin(), classname.end(),classname.begin(), ::toupper);
                     
                     string name;
@@ -244,6 +243,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
                             cout << "Unknown transformation" << endl;
                     }
                 }
+            } else if (firstWord.length()<1){
+            
             } else cout << "???:"<<line <<endl;//print unknown lines
         }
         file.close();
