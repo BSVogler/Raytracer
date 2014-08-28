@@ -25,13 +25,11 @@ Camera::Camera(std::string const& name, const int fovX):
 {}
 
 void Camera::translate(glm::vec3 const& transl) {
-  auto m = glm::translate(glm::mat4(), transl);
-  transformation = m * transformation;
-  transformation_inv = transformation_inv * m;
+    transformation = glm::translate(glm::mat4(), transl)*transformation;
+    transformation_inv = glm::translate(glm::mat4(), -transl)*transformation_inv;
 }
 
 void Camera::rotate(float angle, glm::vec3 const& axis) {
-  auto m = glm::rotate(glm::mat4(), angle, axis);
-  transformation = m * transformation;
-  transformation_inv = transformation_inv * m;
+   transformation = glm::rotate(glm::mat4(), angle, axis) * transformation;
+   transformation_inv = glm::rotate(glm::mat4(), -angle, axis) * transformation_inv;
 }
