@@ -15,6 +15,7 @@ class Camera {
 public:
     Camera();
     Camera(std::string const& name, int const fovX);
+    
     int GetFovX() const {
         return fovX;
     }
@@ -22,6 +23,11 @@ public:
     glm::mat4 GetTransformation() const {
         return transformation;
     }
+    
+    glm::mat4 GetTransformation_inv() const {
+        return transformation_inv;
+    }
+
     
     void translate(glm::vec3 const& transl);
     void rotate(float angle, glm::vec3 const& axis);
