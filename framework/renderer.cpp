@@ -124,7 +124,7 @@ Color Renderer::getColor(const Ray& ray) {
             
             //shaddow
             auto lighintersect = scene_.renderObjects["root"]->intersect(lightRay);
-            if (!lighintersect.hit){
+            if (!(lighintersect.hit && lighintersect.distance < glm::length(light.GetPos()-intersection.ray.origin))){//check if intersec between p and light source
                 //diffuse light
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
