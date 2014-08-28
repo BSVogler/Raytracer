@@ -191,6 +191,10 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 ss >> scene.resX;
                 ss >> scene.resY;
                 ss >> scene.antialiase;
+                string random;
+                ss>>random;
+                if (random.length()>0)
+                    scene.random = (random=="random");
                 
                 //set default if not set
                 if (scene.resX<=0) scene.resX=480;
