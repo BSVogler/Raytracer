@@ -78,6 +78,43 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     int fovX;
                     ss >> fovX;
                     scene.camera = Camera(cameraname,fovX);
+                   
+                    if (!ss.eof()){
+                        glm::vec3 pos;
+                        ss >> pos.x;
+                        ss >> pos.y;
+                        ss >> pos.z;
+                        scene.camera.translate(pos);
+                    
+                        //direction
+                        if (!ss.eof()){
+                            glm::vec3 dir;
+                            ss >> dir.x;
+                            ss >> dir.y;
+                            ss >> dir.z;
+                            auto regularDir = glm::vec3(0.0f,0.0f,-1.0f);
+                            //angle between 0,0,-1 and dir
+                            float angleXY =glm::dot(regularDir,dir)/(glm::length(regularDir)*glm::length(dir));
+                            //rotate around y and x
+                            scene.camera.rotate(angleXY,glm::vec3(1,1,0));
+                            
+                            //up vector
+                            if (!ss.eof()){
+                                glm::vec3 up;
+                                ss >> up.x;
+                                ss >> up.y;
+                                ss >> up.z;
+                                auto regularUp = glm::vec3(0.0f,1.0f,0.0f);
+                                //angle between 0,1,0 and up
+                                float angleZ =glm::dot(regularUp,up)/(glm::length(regularUp)*glm::length(up));
+                                //rotate around z
+                                scene.camera.rotate(angleZ,glm::vec3(0,0,1));
+                            }
+                        }
+                    }
+                    
+                    
+
                     cout << "camera: "<<cameraname<<"("<<fovX<<")"<<endl;
                 } else if (firstWord=="light"){
                     string type;
