@@ -28,9 +28,9 @@ define light diffuse sun 50 50 -150 1.0 1.0 1.0
 define light diffuse sun2 -50 50 -150 1.0 1.0 1.0
 
 # camera
-define camera eye 60.0
+define camera eye 65.0
 # camera xform
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100
 # ... and go
-render eye image.ppm 600 600 4
+render eye image.ppm 600 600 0
