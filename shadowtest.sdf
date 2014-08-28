@@ -6,15 +6,15 @@ define material yellow 1 1 0 1 1 0 1 1 0 1
 define material green 0 1 0 0 1 0 0 1 0 1
 
 # geometry
-define shape box floor   -300 -400 0  400 -410 -8000 blue
-define shape box ceiling -300  400 0  400  410 -8000 blue
-define shape box left    -300 -400 0 -310  400 -8000 blue
-define shape box right    300 -400 0  310  410 -8000 blue
+define shape box floor   -400 -400 0  400 -410 -8000 blue
+define shape box ceiling -400  400 0  400  410 -8000 blue
+define shape box left    -400 -400 0 -410  400 -8000 blue
+define shape box right    400 -400 0  410  410 -8000 blue
 define shape sphere sphere 0 0 -200 30 yellow
 
 # composite
 #define shape composite boxtest boxtest1 boxtest2 boxtest3 boxtest4
-define shape composite root left right floor ceiling
+define shape composite root left right floor ceiling sphere
 
 # scene xform
 #transform root scale 2 1 1
