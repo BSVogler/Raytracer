@@ -12,12 +12,8 @@ struct Ray
     glm::vec3 origin;
     glm::vec3 direction;
     
-    Ray():
-        direction(glm::vec3()), origin(glm::vec3())
-    {}
-
-    Ray(glm::vec3 origin, glm::vec3 direction=glm::vec3()) :
-        direction(direction), origin(origin)
+    Ray(glm::vec3 origin=glm::vec3(), glm::vec3 direction=glm::vec3()) :
+        origin(origin), direction(direction)
     {}
 
     
