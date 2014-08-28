@@ -129,7 +129,7 @@ Color Renderer::getColor(const Ray& ray) {
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
 
-                diff =  light.GetDiff()//get light color
+                diff +=  light.GetDiff()//get light color
                         * intersection.material.getKd()//multiply by material, (l_p * k_d)
                         * fDiffuse;
             }
