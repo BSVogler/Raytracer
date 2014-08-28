@@ -88,7 +88,8 @@ void Renderer::render() {
                     }
                     p.color /=scene_.antialiase;
                 } else {
-                    Ray ray(glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(0,0,0,1)));
+                    //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
+                    Ray ray;
                     ray.direction.x = -scene_.resX/2.0f+x; 
                     ray.direction.y = -scene_.resY/2.0f+y;
                     ray.direction.z = d;

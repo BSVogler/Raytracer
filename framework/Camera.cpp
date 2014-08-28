@@ -9,19 +9,20 @@
 #define GLM_FORCE_RADIANS
 #include "glm/detail/type_vec.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include <iostream>
 
 Camera::Camera():
     name("unnamed"),
     fovX(100),
-    transformation(glm::mat4x4()),
-    transformation_inv(glm::mat4x4())
+    transformation(glm::mat4()),
+    transformation_inv(glm::mat4())
 {}
 
 Camera::Camera(std::string const& name, const int fovX):
     name(name),
     fovX(fovX),
-    transformation(glm::mat4x4()),
-    transformation_inv(glm::mat4x4())
+    transformation(glm::mat4()),
+    transformation_inv(glm::mat4())
 {}
 
 void Camera::translate(glm::vec3 const& transl) {
