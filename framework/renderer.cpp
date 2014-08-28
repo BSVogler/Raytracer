@@ -20,9 +20,12 @@ Renderer::Renderer(unsigned w, unsigned h)
   : width_(w)
   , height_(h)
   , colorbuffer_(w*h, Color(0.0, 0.0, 0.0))
+  , scenefile_("scene.sdf")
   , ppm_(width_, height_)
   ,finished_(false)
-{}
+{
+    scene_ = SDFLoader::load(scenefile);
+}
 
 Renderer::Renderer(unsigned w, unsigned h, string const& scenefile)
   : width_(w)
