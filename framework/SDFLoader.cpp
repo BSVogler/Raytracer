@@ -78,14 +78,16 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     int fovX;
                     ss >> fovX;
                     scene.camera = Camera(cameraname,fovX);
-                   
+                    cout << "camera: "<<cameraname<<"("<<fovX<<")"<<endl;
+                    
                     if (!ss.eof()){
                         glm::vec3 pos;
                         ss >> pos.x;
                         ss >> pos.y;
                         ss >> pos.z;
                         scene.camera.translate(pos);
-                    
+                        cout << "translating: ("<< pos.x<<","<<pos.y<<","<<pos.z<<")"<<endl;
+                        
                         //direction
                         if (!ss.eof()){
                             glm::vec3 dir;
@@ -112,10 +114,6 @@ Scene SDFLoader::load(std::string const& scenefile) {
                             }
                         }
                     }
-                    
-                    
-
-                    cout << "camera: "<<cameraname<<"("<<fovX<<")"<<endl;
                 } else if (firstWord=="light"){
                     string type;
                     ss>>type;
