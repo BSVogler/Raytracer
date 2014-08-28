@@ -12,7 +12,7 @@ void RenderObject::translate(glm::vec3 const& transl) {
     t_inv_transp = glm::transpose(glm::mat3(t_inv));
 }
 
-void RenderObject::scale(const glm::vec3& axis) {
+void RenderObject::scale(glm::vec3 const& axis) {
     t = glm::scale(glm::mat4(), axis) * t;
     t_inv = glm::scale(glm::mat4(), 1.0f /axis) * t_inv;
     t_inv_transp = glm::transpose(glm::mat3(t_inv));
@@ -23,7 +23,7 @@ void RenderObject::scale(const glm::vec3& axis) {
  * @param angle in radians
  * @param axis the axis to rotate around
  */
-void RenderObject::rotate(float angle, const glm::vec3& axis) {
+void RenderObject::rotate(float angle, glm::vec3 const& axis) {
     t = glm::rotate(glm::mat4(), angle, axis) * t;
     t_inv = glm::rotate(glm::mat4(), -angle, axis) * t_inv;
     t_inv_transp = glm::transpose(glm::mat3(t_inv));
