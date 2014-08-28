@@ -11,9 +11,11 @@ struct Ray
 {
     glm::vec3 origin;
     glm::vec3 direction;
+    float mint;
+    float maxt;
     
     Ray(glm::vec3 origin=glm::vec3(), glm::vec3 direction=glm::vec3()) :
-        origin(origin), direction(direction)
+        origin(origin), direction(direction), mint(0.000001f), maxt(INFINITY)
     {}
 
     

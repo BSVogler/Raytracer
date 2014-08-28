@@ -79,7 +79,7 @@ void Renderer::render() {
 
                     for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
                         for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
-                            Ray ray = Ray();
+                            Ray ray;
                             ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
                             ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
                             ray.direction.z = d;
@@ -112,7 +112,7 @@ void Renderer::render() {
     }
 }
 
-Color Renderer::getColor(const Ray& ray) {
+Color Renderer::getColor(Ray const& ray) {
     Color diff;
     
     auto intersection( scene_.renderObjects["root"]->intersect(ray) );
@@ -126,11 +126,12 @@ Color Renderer::getColor(const Ray& ray) {
                 intersection.ray.origin,
                 glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
             );
-            lightRay.origin += lightRay.direction/100.0f;//don't collide with itself
+            //lightRay.origin += lightRay.direction/10.0f;//don't collide with itself
+            lightRay.maxt = glm::length(light.GetPos()-lightRay.origin);
             
             //shaddow
             auto lighintersect = scene_.renderObjects["root"]->intersect(lightRay);
-            if (!(lighintersect.hit && lighintersect.distance < glm::length(light.GetPos()-intersection.ray.origin))){//check if intersec between p and light source
+            if (!(lighintersect.hit)){//check if intersec between p and light source
                 //diffuse light
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light

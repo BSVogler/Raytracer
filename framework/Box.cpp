@@ -46,7 +46,7 @@ Intersection Box::intersect(Ray const& ray) const {
     
     
     float t=minX;
-    if (t<=0)
+    if (t<ray.mint ||t>ray.maxt)
         return Intersection();  
     
     auto p = ray.origin + t * ray.direction;

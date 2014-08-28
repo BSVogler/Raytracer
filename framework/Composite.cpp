@@ -26,7 +26,7 @@ Intersection Composite::intersect(Ray const& ray) const {
     //collect every intersection
     for(auto child = children.begin(); child != children.end(); ++child) {//every children
         auto intersection = (*child)->intersect(ray_t);
-        if (intersection.hit)
+        if (intersection.hit && ray.mint<intersection.distance && ray.maxt>intersection.distance)
             intersections.push_back(intersection);
     }
   

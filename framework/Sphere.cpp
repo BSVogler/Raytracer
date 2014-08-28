@@ -29,17 +29,18 @@ Intersection Sphere::intersect(Ray const& ray) const {
         if (t2 < t1)//nimm Punkt, welcher näher dran ist
             std::swap(t2,t1);
         
-        if (t1>=0) {//collide if nearest point in front of camera
-            Intersection inter;
-            inter.hit = true;
-            inter.ray.origin = ray_t.origin+ray_t.direction*t1;
-            //use t1, normal is n=CI=I-C, same as CO+i
-            //then multiplay with transformationmatrix, inverse transponed
-            inter.ray.direction = getWorldTransfInvTransp()*glm::normalize(inter.ray.origin-center);
-            inter.distance= t1;
-            inter.material = getMaterial();
-            return inter;
-        }
+        if (t1<ray.mint ||t1>ray.maxt)//filter
+            return Intersection();  
+            
+        Intersection inter;
+        inter.hit = true;
+        inter.ray.origin = ray_t.origin+ray_t.direction*t1;
+        //use t1, normal is n=CI=I-C, same as CO+i
+        //then multiplay with transformationmatrix, inverse transponed
+        inter.ray.direction = getWorldTransfInvTransp()*glm::normalize(inter.ray.origin-center);
+        inter.distance= t1;
+        inter.material = getMaterial();
+        return inter;
     }
-    return Intersection();//keine Lösung
+    return Intersection(); 
 }
