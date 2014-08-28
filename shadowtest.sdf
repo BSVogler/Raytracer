@@ -11,10 +11,11 @@ define shape box ceiling -400  400 0  400  410 -8000 blue
 define shape box left    -400 -400 0 -410  400 -8000 blue
 define shape box right    400 -400 0  410  410 -8000 blue
 define shape sphere sphere 0 0 -200 30 yellow
+define shape sphere sphere2 30 -30 -200 20 red
 
 # composite
 #define shape composite boxtest boxtest1 boxtest2 boxtest3 boxtest4
-define shape composite root left right floor ceiling sphere
+define shape composite root left right floor ceiling sphere sphere2
 
 # scene xform
 #transform root scale 2 1 1
@@ -32,4 +33,4 @@ define camera eye 60.0
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100
 # ... and go
-render eye image.ppm 600 600 0 random
+render eye image.ppm 600 600 4
