@@ -52,19 +52,21 @@ void Renderer::render() {
 
         float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
 
-        scene_.random=false;
         for (unsigned yr = 0; yr < scene_.resY; ++yr) {
             for (unsigned xr = 0; xr < scene_.resX; ++xr) {
                 unsigned x=xr;
                 unsigned y=yr;
                 
-                if (scene_.random){//allow random pixel rendering
+                //allow random pixel rendering
+                if (scene_.random){
                     x=rand() % scene_.resX;
                     y=rand() % scene_.resY;
-                    size_t buf_pos = (width_*y + x);
-                    if (colorbuffer_[buf_pos].r == 0 && colorbuffer_[buf_pos].g && colorbuffer_[buf_pos].b){//again if already filled
-                         x=rand() % scene_.resX;
-                        y=rand() % scene_.resY;
+                    for (int i = 0; i < 100; i++) {//try 100 times
+                        auto coloratp = colorbuffer_[(width_*y + x)];
+                        if (!(coloratp.r == 0 && coloratp.g==0 && coloratp.b==0)){//again if already filled
+                            x=rand() % scene_.resX;
+                            y=rand() % scene_.resY;
+                        }else break;
                     }
                 }
                 
