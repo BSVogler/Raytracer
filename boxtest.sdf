@@ -25,7 +25,7 @@ define light ambient amb 0.05 0.1 0.05
 define light diffuse sun 0 50 -44 1.0 1.0 1.0
 
 # camera
-define camera eye 60.0
+define camera eye 60.0 0 0 0
 # camera xform
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100

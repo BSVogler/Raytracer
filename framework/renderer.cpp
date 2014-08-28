@@ -88,12 +88,14 @@ void Renderer::render() {
                     }
                     p.color /=scene_.antialiase;
                 } else {
-                    Ray ray = Ray();
+                    Ray ray(glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(0,0,0,1)));
                     ray.direction.x = -scene_.resX/2.0f+x; 
                     ray.direction.y = -scene_.resY/2.0f+y;
                     ray.direction.z = d;
 
                     //here should get the camera transformation applied
+                    //ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
+                    
                     //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
 
                     p.color +=getColor(ray);
