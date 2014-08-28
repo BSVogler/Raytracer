@@ -120,13 +120,19 @@ Color Renderer::getColor(const Ray& ray) {
                 intersection.ray.origin,
                 glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
             );
-            //diffuse light
-            double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
-            fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
+            lightRay.origin += lightRay.direction*2.0f;
+            
+            //shaddow
+            auto lighintersect = scene_.renderObjects["root"]->intersect(lightRay);
+            if (!lighintersect.hit){
+                //diffuse light
+                double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
+                fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
 
-            diff =  light.GetDiff()//get light color
-                    * intersection.material.getKd()//multiply by material, (l_p * k_d)
-                    * fDiffuse;
+                diff =  light.GetDiff()//get light color
+                        * intersection.material.getKd()//multiply by material, (l_p * k_d)
+                        * fDiffuse;
+            }
         }
     }
     return diff;
