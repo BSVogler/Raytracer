@@ -123,7 +123,7 @@ Color Renderer::getColor(const Ray& ray) {
                 intersection.ray.origin,
                 glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
             );
-            lightRay.origin += lightRay.direction*2.0f;
+            lightRay.origin += lightRay.direction/100.0f;//don't collide with itself
             
             //shaddow
             auto lighintersect = scene_.renderObjects["root"]->intersect(lightRay);
