@@ -24,7 +24,7 @@ Renderer::Renderer(unsigned w, unsigned h)
   , ppm_(width_, height_)
   ,finished_(false)
 {
-    scene_ = SDFLoader::load(scenefile);
+    scene_ = SDFLoader::load(scenefile_);
 }
 
 Renderer::Renderer(unsigned w, unsigned h, string const& scenefile)
