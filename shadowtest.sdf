@@ -1,9 +1,9 @@
 # materials
-define material red 1 0 0 1 0 0 1 0 0 1
-define material blue 0 0 1 0 0 1 0 0 1 1
-define material white 1 1 1 1 1 1 1 1 1 1
-define material yellow 1 1 0 1 1 0 1 1 0 1
-define material green 0 1 0 0 1 0 0 1 0 1
+define material red    1 0 0  1 0 0  0.5 0 0  4
+define material blue   0 0 1  0 0 1  0 0 1  1
+define material white  1 1 1  1 1 1  1 1 1  1
+define material yellow 1 1 0  1 1 0  1 1 1  1
+define material green  0 1 0  0 1 0  0 1 0  1
 
 # geometry
 define shape box floor   -400 -400 0  400 -410 -8000 blue
@@ -24,7 +24,7 @@ define shape composite root left right floor ceiling sphere sphere2
 
 # lights
 define light ambient amb 0.05 0.1 0.05
-define light diffuse sun 50 50 -150 1.0 1.0 1.0
+define light diffuse sun 50 50 -180 1.0 1.0 1.0
 define light diffuse sun2 -50 50 -150 1.0 1.0 1.0
 
 # camera
