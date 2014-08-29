@@ -86,7 +86,6 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         ss >> pos.y;
                         ss >> pos.z;
                         scene.camera.translate(pos);
-                        cout << "translating: ("<< pos.x<<","<<pos.y<<","<<pos.z<<")"<<endl;
                         
                         //direction
                         if (!ss.eof()){

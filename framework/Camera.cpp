@@ -26,6 +26,7 @@ Camera::Camera(std::string const& name, const int fovX):
 {}
 
 void Camera::translate(glm::vec3 const& transl) {
+    std::cout << "translating: ("<< transl.x<<","<<transl.y<<","<<transl.z<<")"<<std::endl;
     transformation = glm::translate(glm::mat4(), transl)*transformation;
     transformation_inv = glm::translate(glm::mat4(), -transl)*transformation_inv;
 }
