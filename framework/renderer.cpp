@@ -75,33 +75,35 @@ void Renderer::render() {
                 
                 Pixel p(x,y);
 
-                if (scene_.antialiase>0){//SSAA
+               
+                //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
+                Ray ray;
+                ray.direction.x = -scene_.resX/2.0f+x; 
+                ray.direction.y = -scene_.resY/2.0f+y;
+                ray.direction.z = d;
 
-                    for (int xSSAA=1;xSSAA<sqrt(scene_.antialiase)+1;++xSSAA){
-                        for (int ySSAA=1;ySSAA<sqrt(scene_.antialiase)+1;++ySSAA){
-                            Ray ray;
-                            ray.direction.x = -scene_.resX/2.0f+x+(float) (xSSAA/(float)sqrt(scene_.antialiase))-0.5f; 
-                            ray.direction.y = -scene_.resY/2.0f+y+(float) (ySSAA/(float)sqrt(scene_.antialiase))-0.5f;
-                            ray.direction.z = d;
-                            p.color +=getColor(ray);
+                if (scene_.antialiase>0){//SSAA
+                    int samples = sqrt(scene_.antialiase);
+                    for (int xAA=1;xAA<samples+1;++xAA){
+                        for (int yAA=1;yAA<samples+1;++yAA){
+                            Ray aaRay;
+                            aaRay.direction.x = ray.direction.x +(float) (xAA)/(float)samples-0.5f; 
+                            aaRay.direction.y = ray.direction.y +(float) (yAA)/(float)samples-0.5f;
+                            aaRay.direction.z = d;
+                            p.color +=getColor(aaRay);
                         }
                     }
-                    p.color /=scene_.antialiase;
-                } else {
-                    //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
-                    Ray ray;
-                    ray.direction.x = -scene_.resX/2.0f+x; 
-                    ray.direction.y = -scene_.resY/2.0f+y;
-                    ray.direction.z = d;
-
-                    //here should get the camera transformation applied
-                    //ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
-                    
-                    //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-
-                    p.color +=getColor(ray);
                 }
-                //p.color += scene_.amb;
+
+                //here should get the camera transformation applied
+               // ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
+
+
+                //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
+                if (scene_.antialiase>0)
+                    p.color /=scene_.antialiase;
+                else
+                    p.color +=getColor(ray);
                 write(p);
             }
         }
@@ -128,7 +130,6 @@ Color Renderer::getColor(Ray const& ray) {
                 intersection.ray.origin,
                 glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
             );
-            //lightRay.origin += lightRay.direction/10.0f;//don't collide with itself
             lightRay.maxt = glm::length(light.GetPos()-lightRay.origin);
             
             //shaddow
@@ -154,7 +155,7 @@ Color Renderer::getColor(Ray const& ray) {
                        * glm::pow(
                             glm::dot(r, glm::normalize(ray.direction)),
                             intersection.material.getM()
-                        );//(l*r)^
+                        );//(l*r)^m
 
             }
         }
