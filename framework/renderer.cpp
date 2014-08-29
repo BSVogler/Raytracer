@@ -101,7 +101,7 @@ void Renderer::render() {
 
                     p.color +=getColor(ray);
                 }
-                p.color += scene_.amb;
+                //p.color += scene_.amb;
                 write(p);
             }
         }
@@ -118,6 +118,7 @@ Color Renderer::getColor(Ray const& ray) {
     auto intersection( scene_.renderObjects["root"]->intersect(ray) );
 
     if (intersection.hit){//if intersection happened
+        diff +=scene_.amb*intersection.material.getKa();
         //starting from the intersection go to every light source
         for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
             auto light = lightIt->second;
