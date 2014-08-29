@@ -81,7 +81,10 @@ void Renderer::render() {
                 ray.direction.x = -scene_.resX/2.0f+x; 
                 ray.direction.y = -scene_.resY/2.0f+y;
                 ray.direction.z = d;
-
+                
+                //apply camera transformations
+                //ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
+                
                 if (scene_.antialiase>0){//SSAA
                     int samples = sqrt(scene_.antialiase);
                     for (int xAA=1;xAA<samples+1;++xAA){
@@ -95,8 +98,7 @@ void Renderer::render() {
                     }
                 }
 
-                //here should get the camera transformation applied
-               // ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
+
 
 
                 //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
@@ -150,12 +152,16 @@ Color Renderer::getColor(Ray const& ray) {
                                 intersection.ray.direction
                             )
                         );
-                clr += light.GetDiff()
+                Color spec = light.GetDiff()
                        * intersection.material.getKs()
                        * glm::pow(
                             glm::dot(r, glm::normalize(ray.direction)),
                             intersection.material.getM()
                         );//(l*r)^m
+                if (spec.r<0) spec.r=0;
+                if (spec.g<0) spec.g=0;
+                if (spec.b<0) spec.b=0;
+                clr +=spec; 
 
             }
         }
