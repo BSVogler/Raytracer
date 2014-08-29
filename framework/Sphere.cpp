@@ -17,7 +17,7 @@ Intersection Sphere::intersect(Ray const& ray) const {
             glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
         );
     else
-        ray_t = Ray(ray);
+        ray_t = ray;
 
     glm::vec3 CO{ ray_t.origin - center };//why CO and not OC???
     float a{ glm::dot(ray_t.direction, ray_t.direction) };
