@@ -83,8 +83,9 @@ void Renderer::render() {
                 ray.direction.z = d;
                 
                 //apply camera transformations
+                //ray.origin = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.origin, 1));
                 //ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
-                
+                        
                 if (scene_.antialiase>0){//SSAA
                     int samples = sqrt(scene_.antialiase);
                     for (int xAA=1;xAA<samples+1;++xAA){
@@ -97,8 +98,6 @@ void Renderer::render() {
                         }
                     }
                 }
-
-
 
 
                 //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
