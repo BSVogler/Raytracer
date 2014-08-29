@@ -17,7 +17,7 @@ define shape composite root boxtest sun
 
 # scene xform
 #transform root scale 2 1 1
-transform root rotate 0.2 0.6 0.1 1
+transform root rotate 0.4 -0.1 0.1 0.1
 transform boxtest translate 0 0 -100
 
 # lights
