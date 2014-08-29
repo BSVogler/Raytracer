@@ -113,12 +113,13 @@ void Renderer::render() {
 }
 
 Color Renderer::getColor(Ray const& ray) {
-    Color diff;
+    Color clr;
     
     auto intersection( scene_.renderObjects["root"]->intersect(ray) );
 
     if (intersection.hit){//if intersection happened
-        diff +=scene_.amb*intersection.material.getKa();
+        clr +=scene_.amb*intersection.material.getKa();//ambient light
+        
         //starting from the intersection go to every light source
         for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
             auto light = lightIt->second;
@@ -137,13 +138,28 @@ Color Renderer::getColor(Ray const& ray) {
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
 
-                diff +=  light.GetDiff()//get light color
+                clr +=  light.GetDiff()//get light color
                         * intersection.material.getKd()//multiply by material, (l_p * k_d)
                         * fDiffuse;
+                
+                
+                auto r = glm::normalize(
+                            glm::reflect(
+                                lightRay.direction,
+                                intersection.ray.direction
+                            )
+                        );
+                clr += light.GetDiff()
+                       * intersection.material.getKs()
+                       * glm::pow(
+                            glm::dot(r, glm::normalize(ray.direction)),
+                            intersection.material.getM()
+                        );//(l*r)^
+
             }
         }
     }
-    return diff;
+    return clr;
 }
 
 void Renderer::write(Pixel const& p) {
