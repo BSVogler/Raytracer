@@ -19,7 +19,7 @@ using std::string;
 class RenderObject {
 public:
     RenderObject(string const& name, Material const& material) :
-        name(name), material(material)
+        name(name), material(material), transformed(false)
     {}
 
     virtual Intersection intersect(Ray const& ray) const =0;
@@ -40,6 +40,10 @@ public:
     glm::mat3 getWorldTransfInvTransp() const {
         return t_inv_transp;
     }
+    
+    bool isTransformed() const {
+        return transformed;
+    }
 
     
     void scale(glm::vec3 const& axis);
@@ -52,6 +56,7 @@ private:
     glm::mat4 t;
     glm::mat4 t_inv;
     glm::mat3 t_inv_transp;
+    bool transformed;
 
 };
 

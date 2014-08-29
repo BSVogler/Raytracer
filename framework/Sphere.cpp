@@ -10,10 +10,14 @@
 #include <glm/glm.hpp>
 
 Intersection Sphere::intersect(Ray const& ray) const {
-    Ray ray_t(
-        glm::vec3(getWorldTransfInv() * glm::vec4(ray.origin, 1)),
-        glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
-    );
+    Ray ray_t;
+    if (isTransformed())
+        ray_t = Ray(
+            glm::vec3(getWorldTransfInv() * glm::vec4(ray.origin, 1)),
+            glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
+        );
+    else
+        ray_t = Ray(ray);
 
     glm::vec3 CO{ ray_t.origin - center };//why CO and not OC???
     float a{ glm::dot(ray_t.direction, ray_t.direction) };
@@ -37,7 +41,9 @@ Intersection Sphere::intersect(Ray const& ray) const {
         inter.ray.origin = ray_t.origin+ray_t.direction*t1;
         //use t1, normal is n=CI=I-C, same as CO+i
         //then multiplay with transformationmatrix, inverse transponed
-        inter.ray.direction = getWorldTransfInvTransp()*glm::normalize(inter.ray.origin-center);
+        inter.ray.direction = glm::normalize(inter.ray.origin-center);
+        if (isTransformed()) inter.ray.direction = getWorldTransfInvTransp()*inter.ray.direction;
+        
         inter.distance= t1;
         inter.material = getMaterial();
         return inter;
