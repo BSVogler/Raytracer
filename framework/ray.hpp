@@ -15,7 +15,7 @@ struct Ray
     float maxt;
     
     Ray(glm::vec3 origin=glm::vec3(), glm::vec3 direction=glm::vec3()) :
-        origin(origin), direction(direction), mint(0.000001f), maxt(INFINITY)
+        origin(origin), direction(direction), mint(0.006f), maxt(INFINITY)
     {}
 
     
