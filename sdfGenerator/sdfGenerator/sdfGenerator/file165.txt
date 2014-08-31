@@ -1,7 +1,0 @@
-define material red 1 0 0 1 0 0 1 0 0 1
-define material blue 0 0 1 0 0 1 0 0 1 1
-define shape box rbottom 0.0 -7.5 -10.5 2.0 5.0 -6.0 blue
-define shape sphere bsphere 0 -6.900000 -10.0 2.0 red
-define light diffuse spot1 -500 800 0 0.8 0.8 0.8
-define camera eye 45.0 0 0 25 0 0 -1 0 1 0
-render eye picture1165.ppm 600 600
