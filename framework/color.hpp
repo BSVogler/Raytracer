@@ -86,6 +86,10 @@ struct Color {
     return Color(lsd)*=rsd;
   }
   
+  friend Color operator*(float lsd, Color const& rsd ){
+    return Color(rsd)*=lsd;
+  }
+  
   friend Color operator/(Color const& lsd, float rsd){
     return Color(lsd)/=rsd;
   }
