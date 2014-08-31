@@ -7,6 +7,7 @@
 #include <vector>
 #include <array>
 #include <iostream>
+#include <process.h>
 
 using namespace std;
 
@@ -47,6 +48,16 @@ int _tmain(int argc, _TCHAR* argv[])
 			<< cameraCmd << endl << outputImg << endl;
 		fOut.close();
 
+	}
+
+
+	puts("Doing something");
+
+	for (int i = 141; i < 143; i++)
+	{
+		char buffer[50];
+		sprintf_s(buffer, "file%d.txt", i);
+		_spawnl(P_WAIT, "raytracer.exe", "gridscene.sdf", buffer, "Arg2", NULL);
 	}
 
 	return 0;
