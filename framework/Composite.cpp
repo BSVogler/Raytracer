@@ -15,10 +15,14 @@ void Composite::add_child(RenderObject* const& child) {
 
 
 Intersection Composite::intersect(Ray const& ray) const {
-    Ray ray_t(
-        glm::vec3(getWorldTransfInv() * glm::vec4(ray.origin, 1)),
-        glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
-    );
+    Ray ray_t;
+    if (isTransformed())
+        ray_t = Ray(
+            glm::vec3(getWorldTransfInv() * glm::vec4(ray.origin, 1)),
+            glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
+        );
+    else
+        ray_t = ray;
            
     
     std::vector<Intersection> intersections;
