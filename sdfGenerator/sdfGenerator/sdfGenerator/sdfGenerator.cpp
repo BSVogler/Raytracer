@@ -13,6 +13,7 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+
 	array<string, 101> outputNames;
 
 	for (int  i = 1; i <= 100; i++)
@@ -57,7 +58,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		char buffer[50];
 		sprintf_s(buffer, "file%d.txt", i);
-		_spawnl(P_WAIT, "raytracer.exe", "gridscene.sdf", buffer, "Arg2", NULL);
+		_spawnl(P_WAIT, "raytracer.exe", "gridscene.sdf", buffer, "Arg2", NULL); //renders each file seperately, must close the generated image by hand
+		//_spawnl(P_NOWAIT, "raytracer.exe", "gridscene.sdf", buffer, "Arg2", NULL); renders every file at the same time
 	}
 
 	return 0;
