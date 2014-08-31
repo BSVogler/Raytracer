@@ -20,7 +20,6 @@
 *.out
 *.app
 
-checkerboard.ppm
 
 build
 cmake_out
@@ -29,3 +28,5 @@ cmake_out
 nbproject
 
 *.ppm
+scene*.sdf
+image*.png
