@@ -31,7 +31,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
     
     std::map<std::string, Material> mMap;
     std::map<std::string, LightPoint> lMap;
-    std::map<std::string, RenderObject*> roMap;
+    std::map<std::string, shared_ptr<RenderObject>> roMap;
     
     string line;
     ifstream file(scenefile);
@@ -158,7 +158,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     string name;
                     ss >> name;
                     
-                    RenderObject* rObject = nullptr;
+                    shared_ptr<RenderObject> rObject;
                     if (classname=="BOX"){
                         int edge1x, edge1y, edge1z;
                         ss>> edge1x;
@@ -173,8 +173,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         string materialName;
                         ss>>materialName;
                         Material material = mMap[materialName];
-                        
-                        rObject = new Box(
+                        rObject = make_shared<Box>( 
                             name,
                             glm::vec3(edge1x, edge1y, edge1z),
                             glm::vec3(edge2x, edge2y, edge2z),
@@ -191,7 +190,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         string materialString;
                         ss>>materialString;
                         
-                        rObject = new Sphere(
+                        rObject = make_shared<Sphere>( 
                             name,
                             glm::vec3(posX, posY, posZ),
                             radius,
@@ -199,7 +198,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         );
                         cout << "Sphere \""<< name << "\" aus Material "<<materialString<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
                     } else if(classname=="COMPOSITE") {
-                        rObject = new Composite(name);
+                       rObject = make_shared<Composite>( Composite(name));
                         cout << "Composite \""<< name << "\" (" ;
                         string objectString;
                         while (!ss.eof()){
@@ -208,7 +207,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                             if (linkedObject == roMap.end()){
                                 cout << "Error: "<<objectString <<" not found!";
                             } else {
-                                ((Composite*)rObject)->add_child(linkedObject->second);
+                                (Composite*)&*rObject->add_child(&*linkedObject->second);
                                 cout<<", "<<objectString;
                             }
                         }
@@ -249,7 +248,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 if (linkedObject == roMap.end()){//check if object can be found
                     cout << "Error: " << name << " not found!"<<endl;
                 } else {
-                    object = linkedObject->second;
+                    object = &*linkedObject->second;
                     if (transform == "scale") {
                         ss >> x;
                         ss >> y;

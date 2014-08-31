@@ -17,7 +17,7 @@
 struct Scene {
     std::map<std::string, Material> materials;
     std::map<std::string, LightPoint> lights;
-    std::map<std::string, RenderObject*> renderObjects;
+    std::map<std::string, std::shared_ptr<RenderObject>> renderObjects;
     Camera camera;
     std::string camname;
     int resX;
