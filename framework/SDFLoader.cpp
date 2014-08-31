@@ -75,7 +75,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                 } else if (firstWord=="camera"){
                     string cameraname;
                     ss >> cameraname;
-                    int fovX;
+                    float fovX;
                     ss >> fovX;
                     scene.camera = Camera(cameraname,fovX);
                     cout << "camera: "<<cameraname<<"("<<fovX<<")"<<endl;
@@ -243,6 +243,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
 
                 ss >> name;
                 ss >> transform;
+                
+                cout << transform<<": " << name << ""<<endl;
 
                 auto linkedObject = roMap.find(name);
                 if (linkedObject == roMap.end()){//check if object can be found
@@ -277,7 +279,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
 
                         glm::vec3 coords(x, y, z);
                         object->translate(coords);
-                        cout << "translating:"<< x <<","<< y <<","<< z <<endl;
+                        cout << "translating: "<< x <<","<< y <<","<< z <<endl;
                     } else {
                             cout << "Unknown transformation" << endl;
                     }
