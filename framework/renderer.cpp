@@ -128,7 +128,7 @@ Color Renderer::getColor(Ray const& ray) {
             auto light = lightIt->second;
             //a ray pointing to the current light source
             auto lightRay = Ray(
-                intersection.ray.origin,
+                intersection.ray.origin,    //start at intersection point
                 glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
             );
             lightRay.maxt = glm::length(light.GetPos()-lightRay.origin);
