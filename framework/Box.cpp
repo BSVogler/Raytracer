@@ -9,19 +9,28 @@
 #include "Intersection.hpp"
 
 Intersection Box::intersect(Ray const& ray) const {
+    Ray ray_t;
+    if (isTransformed())
+        ray_t = Ray(
+            glm::vec3(getWorldTransfInv() * glm::vec4(ray.origin, 1)),
+            glm::vec3(getWorldTransfInv() * glm::vec4(ray.direction, 0))
+        );
+    else
+        ray_t = ray;
+    
     Intersection inter;
     
     //calculate smallest hit t's
-    float minX = ( pmin.x - ray.origin.x ) / ray.direction.x;
-    float maxX = ( pmax.x - ray.origin.x ) / ray.direction.x;
+    float minX = ( pmin.x - ray_t.origin.x ) / ray_t.direction.x;
+    float maxX = ( pmax.x - ray_t.origin.x ) / ray_t.direction.x;
     if (minX > maxX) std::swap(minX, maxX);
     
-    float tminy = ( pmin.y - ray.origin.y ) / ray.direction.y;
-    float maxY = ( pmax.y - ray.origin.y ) / ray.direction.y;
+    float tminy = ( pmin.y - ray_t.origin.y ) / ray_t.direction.y;
+    float maxY = ( pmax.y - ray_t.origin.y ) / ray_t.direction.y;
     if (tminy > maxY) std::swap(tminy, maxY);
    
     //XY
-    //fitler ray not hitting, maybe useless chcek
+    //fitler ray_t not hitting, maybe useless chcek
     if ((minX > maxY) || (tminy > maxX))
         return Intersection(); 
     
@@ -32,10 +41,10 @@ Intersection Box::intersect(Ray const& ray) const {
         maxX = maxY;
 
     //z
-    float minZ = ( pmin.z - ray.origin.z ) / ray.direction.z;
-    float maxZ = ( pmax.z - ray.origin.z ) / ray.direction.z;
+    float minZ = ( pmin.z - ray_t.origin.z ) / ray_t.direction.z;
+    float maxZ = ( pmax.z - ray_t.origin.z ) / ray_t.direction.z;
     if (minZ > maxZ) std::swap(minZ, maxZ);
-    //ray not hitting
+    //ray_t not hitting
     if ((minX > maxZ) || (minZ > maxX))
         return Intersection(); 
     
@@ -46,10 +55,10 @@ Intersection Box::intersect(Ray const& ray) const {
     
     
     float t=minX;
-    if (t<ray.mint ||t>ray.maxt)
+    if (t<ray_t.mint ||t>ray_t.maxt)
         return Intersection();  
     
-    auto p = ray.origin + t * ray.direction;
+    auto p = ray_t.origin + t * ray_t.direction;
     inter.ray.origin = p;
     
     if(fabs(p.x - pmin.x) < 0.0001f){//normal from left
@@ -65,7 +74,7 @@ Intersection Box::intersect(Ray const& ray) const {
     }else if(fabs(p.z - pmax.z) < 0.0001f){//normal from back
         inter.ray.direction = glm::vec3 (0.0f, 0.0f, 1.0f);//somehow the normal is in the wrong way?
     }
-    
+    if (isTransformed()) inter.ray.direction = getWorldTransfInvTransp()*inter.ray.direction;
     inter.distance = t;
     inter.material = getMaterial();
     inter.hit=true;
