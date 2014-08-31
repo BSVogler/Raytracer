@@ -1,9 +1,9 @@
 # materials
-define material red    1 0 0  1 0 0  0.5 0 0  4
-define material blue   0 0 1  0 0 1  0 0 1  1
-define material white  1 1 1  1 1 1  1 1 1  1
-define material yellow 1 1 0  1 1 0  1 1 1  1
-define material green  0 1 0  0 1 0  0 1 0  1
+define material red    1 0 0  1 0 0  0.5 0   0  4
+define material blue   0 0 1  0 0 1  0   0   1  1
+define material white  1 1 1  1 1 1  1   1   1  1
+define material yellow 1 1 0  1 1 0  1   1   1  1 0.5 0.5
+define material green  0 1 0  0 1 0  0   1   0  1
 
 # geometry
 define shape box floor   -400 -400 0  400 -410 -8000 blue
