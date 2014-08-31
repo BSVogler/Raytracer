@@ -13,6 +13,7 @@
 #include "LightPoint.hpp"
 #include "RenderObject.hpp"
 #include <map>
+#include <memory>
 
 struct Scene {
     std::map<std::string, Material> materials;
