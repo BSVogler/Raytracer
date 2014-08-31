@@ -13,7 +13,9 @@ std::ostream& operator<<(std::ostream& os, Material const& mat)
      << "ka: " << mat.getKa() << std::endl
      << "kd: " << mat.getKd() << std::endl
      << "ks: " << mat.getKs() << std::endl
-     << "m: " << mat.getM() << std::endl;
+     << "m: " << mat.getM() << std::endl
+     << "opac: " << mat.getOpacity() << std::endl
+     << "refr: " << mat.getRefraction() << std::endl;
   return os; 
 }
 

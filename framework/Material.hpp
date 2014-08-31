@@ -18,9 +18,11 @@ public:
     Material():
         ka(0,0,0),kd(0,0,0),ks(0,0,0)
     {};
-    Material(Color ka, Color kd, Color ks, float m, std::string name) :
-        ka(ka), kd(kd), ks(ks), m(m), name(name)
-    {}
+    Material(Color ka, Color kd, Color ks, float m, float opac,float refr, std::string name) :
+        ka(ka), kd(kd), ks(ks), m(m), name(name), refr(refr), opac(opac)
+    {
+        if (opac<=0.0f) this->opac=1.0f;
+    }
 
     std::string getName() const {
         return name;
@@ -42,12 +44,23 @@ public:
         return m;
     }
     
+    float getOpacity() const {
+        return opac;
+    }
+
+    float getRefraction() const {
+        return refr;
+    }
+
+    
 private:
     std::string name;
     Color ka;
     Color kd;
     Color ks;
     float m;
+    float refr;
+    float opac;
 };
 
 std::ostream& operator <<(std::ostream& os, Material const& mat);

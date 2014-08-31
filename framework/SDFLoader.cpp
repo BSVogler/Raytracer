@@ -69,7 +69,11 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     Color cs(red, green, blue);
                     float m;
                     ss >> m;
-                    Material mat(ca, cd, cs,m, name);
+                    float opacity(0);
+                    ss >> opacity;
+                    float refr(0);
+                    ss >> refr;
+                    Material mat(ca, cd, cs,m,opacity,refr, name);
                     cout << "Material specs: "<<endl<<mat;
                     mMap[name]=mat;
                 } else if (firstWord=="camera"){

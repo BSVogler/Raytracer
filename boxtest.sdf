@@ -1,13 +1,13 @@
 # materials
-define material red 1 0 0 1 0 0 1 0 0 1
-define material blue 0 0 1 0 0 1 0 0 1 1
-define material white 1 1 1 1 1 1 1 1 1 1
-define material yellow 1 1 0 1 1 0 1 1 0 1
-define material green 0 1 0 0 1 0 0 1 0 1
+define material red    1 0 0  1 0 0  1 0 0  1
+define material blue   0 0 1  0 0 1  0 0 1  1  0.8   0.00001
+define material white  1 1 1  1 1 1  1 1 1  1
+define material yellow 1 1 0  1 1 0  1 1 0  1  0.3 0.0001
+define material green  0 1 0  0 1 0  0 1 0  1
 # geometry
 define shape box boxtest1    0    0 -200  100  100 -300 blue
 define shape box boxtest2  100  100 -200  200  200 -300 red
-define shape box boxtest3    0    0 -200 -100 -100 -300 yellow
+define shape box boxtest3    0    0 -200 -100 -100 -300 white
 define shape box boxtest4 -100 -100 -200 -200 -200 -300 green
 define shape sphere sun      0   30  -80    10 yellow
 
