@@ -5,7 +5,7 @@ i=0
 while [ -s $BASEDIR/sdfs/scene$i.sdf ]
 do
 	echo "rendering $i"
-	$BASEDIR/raytracer $BASEDIR/sdfs/scene$i.sdf nogui
+	$BASEDIR/../cmake_out/build/Release/raytracer $BASEDIR/sdfs/scene$i.sdf nogui
 	echo "rendered $i"
 	if [[ -s $BASEDIR/tmp/image$i.ppm ]]; then
 		echo "converting $i"
