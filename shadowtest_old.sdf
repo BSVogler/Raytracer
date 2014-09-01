@@ -2,30 +2,30 @@
 define material red    1 0 0  1 0 0  0.5 0   0  4
 define material blue   0 0 1  0 0 1  0   0   1  1
 define material white  1 1 1  1 1 1  1   1   1  1
-define material yellow 1 1 0  1 1 0  1   1   0  1 0.6 0.0005
+define material yellow 1 1 0  1 1 0  1   1   1  1 0.5 0.5
 define material green  0 1 0  0 1 0  0   1   0  1
 
 # geometry
-define shape box floor   -400 -400 0  470 -410 -8000 blue
-define shape box left    -400 -400 0 -410  400 -8000 white
-define shape box right    400 -400 -500  460  110 -8000 red
-define shape sphere sphere   0   0 -200 30 yellow
-define shape sphere sphere2 60 -50 -200 20 red
-define shape sphere sphere3 -30   20 -250 25 green
+define shape box floor   -400 -400 0  400 -410 -8000 blue
+define shape box ceiling -400  400 0  400  410 -8000 blue
+define shape box left    -400 -400 0 -410  400 -8000 blue
+define shape box right    400 -400 0  410  410 -8000 blue
+define shape sphere sphere 0 0 -200 30 yellow
+define shape sphere sphere2 30 -30 -200 20 red
 
 # composite
 #define shape composite boxtest boxtest1 boxtest2 boxtest3 boxtest4
-define shape composite root left right floor sphere sphere2 sphere3
+define shape composite root left right floor ceiling sphere sphere2
 
 # scene xform
 #transform root scale 2 1 1
-#transform boxtest rotate 0.3 0.6 0.1 1
+#transform root rotate 0.1 0.6 0.1 1
 #transform boxtest translate 0 0 -100
 
 # lights
 define light ambient amb 0.05 0.1 0.05
 define light diffuse sun 50 50 -180 1.0 1.0 1.0
-define light diffuse sun2 -50 30 -150 0.1 1.0 0.5
+define light diffuse sun2 -50 50 -150 1.0 1.0 1.0
 
 # camera
 define camera eye 65.0
@@ -33,4 +33,4 @@ define camera eye 65.0
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100
 # ... and go
-render eye image.ppm 1280 720 0
+render eye image.ppm 600 600 0
