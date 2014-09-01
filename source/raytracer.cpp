@@ -10,8 +10,8 @@
  * @return 
  */
 int main(int argc, char* argv[]) {
-    unsigned const width = 600;
-    unsigned const height = 600;
+    unsigned const width = 1280;
+    unsigned const height = 720;
 
     std::cout << "welcome to Raytracer ("<< width<<"x"<<height<<")." <<std::endl;
     Renderer* app = nullptr;
