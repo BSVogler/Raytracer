@@ -25,7 +25,7 @@ public:
     virtual Intersection intersect(Ray const& ray) const =0;
 	
 
-    Material getMaterial() const {
+    Material const& getMaterial() const {
         return material;
     }
 
