@@ -23,25 +23,14 @@ public:
         glm::vec3 const& edge1,
         glm::vec3 const& edge2,
         Material const& material
-    ) :
-        RenderObject(name, material), pmin(edge1), pmax(edge2)
-    {
-        if (pmin.x>pmax.x)
-            std::swap(pmin.x,pmax.x);
-        if (pmin.y>pmax.y)
-            std::swap(pmin.y,pmax.y);
-        if (pmin.z>pmax.z)
-            std::swap(pmin.z,pmax.z);
-    }
+    );
     
-    Box(const Box& orig);
     Intersection intersect(Ray const& ray) const;
 
 private:
     glm::vec3 pmin;
     glm::vec3 pmax;
     glm::vec3 calcNormal(float const& x, float const& y, float const& z) const;
-
 };
 
 #endif	/* BOX_HPP */

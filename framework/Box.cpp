@@ -8,6 +8,22 @@
 #include "Box.hpp"
 #include "Intersection.hpp"
 
+Box::Box(
+        string name,
+        glm::vec3 const& edge1,
+        glm::vec3 const& edge2,
+        Material const& material
+    ) :
+        RenderObject(name, material), pmin(edge1), pmax(edge2)
+    {
+        if (pmin.x>pmax.x)
+            std::swap(pmin.x,pmax.x);
+        if (pmin.y>pmax.y)
+            std::swap(pmin.y,pmax.y);
+        if (pmin.z>pmax.z)
+            std::swap(pmin.z,pmax.z);
+    }
+
 Intersection Box::intersect(Ray const& ray) const {
     Ray ray_t;
     if (isTransformed())
