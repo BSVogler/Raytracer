@@ -20,7 +20,7 @@ public:
         return diff;
     }
 
-    glm::vec3 GetPos() const {
+    glm::vec3 const& GetPos() const {
         return pos;
     }
 

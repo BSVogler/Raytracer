@@ -37,7 +37,7 @@ public:
         return t_inv;
     }
     
-    glm::mat3 getWorldTransfInvTransp() const {
+    glm::mat3 const& getWorldTransfInvTransp() const {
         return t_inv_transp;
     }
     
