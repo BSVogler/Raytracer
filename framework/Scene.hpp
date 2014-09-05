@@ -21,11 +21,11 @@ struct Scene {
     std::map<std::string, std::shared_ptr<RenderObject>> renderObjects;
     Camera camera;
     std::string camname;
-    int resX;
-    int resY;
+    unsigned int resX;
+    unsigned int resY;
     std::string outputFile;
     Color amb;
-    int antialiase;
+    unsigned antialiase;
     bool random;
     
 //    //manual destructor needed?

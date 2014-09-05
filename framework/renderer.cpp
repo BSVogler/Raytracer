@@ -53,7 +53,7 @@ void Renderer::render() {
         cout << "Camera: "<<scene_.camname<<endl;
         cout << "ambient light "<<scene_.amb<<endl;
 
-        float d = -scene_.resX/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
+        float d = -int(scene_.resX)/tan(scene_.camera.GetFovX()*M_PI/180); //apply camera fov, little different angle for each pixel
 
         for (unsigned yr = 0; yr < scene_.resY; ++yr) {
             for (unsigned xr = 0; xr < scene_.resX; ++xr) {
@@ -78,12 +78,12 @@ void Renderer::render() {
                
                 //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
                 Ray ray;
-                ray.direction.x = -scene_.resX/2.0f+x; 
-                ray.direction.y = -scene_.resY/2.0f+y;
+                ray.direction.x = -int(scene_.resX)/2.0f+x; 
+                ray.direction.y = -int(scene_.resY)/2.0f+y;
                 ray.direction.z = d;
                 
                 //apply camera transformations
-                //ray.origin = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.origin, 1));
+                ray.origin = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.origin, 1));
                 //ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
                         
                 if (scene_.antialiase>0){//SSAA
