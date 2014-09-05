@@ -25,7 +25,7 @@ public:
         Material const& material
     );
     
-    Intersection intersect(Ray const& ray) const;
+    Intersection intersect(Ray const& ray) const override;
 
 private:
     glm::vec3 pmin;

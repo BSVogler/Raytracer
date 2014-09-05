@@ -26,7 +26,7 @@ public:
         RenderObject(name, material), center(center), radius(radius)
     {}
 
-    virtual Intersection intersect(Ray const& ray) const;
+    virtual Intersection intersect(Ray const& ray) const override;
 
 private:
     float radius;

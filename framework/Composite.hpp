@@ -19,7 +19,7 @@ public:
     {}
     
     void add_child(RenderObject* const& child);
-    virtual Intersection intersect(Ray const& ray) const;
+    virtual Intersection intersect(Ray const& ray) const override;
 	
 private:
     std::vector<RenderObject*> children;
