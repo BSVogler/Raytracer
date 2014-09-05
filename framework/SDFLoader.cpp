@@ -211,7 +211,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                             if (linkedObject == roMap.end()){
                                 cout << "Error: "<<objectString <<" not found!";
                             } else {
-                                ((Composite*)&*rObject)->add_child(&*linkedObject->second);
+                                std::dynamic_pointer_cast<Composite>(rObject)->add_child(&*linkedObject->second);
                                 cout<<", "<<objectString;
                             }
                         }
