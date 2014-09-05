@@ -28,7 +28,7 @@ define light diffuse sun 50 50 -180 1.0 1.0 1.0
 define light diffuse sun2 -50 30 -150 0.1 1.0 0.5
 
 # camera
-define camera eye 65.0
+define camera eye 65.0  0 0 0  0 1 -1  -1 1 0
 # camera xform
 transform eye rotate -45 0 1 0
 transform eye translate 100 0 100

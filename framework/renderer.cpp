@@ -84,7 +84,7 @@ void Renderer::render() {
                 
                 //apply camera transformations
                 ray.origin = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.origin, 1));
-                //ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
+                ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
                         
                 if (scene_.antialiase>0){//SSAA
                     int samples = sqrt(scene_.antialiase);
