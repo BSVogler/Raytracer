@@ -162,18 +162,16 @@ Color Renderer::getColor(Ray const& ray) {
                 if (spec.g<0) spec.g=0;
                 if (spec.b<0) spec.b=0;
                 clr +=spec*intersection.material.getOpacity(); 
-                
-                //refraction
-                if (intersection.material.getOpacity()<1.0f){
-                    auto refrdir = glm::refract(ray.direction, intersection.ray.direction, intersection.material.getRefraction());
-                    clr += getColor(
-                            Ray(
-                                intersection.ray.origin,    //start at intersection point
-                                refrdir
-                            )
-                        )*(1.0f-intersection.material.getOpacity());
-                }
-
+            }
+             //refraction
+            if (intersection.material.getOpacity()<1.0f){
+                auto refrdir = glm::refract(ray.direction, intersection.ray.direction, intersection.material.getRefraction());
+                clr += getColor(
+                        Ray(
+                            intersection.ray.origin,    //start at intersection point
+                            refrdir
+                        )
+                    )*(1.0f-intersection.material.getOpacity());
             }
         }
     }
