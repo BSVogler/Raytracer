@@ -9,13 +9,13 @@
 
 std::ostream& operator<<(std::ostream& os, Material const& mat)
 {
-  os << "name: \"" << mat.getName() <<"\"" << std::endl
-     << "ka: " << mat.getKa() << std::endl
-     << "kd: " << mat.getKd() << std::endl
-     << "ks: " << mat.getKs() << std::endl
-     << "m: " << mat.getM() << std::endl
-     << "opac: " << mat.getOpacity() << std::endl
-     << "refr: " << mat.getRefraction() << std::endl;
+  os << "name: \"" << mat.name <<"\"" << std::endl
+     << "ka: " << mat.ka << std::endl
+     << "kd: " << mat.kd << std::endl
+     << "ks: " << mat.ks << std::endl
+     << "m: " << mat.m << std::endl
+     << "opac: " << mat.opac << std::endl
+     << "refr: " << mat.refr << std::endl;
   return os; 
 }
 

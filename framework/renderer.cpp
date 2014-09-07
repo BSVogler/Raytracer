@@ -121,7 +121,7 @@ Color Renderer::getColor(Ray const& ray) {
     auto intersection( scene_.renderObjects["root"]->intersect(ray) );
 
     if (intersection.hit){//if intersection happened
-        clr +=scene_.amb*intersection.material.getKa();//ambient light
+        clr +=scene_.amb*intersection.material.ka;//ambient light
         
         //starting from the intersection go to every light source
         for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
@@ -141,9 +141,9 @@ Color Renderer::getColor(Ray const& ray) {
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
 
                 clr +=  light.GetDiff()//get light color
-                        * intersection.material.getKd()//multiply by material, (l_p * k_d)
+                        * intersection.material.kd//multiply by material, (l_p * k_d)
                         * fDiffuse
-                        * intersection.material.getOpacity();
+                        * intersection.material.opac;
                 
                 
                 auto r = glm::normalize(
@@ -153,25 +153,25 @@ Color Renderer::getColor(Ray const& ray) {
                             )
                         );
                 Color spec = light.GetDiff()
-                       * intersection.material.getKs()
+                       * intersection.material.ks
                        * glm::pow(
                             glm::dot(r, glm::normalize(ray.direction)),
-                            intersection.material.getM()
+                            intersection.material.m
                         );//(l*r)^m
                 if (spec.r<0) spec.r=0;
                 if (spec.g<0) spec.g=0;
                 if (spec.b<0) spec.b=0;
-                clr +=spec*intersection.material.getOpacity(); 
+                clr +=spec*intersection.material.opac; 
             }
              //refraction
-            if (intersection.material.getOpacity()<1.0f){
-                auto refrdir = glm::refract(ray.direction, intersection.ray.direction, intersection.material.getRefraction());
+            if (intersection.material.opac < 1.0f){
+                auto refrdir = glm::refract(ray.direction, intersection.ray.direction, intersection.material.refr);
                 clr += getColor(
                         Ray(
                             intersection.ray.origin,    //start at intersection point
                             refrdir
                         )
-                    )*(1.0f-intersection.material.getOpacity());
+                    )*(1.0f-intersection.material.opac);
             }
         }
     }
