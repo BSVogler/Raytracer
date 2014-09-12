@@ -35,11 +35,10 @@ Scene SDFLoader::load(std::string const& scenefile) {
     
     string line;
     ifstream file(scenefile);
-    stringstream ss;
     //file.open(scenefile, ios::in);
     if (file.is_open()) {
         while (getline (file,line)){//get line
-            ss = stringstream(line);//fill the line into stringstream
+            stringstream ss = stringstream(line);//fill the line into stringstream
             string firstWord;
             ss >> firstWord;
             //is first string define?
@@ -54,19 +53,10 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss>>name;
 
                     //extract color
-                    float red, green, blue;
-                    ss >> red;
-                    ss >> green;
-                    ss >> blue;
-                    Color ca(red, green, blue);
-                    ss >> red;
-                    ss >> green;
-                    ss >> blue;
-                    Color cd(red, green, blue);
-                    ss >> red;
-                    ss >> green;
-                    ss >> blue;
-                    Color cs(red, green, blue);
+                    Color ca{}, cd{}, cs{};
+                    ss >> ca;
+                    ss >> cd;
+                    ss >> cs;
                     float m;
                     ss >> m;
                     float opacity(0);
@@ -130,11 +120,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         ss >> pos.y;
                         ss >> pos.z;
 
-                        float red, green, blue;
-                        ss >> red;
-                        ss >> green;
-                        ss >> blue;
-                        Color diff(red, green, blue);
+                        Color diff{};
+                        ss >> diff;
 
                         LightPoint light = LightPoint(name, pos, diff);
                         cout << "light point: "<<name<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
@@ -143,11 +130,8 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         string lightname;
                         ss >> lightname;//name get's ignored
                         
-                        float red, green, blue;
-                        ss >> red;
-                        ss >> green;
-                        ss >> blue;
-                        Color amb(red, green, blue);
+                        Color amb{};
+                        ss >> amb;
                         
                         scene.amb = amb;
                         cout << "ambient light "<<amb<<endl;

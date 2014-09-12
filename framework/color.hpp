@@ -11,6 +11,7 @@
 #define BUW_COLOR_HPP
 
 #include <iostream>
+#include <sstream>
 
 struct Color {
     
@@ -34,6 +35,13 @@ struct Color {
     friend std::ostream& operator<<(std::ostream& os, Color const& c){
       os << "(" << c.r << "," << c.g << "," << c.b << ")";
       return os;
+    }
+    
+    friend Color& operator >> (std::stringstream& ss, Color& clr){
+        ss >> clr.r;
+        ss >> clr.g;
+        ss >> clr.b;
+        return clr;
     }
 
     Color& operator+=(Color const& other){

@@ -7,8 +7,7 @@
 
 #include "Material.hpp"
 
-std::ostream& operator<<(std::ostream& os, Material const& mat)
-{
+std::ostream& operator<<(std::ostream& os, Material const& mat) {
   os << "name: \"" << mat.name <<"\"" << std::endl
      << "ka: " << mat.ka << std::endl
      << "kd: " << mat.kd << std::endl
