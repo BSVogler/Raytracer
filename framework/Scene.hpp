@@ -14,10 +14,11 @@
 #include "RenderObject.hpp"
 #include <map>
 #include <memory>
+#include <vector>
 
 struct Scene {
-    std::map<std::string, Material> materials;
-    std::map<std::string, LightPoint> lights;
+    std::vector<Material> materials;
+    std::vector<LightPoint> lights;
     std::map<std::string, std::shared_ptr<RenderObject>> renderObjects;
     Camera camera;
     std::string camname;
@@ -27,19 +28,6 @@ struct Scene {
     Color amb;
     unsigned antialiase;
     bool random;
-    
-//    //manual destructor needed?
-//    ~Scene(){
-//        for (auto itr=materials.begin(); itr !=materials.end();++itr) {
-//            materials.erase(itr);
-//        }
-//        for (auto itr=lights.begin(); itr !=lights.end();++itr) {
-//            lights.erase(itr);
-//        }
-//        for (auto itr=renderObjects.begin(); itr !=renderObjects.end();++itr) {
-//            renderObjects.erase(itr);
-//        }
-//    }
 };
 
 

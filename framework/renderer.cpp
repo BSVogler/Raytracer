@@ -124,14 +124,13 @@ Color Renderer::getColor(Ray const& ray) {
         clr +=scene_.amb*intersection.material.ka;//ambient light
         
         //starting from the intersection go to every light source
-        for(auto lightIt = scene_.lights.begin(); lightIt != scene_.lights.end(); lightIt++) {
-            auto light = lightIt->second;
+        for(auto light : scene_.lights) {
             //a ray pointing to the current light source
             auto lightRay = Ray(
                 intersection.ray.origin,    //start at intersection point
-                glm::normalize(light.GetPos()-intersection.ray.origin)//l=IL =L-I 
+                glm::normalize(light.getPos()-intersection.ray.origin)//l=IL =L-I 
             );
-            lightRay.maxt = glm::length(light.GetPos()-lightRay.origin);
+            lightRay.maxt = glm::length(light.getPos()-lightRay.origin);
             
             //shaddow
             auto lighintersect = scene_.renderObjects["root"]->intersect(lightRay);
@@ -140,7 +139,7 @@ Color Renderer::getColor(Ray const& ray) {
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse;//allow no negative diffuse light
 
-                clr +=  light.GetDiff()//get light color
+                clr +=  light.getDiff()//get light color
                         * intersection.material.kd//multiply by material, (l_p * k_d)
                         * fDiffuse
                         * intersection.material.opac;
@@ -152,7 +151,7 @@ Color Renderer::getColor(Ray const& ray) {
                                 intersection.ray.direction
                             )
                         );
-                Color spec = light.GetDiff()
+                Color spec = light.getDiff()
                        * intersection.material.ks
                        * glm::pow(
                             glm::dot(r, glm::normalize(ray.direction)),

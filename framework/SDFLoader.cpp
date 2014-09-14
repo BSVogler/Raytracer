@@ -29,9 +29,9 @@ Scene SDFLoader::load(std::string const& scenefile) {
     cout << "Loading file: " << scenefile << endl;
     Scene scene = Scene();
     
-    std::map<std::string, Material> mMap;
-    std::map<std::string, LightPoint> lMap;
-    std::map<std::string, shared_ptr<RenderObject>> roMap;
+    scene.materials = std::vector<Material>();
+    scene.lights = std::vector<LightPoint>();
+     std::map<std::string, shared_ptr<RenderObject>> roMap;
     
     string line;
     ifstream file(scenefile);
@@ -65,7 +65,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     ss >> refr;
                     Material mat(ca, cd, cs,m,opacity,refr, name);
                     cout << "Material specs: "<<endl<<mat;
-                    mMap[name]=mat;
+                    scene.materials.push_back(mat);
                 } else if (firstWord=="camera"){
                     string cameraname;
                     ss >> cameraname;
@@ -125,7 +125,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
 
                         LightPoint light = LightPoint(name, pos, diff);
                         cout << "light point: "<<name<<"("<<pos.x<<","<<pos.y<<","<<pos.z<<","<<diff<<")"<<endl;
-                        lMap[name] = light;
+                        scene.lights.push_back(light);
                     }else if (type=="ambient") {
                         string lightname;
                         ss >> lightname;//name get's ignored
@@ -160,12 +160,11 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         
                         string materialName;
                         ss>>materialName;
-                        Material material = mMap[materialName];
                         rObject = make_shared<Box>( 
                             name,
                             glm::vec3(edge1x, edge1y, edge1z),
                             glm::vec3(edge2x, edge2y, edge2z),
-                            material
+                            getMaterial(materialName, scene.materials)
                         );
                     } else if (classname=="SPHERE") {
                         int posX, posY, posZ;
@@ -182,7 +181,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                             name,
                             glm::vec3(posX, posY, posZ),
                             radius,
-                            mMap[materialString]
+                            getMaterial(materialString, scene.materials)
                         );
                         cout << "Sphere \""<< name << "\" aus Material "<<materialString<<" mit Radius: "<<radius<<"@("<<posX<<","<<posY<<","<<posZ<<")"<<endl;
                     } else if(classname=="COMPOSITE") {
@@ -280,8 +279,26 @@ Scene SDFLoader::load(std::string const& scenefile) {
     }else cout << "Unable to open file"; 
     
     //save collected data in scene
-    scene.materials = mMap;
     scene.renderObjects = roMap;
-    scene.lights = lMap;
     return scene; 
+}
+
+Material SDFLoader::getMaterial(string name, std::vector<Material> data){
+    return *find_if(
+            data.begin(),
+            data.end(),
+            [name] (Material const & m) -> bool {
+                return m.name == name;
+            }
+    );
+}
+
+LightPoint SDFLoader::getLight(string name, std::vector<LightPoint> data) {
+     return *find_if(
+            data.begin(),
+            data.end(),
+            [name] (LightPoint const& l) -> bool {
+                return l.getName() == name;
+            }
+    );
 }

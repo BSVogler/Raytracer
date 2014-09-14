@@ -9,11 +9,13 @@
 #define	SDFLOADER_HPP
 
 #include "Scene.hpp"
+#include <vector>
 
 class SDFLoader {
 public:
     static Scene load(std::string const& scenefile);
-private:
+    static Material getMaterial(string name, std::vector<Material> data);
+    static LightPoint getLight(string name, std::vector<LightPoint> data);
 };
 
 #endif	/* SDFLOADER_HPP */

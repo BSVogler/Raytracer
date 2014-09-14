@@ -16,12 +16,16 @@ class LightPoint {
 public:
     LightPoint();
     LightPoint(std::string const& name, glm::vec3 const& pos, Color const& diff);
-    Color GetDiff() const {
+    Color getDiff() const {
         return diff;
     }
 
-    glm::vec3 const& GetPos() const {
+    glm::vec3 const& getPos() const {
         return pos;
+    }
+    
+    std::string getName() const {
+        return name;
     }
 
 private:
