@@ -31,7 +31,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
     
     scene.materials = std::vector<Material>();
     scene.lights = std::vector<LightPoint>();
-     std::map<std::string, shared_ptr<RenderObject>> roMap;
+    scene.renderObjects = std::vector<shared_ptr<RenderObject>>();
     
     string line;
     ifstream file(scenefile);
@@ -190,11 +190,11 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         string objectString;
                         while (!ss.eof()){
                             ss>>objectString;
-                            auto linkedObject = roMap.find(objectString);
-                            if (linkedObject == roMap.end()){
+                            auto linkedObject = getShape(objectString,scene.renderObjects);
+                            if (linkedObject == nullptr){
                                 cout << "Error: "<<objectString <<" not found!";
                             } else {
-                                std::dynamic_pointer_cast<Composite>(rObject)->add_child(&*linkedObject->second);
+                                std::dynamic_pointer_cast<Composite>(rObject)->add_child(&*linkedObject);
                                 cout<<", "<<objectString;
                             }
                         }
@@ -202,7 +202,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                     } else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
                     
                     if (rObject != nullptr)
-                        roMap[name] = rObject;
+                        scene.renderObjects.push_back(rObject);
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
             } else if (firstWord=="render"){
@@ -226,18 +226,16 @@ Scene SDFLoader::load(std::string const& scenefile) {
             } else if (firstWord == "transform"){
                 string name, transform;
                 float x, y, z;
-                RenderObject* object;
 
                 ss >> name;
                 ss >> transform;
                 
                 cout << transform<<": " << name << ""<<endl;
 
-                auto linkedObject = roMap.find(name);
-                if (linkedObject == roMap.end()){//check if object can be found
+                auto object = getShape(name, scene.renderObjects);
+                if (object == nullptr){//check if object can be found
                     cout << "Error: " << name << " not found!"<<endl;
                 } else {
-                    object = &*linkedObject->second;
                     if (transform == "scale") {
                         ss >> x;
                         ss >> y;
@@ -278,8 +276,6 @@ Scene SDFLoader::load(std::string const& scenefile) {
         file.close();
     }else cout << "Unable to open file"; 
     
-    //save collected data in scene
-    scene.renderObjects = roMap;
     return scene; 
 }
 
@@ -301,4 +297,18 @@ LightPoint SDFLoader::getLight(string name, std::vector<LightPoint> data) {
                 return l.getName() == name;
             }
     );
+}
+
+std::shared_ptr<RenderObject> SDFLoader::getShape(string name, std::vector<std::shared_ptr<RenderObject>> data) {
+    auto iter = std::find_if(
+            data.begin(),
+            data.end(),
+            [&name](std::shared_ptr<RenderObject> const& ptr) -> bool {
+                return ptr->getName() == name;
+            }
+    );
+    if (data.end() == iter) {
+        return nullptr;
+    }
+    return *iter;
 }

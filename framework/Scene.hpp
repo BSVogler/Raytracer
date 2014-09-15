@@ -19,7 +19,7 @@
 struct Scene {
     std::vector<Material> materials;
     std::vector<LightPoint> lights;
-    std::map<std::string, std::shared_ptr<RenderObject>> renderObjects;
+    std::vector<std::shared_ptr<RenderObject>> renderObjects;
     Camera camera;
     std::string camname;
     unsigned int resX;

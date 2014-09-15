@@ -44,7 +44,10 @@ public:
     bool isTransformed() const {
         return transformed;
     }
-
+    
+    string getName() const {
+        return name;
+    }
     
     void scale(glm::vec3 const& axis);
     void translate(glm::vec3 const& axis);
@@ -57,7 +60,6 @@ private:
     glm::mat4 t_inv;
     glm::mat3 t_inv_transp;
     bool transformed;
-
 };
 
 #endif	/* RENDEROBJECT_HPP */

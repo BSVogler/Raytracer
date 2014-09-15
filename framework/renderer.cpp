@@ -47,7 +47,7 @@ void Renderer::render() {
         cout << "ERROR: Resolution Y to big. Forcing: "<<height_<<endl;
         scene_.resY=height_;
     }
-    if (scene_.renderObjects.find("root")!= scene_.renderObjects.end()){
+    if (SDFLoader::getShape("root",scene_.renderObjects) != nullptr ){
         cout << "#####RENDERING####"<<endl;
         cout << "Resolution: "<<scene_.resX<<"x"<<scene_.resY<<endl;
         cout << "Camera: "<<scene_.camname<<endl;
@@ -118,7 +118,7 @@ void Renderer::render() {
 Color Renderer::getColor(Ray const& ray) {
     Color clr;
     
-    auto intersection( scene_.renderObjects["root"]->intersect(ray) );
+    auto intersection= (SDFLoader::getShape("root", scene_.renderObjects))->intersect(ray);
 
     if (intersection.hit){//if intersection happened
         clr +=scene_.amb*intersection.material.ka;//ambient light
@@ -133,7 +133,7 @@ Color Renderer::getColor(Ray const& ray) {
             lightRay.maxt = glm::length(light.getPos()-lightRay.origin);
             
             //shaddow
-            auto lighintersect = scene_.renderObjects["root"]->intersect(lightRay);
+            auto lighintersect = SDFLoader::getShape("root",scene_.renderObjects)->intersect(lightRay);
             if (!(lighintersect.hit)){//check if intersec between p and light source
                 //diffuse light
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction);//l*n
