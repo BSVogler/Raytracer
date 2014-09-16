@@ -299,7 +299,7 @@ LightPoint SDFLoader::getLight(string name, std::vector<LightPoint> data) {
     );
 }
 
-std::shared_ptr<RenderObject> SDFLoader::getShape(string name, std::vector<std::shared_ptr<RenderObject>> data) {
+std::shared_ptr<RenderObject> const& SDFLoader::getShape(string name, std::vector<std::shared_ptr<RenderObject>> data) {
     auto iter = std::find_if(
             data.begin(),
             data.end(),
@@ -308,7 +308,7 @@ std::shared_ptr<RenderObject> SDFLoader::getShape(string name, std::vector<std::
             }
     );
     if (data.end() == iter) {
-        return nullptr;
+        return std::shared_ptr<RenderObject>();
     }
     return *iter;
 }
