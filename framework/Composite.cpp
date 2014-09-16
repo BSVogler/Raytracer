@@ -28,8 +28,8 @@ Intersection Composite::intersect(Ray const& ray) const {
     std::vector<Intersection> intersections;
     
     //collect every intersection
-    for(auto child = children.begin(); child != children.end(); ++child) {//every children
-        auto intersection = (*child)->intersect(ray_t);
+    for(auto& child : children) {//every children
+        auto intersection = child->intersect(ray_t);
         if (intersection.hit && ray.mint<intersection.distance && ray.maxt>intersection.distance)
             intersections.push_back(intersection);
     }
