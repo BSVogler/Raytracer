@@ -191,17 +191,17 @@ Scene SDFLoader::load(std::string const& scenefile) {
                         while (!ss.eof()){
                             ss>>objectString;
                             auto linkedObject = getShape(objectString,scene.renderObjects);
-                            if (linkedObject == nullptr){
-                                cout << "Error: "<<objectString <<" not found!";
-                            } else {
+                            if (linkedObject){
                                 std::dynamic_pointer_cast<Composite>(rObject)->add_child(&*linkedObject);
                                 cout<<", "<<objectString;
+                            } else {
+                                cout << "Error: "<<objectString <<" not found!";
                             }
                         }
                         cout<<")"<<endl;
                     } else cout << "ERROR: Shape \""<< classname << "\" not defined."<<endl;
                     
-                    if (rObject != nullptr)
+                    if (rObject)
                         scene.renderObjects.push_back(rObject);
                 } else
                     cout << "object to define not implemented:"<<ss.str() <<endl;
