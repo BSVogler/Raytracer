@@ -192,7 +192,7 @@ Scene SDFLoader::load(std::string const& scenefile) {
                             ss>>objectString;
                             auto linkedObject = getShape(objectString,scene.renderObjects);
                             if (linkedObject){
-                                std::dynamic_pointer_cast<Composite>(rObject)->add_child(&*linkedObject);
+                                std::dynamic_pointer_cast<Composite>(rObject)->add_child(linkedObject);
                                 cout<<", "<<objectString;
                             } else {
                                 cout << "Error: "<<objectString <<" not found!";

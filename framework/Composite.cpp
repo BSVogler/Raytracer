@@ -9,7 +9,7 @@
 #include "Intersection.hpp"
 #include <algorithm>
 
-void Composite::add_child(RenderObject* const& child) {
+void Composite::add_child(std::shared_ptr<RenderObject> const& child) {
     children.push_back(child);
 }
 

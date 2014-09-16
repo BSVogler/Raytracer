@@ -18,11 +18,11 @@ public:
         RenderObject(name,Material())
     {}
     
-    void add_child(RenderObject* const& child);
-    virtual Intersection intersect(Ray const& ray) const override;
+    Intersection intersect(Ray const& ray) const override;
+    void add_child(std::shared_ptr<RenderObject> const& child);
 	
 private:
-    std::vector<RenderObject*> children;
+    std::vector<std::shared_ptr<RenderObject>> children;
 
 };
 
