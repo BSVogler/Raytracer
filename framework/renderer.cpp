@@ -124,7 +124,7 @@ Color Renderer::getColor(Ray const& ray) {
         clr +=scene_.amb*intersection.material.ka;//ambient light
         
         //starting from the intersection go to every light source
-        for(auto light : scene_.lights) {
+        for(auto& light : scene_.lights) {
             //a ray pointing to the current light source
             auto lightRay = Ray(
                 intersection.ray.origin,    //start at intersection point
