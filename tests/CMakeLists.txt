@@ -1,14 +1,16 @@
+add_executable(tests main.cpp)
 
-#find_package( UnitTest++ REQUIRED )
-
-add_executable(runTests main.cpp)
-
-target_link_libraries(runTests
-                      UnitTest++
+target_link_libraries(tests
                       ${FRAMEWORK_NAME}
-                      ${BINARY_FILES}
+                      ${LIBRARIES}
                       )
 
-add_dependencies(example UnitTest++ glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
+add_dependencies(tests glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
 
-install(TARGETS runTests DESTINATION .)
+add_custom_command(
+  TARGET tests POST_BUILD
+  COMMAND ctest
+  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  COMMENT "Running tests"
+  )
+

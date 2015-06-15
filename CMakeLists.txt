@@ -47,7 +47,9 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${GLM_DIRECTORY})
 ################################
 # Add libraries to executables
 
-set(BINARY_FILES glfw ${GLFW_LIBRARIES} ${FREEIMAGE_LIBRARY})
+set(LIBRARIES glfw ${GLFW_LIBRARIES})
+set(CATCH_DIRECTORY catch-1.1)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${CATCH_DIRECTORY})
 
 ################################
 # Add output directory
@@ -87,39 +89,9 @@ add_subdirectory(framework)
 
 add_subdirectory(source)
 
-set (FENSTERCHEN_TESTS "false" CACHE BOOL "Set to enable testing.")
-if (FENSTERCHEN_TESTS)
-  set(UNITTEST_PP_DIRECTORY unittest-cpp)
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY}/UnitTest++)
-  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY})
-  include_directories(${CMAKE_CURRENT_SOURCE_DIR}/external/${UNITTEST_PP_DIRECTORY}/UnitTest++)
-  #set(BINARY_FILES UnitTest++ glfw ${GLFW_LIBRARIES} ${FREEIMAGE_LIBRARY})
-
+option(WITH_TESTS "Set to enable tests." ON)
+if (WITH_TESTS)
   add_subdirectory(tests)
   enable_testing()
-  add_test( NAME testFensterchen COMMAND runTests )
-endif (FENSTERCHEN_TESTS)
-
-install (DIRECTORY data DESTINATION .)
-
-# See http://www.vtk.org/Wiki/CMake:CPackPackageGenerators
-set (CPACK_PACKAGE_VERSION_MAJOR "4")
-set (CPACK_PACKAGE_VERSION_MINOR "4")
-set (CPACK_PACKAGE_VERSION_PATCH "2")
-# Use current date in YYYYMMDD format as patch number
-
-# cpack mistakenly detects Mingw-w64 as win32
-if (MINGW)
-  if (CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set (CPACK_SYSTEM_NAME win64)
-  endif ()
-endif ()
-
-
-if (WIN32)
-  set (CPACK_GENERATOR "ZIP")
-else ()
-  set (CPACK_GENERATOR "TBZ2")
-endif ()
-
-include(CPack)
+  add_test( NAME tests COMMAND tests )
+endif (WITH_TESTS)
