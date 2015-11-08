@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-=======
-add_executable(example example.cpp)
-
-target_link_libraries(example ${FRAMEWORK_NAME} ${LIBRARIES})
-add_dependencies(example glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
-
-install(TARGETS example DESTINATION .)
-
->>>>>>> vrsys/master
 add_executable(raytracer raytracer.cpp)
 
-target_link_libraries(raytracer ${FRAMEWORK_NAME} ${LIBRARIES})
+target_link_libraries(raytracer ${FRAMEWORK_NAME} ${BINARY_FILES})
 add_dependencies(raytracer glfw ${FRAMEWORK_NAME} ${COPY_BINARY})
 
 install(TARGETS raytracer DESTINATION .)

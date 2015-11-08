@@ -1,7 +1,3 @@
-#define CATCH_CONFIG_RUNNER
-#include <catch.hpp>
+#include <UnitTest++.h>
 
-int main(int argc, char *argv[])
-{
-  return Catch::Session().run(argc, argv);
-}
+int main() { return UnitTest::RunAllTests(); }
