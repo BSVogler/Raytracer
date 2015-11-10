@@ -13,6 +13,7 @@
 #include "ray.hpp"
 #include <cmath>
 #include <glm/glm.hpp>
+#include <omp.h>
 
 using namespace std;
 
@@ -53,6 +54,7 @@ void Renderer::render() {
 
         float d = -int(scene_.resX) / tan(scene_.camera.GetFovX() * M_PI / 180); //apply camera fov, little different angle for each pixel
 
+        float start = omp_get_wtime();	//misst die Startzeit
         for (unsigned yr = 0; yr < scene_.resY; ++yr) {
             for (unsigned xr = 0; xr < scene_.resX; ++xr) {
                 unsigned x = xr;
@@ -108,6 +110,8 @@ void Renderer::render() {
         }
         ppm_.save(scene_.outputFile);
         finished_ = true;
+        float end = omp_get_wtime();	//liest die End-Zeit aus zur bestimmung der tatsächlichen Zeit
+        printf("This task took %f seconds\n", end-start);
     } else {
         cout << "no root found!" << endl;
     }
