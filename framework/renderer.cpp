@@ -15,8 +15,6 @@
 #include <glm/glm.hpp>
 #include <omp.h>
 
-using namespace std;
-
 Renderer::Renderer(unsigned w, unsigned h)
 : width_(w)
 , height_(h)
@@ -39,23 +37,25 @@ Renderer::Renderer(unsigned w, unsigned h, string const& scenefile)
 
 void Renderer::render() {
     if (width_ < scene_.resX) {
-        cout << "ERROR: Resolution X to big. Forcing: " << width_ << endl;
+        std::cout << "ERROR: Resolution X to big. Forcing: " << width_ <<  std::endl;
         scene_.resX = width_;
     }
     if (height_ < scene_.resY) {
-        cout << "ERROR: Resolution Y to big. Forcing: " << height_ << endl;
+        std::cout << "ERROR: Resolution Y to big. Forcing: " << height_ <<  std::endl;
         scene_.resY = height_;
     }
     if (SDFLoader::getShape("root", scene_.renderObjects) != nullptr) {
-        cout << "#####RENDERING####" << endl;
-        cout << "Resolution: " << scene_.resX << "x" << scene_.resY << endl;
-        cout << "Camera: " << scene_.camname << endl;
-        cout << "ambient light " << scene_.amb << endl;
+        std::cout << "#####RENDERING####" <<  std::endl;
+        std::cout << "Resolution: " << scene_.resX << "x" << scene_.resY << std::endl;
+        std::cout << "Camera: " << scene_.camname <<  std::endl;
+        std::cout << "ambient light " << scene_.amb <<  std::endl;
 
         float d = -int(scene_.resX) / tan(scene_.camera.GetFovX() * M_PI / 180); //apply camera fov, little different angle for each pixel
 
         float start = omp_get_wtime();	//misst die Startzeit
+        
         for (unsigned yr = 0; yr < scene_.resY; ++yr) {
+            #pragma omp parallel for
             for (unsigned xr = 0; xr < scene_.resX; ++xr) {
                 unsigned x = xr;
                 unsigned y = yr;
@@ -111,9 +111,9 @@ void Renderer::render() {
         ppm_.save(scene_.outputFile);
         finished_ = true;
         float end = omp_get_wtime();	//liest die End-Zeit aus zur bestimmung der tatsächlichen Zeit
-        printf("This task took %f seconds\n", end-start);
+        std::cout << "This task took "<< (end-start)<< " seconds\n" <<  std::endl;
     } else {
-        cout << "no root found!" << endl;
+        std::cout << "no root found!" <<  std::endl;
     }
 }
 
@@ -183,10 +183,10 @@ void Renderer::write(Pixel const& p) {
     // flip pixels, because of opengl glDrawPixels
     size_t buf_pos = (width_ * p.y + p.x);
     if (buf_pos >= colorbuffer_.size() || (int) buf_pos < 0) {
-        cerr << "Fatal Error Renderer::write(Pixel p) : "
+        std::cerr << "Fatal Error Renderer::write(Pixel p) : "
                 << "pixel out of ppm_ : "
                 << (int) p.x << "," << (int) p.y
-                << endl;
+                <<  std::endl;
     } else {
         colorbuffer_[buf_pos] = p.color;
     }
