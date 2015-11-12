@@ -47,7 +47,7 @@ define shape sphere sunsphere -60 10 -50 5 yellow
 # camera
 define camera eye 70.0
 # camera xform
-transform eye rotate -45 0 1 0
-transform eye translate 100 0 100
+#transform eye rotate -45 0 1 0
+#transform eye translate 100 0 100
 # ... and go
 render eye image.ppm 600 600 0
