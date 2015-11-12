@@ -8,6 +8,7 @@
 #include "Composite.hpp"
 #include "Intersection.hpp"
 #include <algorithm>
+#include <memory>
 
 void Composite::add_child(std::shared_ptr<RenderObject> const& child) {
     children.push_back(child);

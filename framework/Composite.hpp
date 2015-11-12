@@ -10,6 +10,7 @@
 
 #include "RenderObject.hpp"
 #include <vector>
+#include <memory>
 
 
 class Composite : public RenderObject {
