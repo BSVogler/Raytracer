@@ -54,26 +54,30 @@ void Renderer::render() {
 
         float start = omp_get_wtime();	//misst die Startzeit
         
-        for (unsigned yr = 0; yr < scene_.resY; ++yr) {
-            #pragma omp parallel for
-            for (unsigned xr = 0; xr < scene_.resX; ++xr) {
-                unsigned x = xr;
-                unsigned y = yr;
+        #pragma omp parallel
+        while (true) {
+                glm::vec3 pos;
+                pos.x = -0.0001;
+                pos.y = -0.000001;
+                pos.z = 0.0001;
+                scene_.camera.translate(pos);
+                scene_.camera.rotate(0.000002,pos);
+                unsigned x = 0;
+                unsigned y = 0;
 
                 //allow random pixel rendering
                 if (scene_.random) {
                     x = rand() % scene_.resX;
                     y = rand() % scene_.resY;
-                    for (int i = 0; i < 100; i++) {//try 100 times
-                        auto coloratp = colorbuffer_[(width_ * y + x)];
-                        if (!(coloratp.r == 0 && coloratp.g == 0 && coloratp.b == 0)) {//again if already filled
-                            x = rand() % scene_.resX;
-                            y = rand() % scene_.resY;
-                        } else break;
-                    }
+                    //for (int i = 0; i < 100; i++) {//try 100 times
+                        //auto coloratp = colorbuffer_[(width_ * y + x)];
+                        //if (!(coloratp.r == 0 && coloratp.g == 0 && coloratp.b == 0)) {//again if already filled
+                         //   x = rand() % scene_.resX;
+                        //    y = rand() % scene_.resY;
+                        //} else break;
+                   //}
                 }
 
-                Pixel p(x, y);
 
 
                 //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
@@ -86,6 +90,7 @@ void Renderer::render() {
                 ray.origin = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.origin, 1));
                 ray.direction = glm::vec3(scene_.camera.GetTransformation_inv() * glm::vec4(ray.direction, 0));
 
+                Pixel p(x, y);
                 if (scene_.antialiase > 0) {//SSAA
                     int samples = sqrt(scene_.antialiase);
                     for (int xAA = 1; xAA < samples + 1; ++xAA) {
@@ -97,16 +102,15 @@ void Renderer::render() {
                             p.color += getColor(aaRay);
                         }
                     }
+                    p.color /= scene_.antialiase;
+                } else {
+                    p.color += getColor(ray);
                 }
 
 
                 //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-                if (scene_.antialiase > 0)
-                    p.color /= scene_.antialiase;
-                else
-                    p.color += getColor(ray);
+                
                 write(p);
-            }
         }
         ppm_.save(scene_.outputFile);
         finished_ = true;
