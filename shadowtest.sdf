@@ -32,4 +32,4 @@ define camera eye 65.0  0 0 0  0 1 -0.5  -1 1 0
 #transform eye rotate -45 0 1 0
 #transform eye translate 100 0 100
 # ... and go
-render eye image.ppm 300 300 0 random
+render eye image.ppm 400 400 0 random
