@@ -18,30 +18,31 @@
 #include <glm/glm.hpp>
 
 class Renderer {
-    public:
-        Renderer(unsigned w, unsigned h);
-        Renderer(unsigned w, unsigned h, std::string const& scenefile);
+public:
+	Renderer(unsigned w, unsigned h);
+	Renderer(unsigned w, unsigned h, std::string const& scenefile);
 
-        void render();
-        void write(Pixel const& p);
-        bool finished() const{
-            return finished_;
-        };
+	void render();
+	void write(Pixel const& p);
+	void writeAlpha(Pixel const& p, float a);
 
-        inline std::vector<Color> const& colorbuffer() const
-        {
-          return colorbuffer_;
-        }
+	bool finished() const {
+		return finished_;
+	};
 
-    private:
-      unsigned width_;
-      unsigned height_;
-      std::vector<Color> colorbuffer_;
-      std::string scenefile_;
-      Scene scene_;
-      PpmWriter ppm_;
-      bool finished_;
-      Color getColor(Ray const& ray);
+	inline std::vector<Color> const& colorbuffer() const {
+		return colorbuffer_;
+	}
+
+private:
+	unsigned width_;
+	unsigned height_;
+	std::vector<Color> colorbuffer_;
+	std::string scenefile_;
+	Scene scene_;
+	PpmWriter ppm_;
+	bool finished_;
+	Color getColor(Ray const& ray);
 };
 
 #endif // #ifndef BUW_RENDERER_HPP

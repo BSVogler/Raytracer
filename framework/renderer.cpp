@@ -56,12 +56,11 @@ void Renderer::render() {
         
         #pragma omp parallel
         while (true) {
-                glm::vec3 pos;
-                pos.x = -0.0001;
-                pos.y = -0.000001;
-                pos.z = 0.0001;
-                scene_.camera.translate(pos);
-                scene_.camera.rotate(0.000002,pos);
+                auto trans = glm::vec3(-0.0001, -0.0000005,0.0002);
+                scene_.camera.translate(trans);
+                
+                auto rot = glm::vec3(0.0000001, -0.001,0.00005);
+                scene_.camera.rotate(0.000001,rot);
                 unsigned x = 0;
                 unsigned y = 0;
 
@@ -77,8 +76,6 @@ void Renderer::render() {
                         //} else break;
                    //}
                 }
-
-
 
                 //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
                 Ray ray;
@@ -109,8 +106,27 @@ void Renderer::render() {
 
 
                 //cout << "Ray@("<<x<<"x"<<y<<"): "<<ray<<endl;
-                
                 write(p);
+                auto p2 = Pixel(p.x+1,p.y);
+                p2.color.r = p.color.r;
+                p2.color.g = p.color.g;
+                p2.color.b = p.color.b;
+                writeAlpha(p2, 0.2f);
+                auto p3 = Pixel(p.x,p.y+1);
+                p3.color.r = p.color.r;
+                p3.color.g = p.color.g;
+                p3.color.b = p.color.b;
+                writeAlpha(p3, 0.2f);
+                auto p4 = Pixel(p.x,p.y-1);
+                p4.color.r = p.color.r;
+                p4.color.g = p.color.g;
+                p4.color.b = p.color.b;
+                writeAlpha(p4, 0.2f);
+                auto p5 = Pixel(p.x-1,p.y);
+                p5.color.r = p.color.r;
+                p5.color.g = p.color.g;
+                p5.color.b = p.color.b;
+                writeAlpha(p5, 0.2f);
         }
         ppm_.save(scene_.outputFile);
         finished_ = true;
@@ -124,7 +140,7 @@ void Renderer::render() {
 Color Renderer::getColor(Ray const& ray) {
     Color clr;
 
-    auto intersection = (SDFLoader::getShape("root", scene_.renderObjects))->intersect(ray);
+    auto intersection = SDFLoader::getShape("root", scene_.renderObjects)->intersect(ray);
 
     if (intersection.hit) {//if intersection happened
         clr += scene_.amb * intersection.material.ka; //ambient light
@@ -133,14 +149,14 @@ Color Renderer::getColor(Ray const& ray) {
         for (auto& light : scene_.lights) {
             //a ray pointing to the current light source
             auto lightRay = Ray(
-                    intersection.ray.origin, //start at intersection point
-                    glm::normalize(light.getPos() - intersection.ray.origin)//l=IL =L-I 
-                    );
+                intersection.ray.origin, //start at intersection point
+                glm::normalize(light.getPos() - intersection.ray.origin)//l=IL =L-I 
+            );
             lightRay.maxt = glm::length(light.getPos() - lightRay.origin);
 
-            //shaddow
+            //shadow
             auto lighintersect = SDFLoader::getShape("root", scene_.renderObjects)->intersect(lightRay);
-            if (!(lighintersect.hit)) {//check if intersec between p and light source
+            if (!lighintersect.hit) {//check if intersec between p and light source
                 //diffuse light
                 double fDiffuse = glm::dot(lightRay.direction, intersection.ray.direction); //l*n
                 fDiffuse = fDiffuse < 0 ? 0 : fDiffuse; //allow no negative diffuse light
@@ -152,16 +168,16 @@ Color Renderer::getColor(Ray const& ray) {
 
 
                 auto r = glm::normalize(
-                        glm::reflect(
+                    glm::reflect(
                         lightRay.direction,
                         intersection.ray.direction
-                        )
-                        );
+                    )
+                );
                 Color spec = light.getDiff()
                         * intersection.material.ks
                         * glm::pow(
-                        glm::dot(r, glm::normalize(ray.direction)),
-                        intersection.material.m
+                            glm::dot(r, glm::normalize(ray.direction)),
+                            intersection.material.m
                         ); //(l*r)^m
                 if (spec.r < 0) spec.r = 0;
                 if (spec.g < 0) spec.g = 0;
@@ -172,11 +188,11 @@ Color Renderer::getColor(Ray const& ray) {
             if (intersection.material.opac < 1.0f) {
                 auto refrdir = glm::refract(ray.direction, intersection.ray.direction, intersection.material.refr);
                 clr += getColor(
-                        Ray(
+                    Ray(
                         intersection.ray.origin, //start at intersection point
                         refrdir
-                        )
-                        )*(1.0f - intersection.material.opac);
+                    )
+                )*(1.0f - intersection.material.opac);
             }
         }
     }
@@ -185,15 +201,23 @@ Color Renderer::getColor(Ray const& ray) {
 
 void Renderer::write(Pixel const& p) {
     // flip pixels, because of opengl glDrawPixels
-    size_t buf_pos = (width_ * p.y + p.x);
+    size_t buf_pos = width_ * p.y + p.x;
     if (buf_pos >= colorbuffer_.size() || (int) buf_pos < 0) {
         std::cerr << "Fatal Error Renderer::write(Pixel p) : "
                 << "pixel out of ppm_ : "
                 << (int) p.x << "," << (int) p.y
-                <<  std::endl;
+                << std::endl;
     } else {
         colorbuffer_[buf_pos] = p.color;
     }
+    //ppm_.write(p);
+}
 
-    ppm_.write(p);
+void Renderer::writeAlpha(Pixel const& p, float a) {
+    // flip pixels, because of opengl glDrawPixels
+    size_t buf_pos = width_ * p.y + p.x;
+    if (buf_pos < colorbuffer_.size() && (int) buf_pos > 0) {
+        colorbuffer_[buf_pos] = colorbuffer_[buf_pos]*(1.0f-a) + p.color*a;
+    }
+    //ppm_.write(p);
 }
