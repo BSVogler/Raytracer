@@ -54,15 +54,17 @@ void Renderer::render() {
 
         float start = omp_get_wtime();	//misst die Startzeit
         
-        #pragma omp parallel
+
+        unsigned int x = 0;
+        unsigned int y = 0;
+        
+        #pragma omp parallel private(x,y)
         while (true) {
                 auto trans = glm::vec3(-0.0001, -0.0000005,0.0002);
                 scene_.camera.translate(trans);
                 
                 auto rot = glm::vec3(0.0000001, -0.001,0.00005);
                 scene_.camera.rotate(0.000001,rot);
-                unsigned x = 0;
-                unsigned y = 0;
 
                 //allow random pixel rendering
                 if (scene_.random) {
@@ -75,6 +77,18 @@ void Renderer::render() {
                         //    y = rand() % scene_.resY;
                         //} else break;
                    //}
+                } else {
+                    
+                    x++;
+                    if (x >= scene_.resX) {
+                         y+=2;
+                         x=0;
+                        if (y >= scene_.resY) {
+                           y++;
+                           y %= scene_.resY;
+                       }
+                     }
+                
                 }
 
                 //Ray ray(glm::vec3(scene_.camera.GetTransformation() * glm::vec4(0,0,0,1)));
@@ -199,7 +213,7 @@ Color Renderer::getColor(Ray const& ray) {
     return clr;
 }
 
-void Renderer::write(Pixel const& p) {
+float Renderer::write(Pixel const& p) {
     // flip pixels, because of opengl glDrawPixels
     size_t buf_pos = width_ * p.y + p.x;
     if (buf_pos >= colorbuffer_.size() || (int) buf_pos < 0) {
@@ -208,16 +222,20 @@ void Renderer::write(Pixel const& p) {
                 << (int) p.x << "," << (int) p.y
                 << std::endl;
     } else {
+        float diff = std::abs(p.color.r - colorbuffer_[buf_pos].r) + std::abs(p.color.g - colorbuffer_[buf_pos].g) + std::abs(p.color.b - colorbuffer_[buf_pos].b);
         colorbuffer_[buf_pos] = p.color;
+        return diff;
     }
     //ppm_.write(p);
 }
 
-void Renderer::writeAlpha(Pixel const& p, float a) {
+float Renderer::writeAlpha(Pixel const& p, float a) {
     // flip pixels, because of opengl glDrawPixels
     size_t buf_pos = width_ * p.y + p.x;
     if (buf_pos < colorbuffer_.size() && (int) buf_pos > 0) {
+        float diff = std::abs(p.color.r - colorbuffer_[buf_pos].r) + std::abs(p.color.g - colorbuffer_[buf_pos].g) + std::abs(p.color.b - colorbuffer_[buf_pos].b);
         colorbuffer_[buf_pos] = colorbuffer_[buf_pos]*(1.0f-a) + p.color*a;
+        return diff;
     }
     //ppm_.write(p);
 }

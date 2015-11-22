@@ -23,8 +23,8 @@ public:
 	Renderer(unsigned w, unsigned h, std::string const& scenefile);
 
 	void render();
-	void write(Pixel const& p);
-	void writeAlpha(Pixel const& p, float a);
+	float write(Pixel const& p);
+	float writeAlpha(Pixel const& p, float a);
 
 	bool finished() const {
 		return finished_;
