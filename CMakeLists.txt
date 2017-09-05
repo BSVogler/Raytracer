@@ -4,7 +4,7 @@ cmake_policy(VERSION 2.8)
 set(FENSTERCHEN fensterchen)
 set(FRAMEWORK_NAME framework)
 
-set(CMAKE_CXX_COMPILER g++)
+set(CMAKE_CXX_COMPILER /usr/local/bin/g++)#needs homebrew gcc
 
 project(${FENSTERCHEN})
 
