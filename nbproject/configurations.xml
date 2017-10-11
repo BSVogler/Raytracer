@@ -1,0 +1,1044 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="cmake_out">
+        <df name="CMakeFiles">
+          <df name="3.9.1">
+            <df name="CompilerIdC">
+              <in>CMakeCCompilerId.c</in>
+            </df>
+            <df name="CompilerIdCXX">
+              <in>CMakeCXXCompilerId.cpp</in>
+            </df>
+          </df>
+          <in>feature_tests.c</in>
+          <in>feature_tests.cxx</in>
+        </df>
+      </df>
+      <df name="external">
+        <df name="glfw-3.0.3">
+          <df name="deps">
+            <in>getopt.c</in>
+            <in>tinycthread.c</in>
+          </df>
+          <df name="examples">
+            <in>boing.c</in>
+            <in>gears.c</in>
+            <in>heightmap.c</in>
+            <in>simple.c</in>
+            <in>splitview.c</in>
+            <in>wave.c</in>
+          </df>
+          <df name="src">
+            <in>clipboard.c</in>
+            <in>cocoa_clipboard.m</in>
+            <in>cocoa_gamma.c</in>
+            <in>cocoa_init.m</in>
+            <in>cocoa_joystick.m</in>
+            <in>cocoa_monitor.m</in>
+            <in>cocoa_time.c</in>
+            <in>cocoa_window.m</in>
+            <in>context.c</in>
+            <in>egl_context.c</in>
+            <in>gamma.c</in>
+            <in>glx_context.c</in>
+            <in>init.c</in>
+            <in>input.c</in>
+            <in>joystick.c</in>
+            <in>monitor.c</in>
+            <in>nsgl_context.m</in>
+            <in>time.c</in>
+            <in>wgl_context.c</in>
+            <in>win32_clipboard.c</in>
+            <in>win32_gamma.c</in>
+            <in>win32_init.c</in>
+            <in>win32_joystick.c</in>
+            <in>win32_monitor.c</in>
+            <in>win32_time.c</in>
+            <in>win32_window.c</in>
+            <in>window.c</in>
+            <in>x11_clipboard.c</in>
+            <in>x11_gamma.c</in>
+            <in>x11_init.c</in>
+            <in>x11_joystick.c</in>
+            <in>x11_monitor.c</in>
+            <in>x11_time.c</in>
+            <in>x11_unicode.c</in>
+            <in>x11_window.c</in>
+          </df>
+          <df name="tests">
+            <in>accuracy.c</in>
+            <in>clipboard.c</in>
+            <in>defaults.c</in>
+            <in>events.c</in>
+            <in>fsaa.c</in>
+            <in>gamma.c</in>
+            <in>glfwinfo.c</in>
+            <in>iconify.c</in>
+            <in>joysticks.c</in>
+            <in>modes.c</in>
+            <in>peter.c</in>
+            <in>reopen.c</in>
+            <in>sharing.c</in>
+            <in>tearing.c</in>
+            <in>threads.c</in>
+            <in>title.c</in>
+            <in>windows.c</in>
+          </df>
+        </df>
+        <df name="glm-0.9.5.3">
+          <df name="glm">
+            <df name="detail">
+              <in>dummy.cpp</in>
+              <in>glm.cpp</in>
+            </df>
+          </df>
+          <df name="test">
+            <df name="core">
+              <in>core_func_common.cpp</in>
+              <in>core_func_exponential.cpp</in>
+              <in>core_func_geometric.cpp</in>
+              <in>core_func_integer.cpp</in>
+              <in>core_func_matrix.cpp</in>
+              <in>core_func_noise.cpp</in>
+              <in>core_func_packing.cpp</in>
+              <in>core_func_swizzle.cpp</in>
+              <in>core_func_trigonometric.cpp</in>
+              <in>core_func_vector_relational.cpp</in>
+              <in>core_setup_message.cpp</in>
+              <in>core_setup_precision.cpp</in>
+              <in>core_type_cast.cpp</in>
+              <in>core_type_float.cpp</in>
+              <in>core_type_int.cpp</in>
+              <in>core_type_length.cpp</in>
+              <in>core_type_mat2x2.cpp</in>
+              <in>core_type_mat2x3.cpp</in>
+              <in>core_type_mat2x4.cpp</in>
+              <in>core_type_mat3x2.cpp</in>
+              <in>core_type_mat3x3.cpp</in>
+              <in>core_type_mat3x4.cpp</in>
+              <in>core_type_mat4x2.cpp</in>
+              <in>core_type_mat4x3.cpp</in>
+              <in>core_type_mat4x4.cpp</in>
+              <in>core_type_vec1.cpp</in>
+              <in>core_type_vec2.cpp</in>
+              <in>core_type_vec3.cpp</in>
+              <in>core_type_vec4.cpp</in>
+            </df>
+            <df name="external">
+              <df name="gli">
+                <df name="core">
+                  <in>dummy.cpp</in>
+                </df>
+              </df>
+            </df>
+            <df name="gtc">
+              <in>gtc_constants.cpp</in>
+              <in>gtc_epsilon.cpp</in>
+              <in>gtc_matrix_access.cpp</in>
+              <in>gtc_matrix_integer.cpp</in>
+              <in>gtc_matrix_inverse.cpp</in>
+              <in>gtc_matrix_transform.cpp</in>
+              <in>gtc_noise.cpp</in>
+              <in>gtc_packing.cpp</in>
+              <in>gtc_quaternion.cpp</in>
+              <in>gtc_random.cpp</in>
+              <in>gtc_reciprocal.cpp</in>
+              <in>gtc_type_precision.cpp</in>
+              <in>gtc_type_ptr.cpp</in>
+              <in>gtc_ulp.cpp</in>
+            </df>
+            <df name="gtx">
+              <in>gtx_associated_min_max.cpp</in>
+              <in>gtx_bit.cpp</in>
+              <in>gtx_closest_point.cpp</in>
+              <in>gtx_color_space.cpp</in>
+              <in>gtx_color_space_YCoCg.cpp</in>
+              <in>gtx_compatibility.cpp</in>
+              <in>gtx_component_wise.cpp</in>
+              <in>gtx_dual_quaternion.cpp</in>
+              <in>gtx_euler_angle.cpp</in>
+              <in>gtx_extend.cpp</in>
+              <in>gtx_extented_min_max.cpp</in>
+              <in>gtx_fast_exponential.cpp</in>
+              <in>gtx_fast_square_root.cpp</in>
+              <in>gtx_fast_trigonometry.cpp</in>
+              <in>gtx_gradient_paint.cpp</in>
+              <in>gtx_handed_coordinate_space.cpp</in>
+              <in>gtx_inertia.cpp</in>
+              <in>gtx_int_10_10_10_2.cpp</in>
+              <in>gtx_integer.cpp</in>
+              <in>gtx_intersect.cpp</in>
+              <in>gtx_io.cpp</in>
+              <in>gtx_log_base.cpp</in>
+              <in>gtx_matrix_cross_product.cpp</in>
+              <in>gtx_matrix_interpolation.cpp</in>
+              <in>gtx_matrix_major_storage.cpp</in>
+              <in>gtx_matrix_operation.cpp</in>
+              <in>gtx_matrix_query.cpp</in>
+              <in>gtx_mixed_product.cpp</in>
+              <in>gtx_multiple.cpp</in>
+              <in>gtx_norm.cpp</in>
+              <in>gtx_normal.cpp</in>
+              <in>gtx_normalize_dot.cpp</in>
+              <in>gtx_number_precision.cpp</in>
+              <in>gtx_optimum_pow.cpp</in>
+              <in>gtx_orthonormalize.cpp</in>
+              <in>gtx_perpendicular.cpp</in>
+              <in>gtx_polar_coordinates.cpp</in>
+              <in>gtx_projection.cpp</in>
+              <in>gtx_quaternion.cpp</in>
+              <in>gtx_random.cpp</in>
+              <in>gtx_rotate_normalized_axis.cpp</in>
+              <in>gtx_rotate_vector.cpp</in>
+              <in>gtx_scalar_relational.cpp</in>
+              <in>gtx_simd_mat4.cpp</in>
+              <in>gtx_simd_vec4.cpp</in>
+              <in>gtx_spline.cpp</in>
+              <in>gtx_string_cast.cpp</in>
+              <in>gtx_vector_angle.cpp</in>
+              <in>gtx_vector_query.cpp</in>
+            </df>
+          </df>
+        </df>
+      </df>
+      <df name="framework">
+        <in>Box.cpp</in>
+        <in>Camera.cpp</in>
+        <in>Composite.cpp</in>
+        <in>LightPoint.cpp</in>
+        <in>Material.cpp</in>
+        <in>RenderObject.cpp</in>
+        <in>SDFLoader.cpp</in>
+        <in>Sphere.cpp</in>
+        <in>glew.c</in>
+        <in>pixel.cpp</in>
+        <in>ppmwriter.cpp</in>
+        <in>renderer.cpp</in>
+        <in>window.cpp</in>
+      </df>
+      <df name="sdfGenerator">
+        <in>sdfGenerator.cpp</in>
+        <in>stdafx.cpp</in>
+      </df>
+      <df name="source">
+        <in>raytracer.cpp</in>
+      </df>
+      <df name="tests">
+        <in>main.cpp</in>
+      </df>
+    </df>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>CMakeLists.txt</itemPath>
+      <itemPath>/Users/Benedikt/Studium/alte Semester/2. Semester/Programmiersprachen/Übung/Raytracer/PS-Raytracer/cmake_out/Makefile</itemPath>
+      <itemPath>nbproject/private/launcher.properties</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceFolderFilter>^(nbproject)$</sourceFolderFilter>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>./cmake_out</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_C_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_CXX_FLAGS_DEBUG="-g3 -gdwarf-2" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .</preBuildCommand>
+        </preBuild>
+      </makefileType>
+      <item path="cmake_out/CMakeFiles/3.9.1/CompilerIdC/CMakeCCompilerId.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="cmake_out/CMakeFiles/3.9.1/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="cmake_out/CMakeFiles/feature_tests.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="cmake_out/CMakeFiles/feature_tests.cxx"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/deps/getopt.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/deps/tinycthread.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/examples/boing.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/examples/gears.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/examples/heightmap.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/examples/simple.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/examples/splitview.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/examples/wave.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/clipboard.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_clipboard.m"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_gamma.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_init.m"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_joystick.m"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_monitor.m"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_time.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/cocoa_window.m"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/context.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/egl_context.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/gamma.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/glx_context.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/init.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/input.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/joystick.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/monitor.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/nsgl_context.m"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/time.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/wgl_context.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_clipboard.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_gamma.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_init.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_joystick.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_monitor.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_time.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/win32_window.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/window.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_clipboard.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_gamma.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_init.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_joystick.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_monitor.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_time.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_unicode.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/src/x11_window.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/accuracy.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/clipboard.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/defaults.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/events.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/fsaa.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/gamma.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/glfwinfo.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/iconify.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/joysticks.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/modes.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/peter.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/reopen.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/sharing.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/tearing.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/threads.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/title.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="external/glfw-3.0.3/tests/windows.c"
+            ex="false"
+            tool="0"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/glm/detail/dummy.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/glm/detail/glm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_common.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_exponential.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_geometric.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_integer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_matrix.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_noise.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_packing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_swizzle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_trigonometric.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_func_vector_relational.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_setup_message.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_setup_precision.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_cast.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_float.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_int.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_length.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat2x2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat2x3.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat2x4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat3x2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat3x3.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat3x4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat4x2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat4x3.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_mat4x4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_vec1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_vec2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_vec3.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/core/core_type_vec4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/external/gli/core/dummy.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_constants.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_epsilon.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_matrix_access.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_matrix_integer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_matrix_inverse.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_matrix_transform.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_noise.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_packing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_quaternion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_random.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_reciprocal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_type_precision.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_type_ptr.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtc/gtc_ulp.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_associated_min_max.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_bit.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_closest_point.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_color_space.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_color_space_YCoCg.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_compatibility.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_component_wise.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_dual_quaternion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_euler_angle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_extend.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_extented_min_max.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_fast_exponential.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_fast_square_root.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_fast_trigonometry.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_gradient_paint.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_handed_coordinate_space.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_inertia.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_int_10_10_10_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_integer.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_intersect.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_io.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_log_base.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_matrix_cross_product.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_matrix_interpolation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_matrix_major_storage.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_matrix_operation.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_matrix_query.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_mixed_product.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_multiple.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_norm.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_normal.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_normalize_dot.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_number_precision.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_optimum_pow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_orthonormalize.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_perpendicular.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_polar_coordinates.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_projection.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_quaternion.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_random.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_rotate_normalized_axis.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_rotate_vector.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_scalar_relational.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_simd_mat4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_simd_vec4.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_spline.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_string_cast.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_vector_angle.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="external/glm-0.9.5.3/test/gtx/gtx_vector_query.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="framework/Box.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/Camera.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/Composite.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/LightPoint.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/Material.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/RenderObject.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/SDFLoader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/Sphere.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/glew.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="framework/pixel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/ppmwriter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/renderer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="framework/window.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sdfGenerator/sdfGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="sdfGenerator/stdafx.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/raytracer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
