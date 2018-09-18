@@ -28,3 +28,4 @@ scene*.sdf
 image*.png
 
 .DS_Store
+nbproject/private/
